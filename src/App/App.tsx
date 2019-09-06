@@ -218,11 +218,10 @@ export default class App extends React.Component<{}, IState, null> {
                     </li>
                   </ul>
                 </div>
+                <SocialMediaDisplay />
               </div>
             </div>
-            <SocialMediaDisplay />
           </div>
-
           <div className="col-6 no-float" id="second-row-right">
             <div id="right-content-row2">
               <div id="right-content-header-row2">
