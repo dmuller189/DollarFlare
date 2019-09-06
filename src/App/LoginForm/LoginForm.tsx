@@ -17,6 +17,7 @@ interface IProps {
     field8: string;
     field9: string;
     field10: string;
+    field2P: string;
 }
 
 export class LoginForm extends React.Component<IProps> {
@@ -36,7 +37,8 @@ export class LoginForm extends React.Component<IProps> {
         field7: "null",
         field8: "null",
         field9: "null",
-        field10: "null"
+        field10: "null",
+        field2P: "fd"
     };
 
     constructor(props: IProps) {
@@ -90,11 +92,11 @@ export class LoginForm extends React.Component<IProps> {
         return (
             <form className="form-inline" id="pageForm">
                 {
-                    iFieldsProps.map(e => {
+                    iFieldsProps.map(e => {  
                         return (
                             <div className="form-group mx-sm-3 mb-2">
                                 <label className="sr-only">username</label>
-                                <input onChange={this.handleInput} className="form-control" id={e} placeholder={e} />
+                                <input type={e} onChange={this.handleInput} className="form-control" id={e} placeholder={e} />
                             </div>
                         )
                     })

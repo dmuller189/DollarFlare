@@ -158,12 +158,7 @@ export default class App extends React.Component<{}, IState, null> {
                   submitMsg="Log-in"
                   submitT="outline-" />              
               </div>
-
               <div id="right-content-main" className="justify-content-center">
-                
-                
-                
-      
                 <h2>
                   Sign Up Now and Begin Exploring
                 </h2>
@@ -171,15 +166,10 @@ export default class App extends React.Component<{}, IState, null> {
                 <br></br>
                 <br></br>
                 <h6>Join!</h6>
-                <button id="main-sign"type="button" className="btn btn-primary btn-block round">Sign-up</button>
-                
+                <button id="main-sign"type="button" className="btn btn-primary btn-block round">Sign-up</button>          
                 <button id="main-log" type="button" className="btn btn-outline-primary btn-block round">Log-in</button>
-
-
-               
+                <button id="main-guest" type="button" className="btn btn-outline-dark round">Continue as Guest</button>      
               </div>
-
-
             </div>
           </div>
         </div>
