@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { LoginForm } from './LoginForm/LoginForm';
-import { Pie1 } from './d3Visuals/Pie1';
+import { Pie1 } from './d3Visuals_and_icons/Pie1';
 
 interface IFootList {
   title: string;
