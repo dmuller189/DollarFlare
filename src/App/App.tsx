@@ -191,6 +191,7 @@ export default class App extends React.Component<{}, IState, null> {
         </div>
         <div className="row h-100" id="second-row-left">
           <div className="col-6 no-float">
+            <div className="arrow-down"></div>
             <div id="left-content">
               <div id="left-content-header">
                 <h2>

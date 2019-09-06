@@ -9,6 +9,10 @@ body {
   font-size: 120%;
 }
 
+h6, h5, h4, h3, h2, h1  {
+  font-weight: 100;
+}
+
 #left {
   height: 100%;
   background-image: linear-gradient(rgb(81, 194, 247), rgb(71, 82, 182));
@@ -52,9 +56,6 @@ a {
   } 
 
 
-
-
-
 #left-content-header  {
   font-family: Open 'sans';
   color: white;
@@ -82,10 +83,6 @@ a {
   padding-top: 200px;
 }
 
-
-h6, h5, h4, h3, h2, h1  {
-  font-weight: 100;
-}
 
 #right-content-header {
   padding-left: 190px;;
@@ -145,3 +142,14 @@ ul {
   text-align: center;
   align-content: center;
 }
+
+
+.arrow-down {
+  align-content: center;
+  width: 0; 
+  height: 0; 
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 50px solid white;
+}
+

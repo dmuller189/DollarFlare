@@ -49,11 +49,9 @@ export class Pie1 extends React.Component<{}, MyProps> {
 
         d3.selectAll("circle").on('mouseenter', (d) =>
         {
-            d3.selectAll("circle").transition().style("opacity", .2).duration(1500);
+            d3.selectAll("circle").transition().style("fill", "blue").duration(1500);
         })
         
-        
-
         var sampleArray = [423, 124, 66, 424, 58, 10, 900, 44, 1];
         var qScale = d3.scaleQuantile().domain(sampleArray).range([0, 1, 2]);
         qScale(423);
