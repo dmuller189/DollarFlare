@@ -74,6 +74,11 @@ a {
   padding-top: 200px;
 }
 
+
+h2 {
+  font-weight: 400;
+}
+
 #right-content-header {
   padding-left: 190px;;
 }
@@ -97,7 +102,7 @@ a {
 }
 
 #main-log:hover {
-  background-color: rgb(177, 188, 204);
+  background-color: rgb(162, 179, 206);
   color: black;
 }
 
