@@ -1,0 +1,102 @@
+html, body, #root, #m{
+  height: 100%;
+  font-weight: bold;
+  font-size: 89%;
+
+}
+
+body {
+  font-size: 120%;
+}
+
+#left {
+  height: 100%;
+  background-image: linear-gradient(rgb(81, 194, 247), rgb(71, 82, 182));
+  opacity: 0.99;
+  font-family: Open 'sans';
+  color: white;
+  font-weight: bold;   
+}
+
+
+#second-row-right {
+background-color: white;
+}
+
+#second-row-left {
+  background-image: linear-gradient(rgb(71, 82, 182), rgb(71, 82, 182));
+}
+
+#leftClicked {
+  background-image: linear-gradient(rgba(245, 10, 10, 0.959), rgb(255, 143, 78));
+  opacity: 0.89;
+  font-family: Open 'sans';
+  color: black;
+  font-weight: bold;   
+}
+
+#foot {
+  line-height: 50%;
+  height: 100%;
+  font-size: 60%;
+}
+
+a {
+   color: inherit; 
+   text-decoration: none;
+  } 
+
+#left-content-header  {
+  font-family: Open 'sans';
+  color: white;
+  margin: 3px;
+  padding-left: 90px;
+  padding-right: 25px;
+  display: inline-block;
+  padding-top: 200px;
+  
+}
+#left-content-body-itme1 {
+  padding-right: 50spx;
+  padding-left: 50px;
+  color: white;
+}
+
+/* .divider {
+  background-color: white;
+  height:10%;
+  outline-color: black;
+  align-content: center;
+  width: 100%;
+} */
+
+
+li {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+#query {
+
+  list-style-image: none;
+
+
+}
+
+
+.row {
+  display: flex;
+}
+
+ul {
+  list-style-type: none
+
+}
+
+.list-title {
+  font-weight: bold;
+}
+
+#bulletIcon {
+  vertical-align: super
+}
