@@ -83,6 +83,28 @@ a {
   margin-bottom: 10px;
 }
 
+#main-sign {
+
+  border: black;
+  background-image: linear-gradient(rgb(81, 194, 247), rgb(71, 120, 200));
+}
+
+#main-sign:hover {
+  color: black;
+  background-color: white; 
+}
+
+#main-log {
+
+  -webkit-transition-duration: 0.1s; /* Safari */
+  transition-duration: .1s;
+}
+
+#main-log:hover {
+  background-image: linear-gradient(rgb(81, 194, 247), rgb(71, 120, 200));
+}
+
+
 
 li {
   font-size: 100%;
