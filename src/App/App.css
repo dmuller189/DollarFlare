@@ -23,7 +23,7 @@ background-color: white;
 }
 
 #second-row-left {
-  background-image: linear-gradient(rgb(71, 82, 182), rgb(71, 82, 182));
+  background-color: rgba(61, 132, 212, 0.99);
 }
 
 #leftClicked {
@@ -76,7 +76,7 @@ a {
 
 
 h2 {
-  font-weight: 400;
+  font-weight: 100;
 }
 
 #right-content-header {
@@ -89,7 +89,7 @@ h2 {
 }
 
 #main-sign {
-  background-color: rgb(59, 153, 248);
+  background-color: rgb(84, 168, 252);
 }
 
 #main-sign:hover {

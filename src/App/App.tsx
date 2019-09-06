@@ -183,7 +183,7 @@ export default class App extends React.Component<{}, IState, null> {
                 <h2>
                   Join our mailing list fot the latest features and updates <br></br>
                 </h2>
-                <LoginForm field1="name" field2="Email" submitMsg="Join!" />
+                <LoginForm field1="name" field2="Email" submitMsg="Join!"/>
                 <br></br>
               </div>
               <div id="left-content-body">
