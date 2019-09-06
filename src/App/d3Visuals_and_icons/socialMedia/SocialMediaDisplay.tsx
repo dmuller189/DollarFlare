@@ -1,39 +1,33 @@
 import React from 'react';
-
-
-interface ToF {
-    val: "true" 
-}
+import './icons.css';
+import Twitter_Logo_Blue from './SMicons/Twitter_Logo_Blue.svg';
 
 interface Iprops {
     twitter: "true" | "false",
-    facebook: "true" | "false",
     reddit: "true" | "false",
-    instagram: "true" | "false",
-    youtube: "true" | "false"
+    github: "true" | "false",
+    youtube: "true" | "false",
+    color: string
 }
 
-
-export class SocialMediaDisplay extends React.Component <Iprops, ToF> {
+export class SocialMediaDisplay extends React.Component <Iprops> {
 
     static defaultProps: Iprops = {
         twitter: "true",
-        facebook: "true",
         reddit: "true",
-        instagram: "true",
-        youtube: "true"
+        github: "true",
+        youtube: "true",
+        color: "grey"
     }
 
-    constructor(props: object) {
+    constructor(props: Iprops) {
         super(props);
     }
-
-
 
     render () {
         return (
             <div>
-                d
+                <img src={Twitter_Logo_Blue} />
             </div>
         )
     }

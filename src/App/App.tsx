@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { LoginForm } from './LoginForm/LoginForm';
 import { Pie1 } from './d3Visuals_and_icons/Pie1';
+import { SocialMediaDisplay } from './d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 
 interface IFootList {
   title: string;
@@ -219,7 +220,9 @@ export default class App extends React.Component<{}, IState, null> {
                 </div>
               </div>
             </div>
+            <SocialMediaDisplay />
           </div>
+
           <div className="col-6 no-float" id="second-row-right">
             <div id="right-content-row2">
               <div id="right-content-header-row2">
