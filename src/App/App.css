@@ -84,24 +84,22 @@ a {
 }
 
 #main-sign {
-
   border: black;
-  background-image: linear-gradient(rgb(81, 194, 247), rgb(71, 120, 200));
+  background-color: rgb(55, 141, 228);
 }
 
 #main-sign:hover {
-  color: black;
-  background-color: white; 
+  background-color: rgb(28, 98, 168);
 }
 
 #main-log {
-
   -webkit-transition-duration: 0.1s; /* Safari */
   transition-duration: .1s;
 }
 
 #main-log:hover {
-  background-image: linear-gradient(rgb(81, 194, 247), rgb(71, 120, 200));
+  background-color: rgb(177, 188, 204);
+  color: black;
 }
 
 
