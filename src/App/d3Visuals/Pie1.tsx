@@ -47,9 +47,12 @@ export class Pie1 extends React.Component<{}, MyProps> {
             .style("opacity", 0)
             .text("Uh, hi.");
 
-        d3.select("#a").transition().delay(1000).style("opacity", 1);
-        d3.select("#b").transition().delay(3000).style("opacity", .75);
-        d3.selectAll("circle").transition().duration(1000).attr("cy", 200).attr("cx", 300);
+        d3.selectAll("circle").on('mouseenter', (d) =>
+        {
+            d3.selectAll("circle").transition().style("opacity", .2).duration(1500);
+        })
+        
+        
 
         var sampleArray = [423, 124, 66, 424, 58, 10, 900, 44, 1];
         var qScale = d3.scaleQuantile().domain(sampleArray).range([0, 1, 2]);
