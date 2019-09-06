@@ -82,7 +82,7 @@ export class LoginForm extends React.Component<IProps> {
         let iFieldsProps: string[] = [];
         for (let i: number = 1; i < 11; ++i) {
             let prop: string = this.props["field" + i]
-            if (this.props["field" + i] != "null") {
+            if (this.props["field" + i] !== "null") {
                 iFieldsProps[i - 1] = prop;
             }
         }

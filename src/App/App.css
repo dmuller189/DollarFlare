@@ -18,7 +18,6 @@ body {
   font-weight: bold;   
 }
 
-
 #second-row-right {
 background-color: white;
 }
@@ -46,6 +45,8 @@ a {
    text-decoration: none;
   } 
 
+
+
 #left-content-header  {
   font-family: Open 'sans';
   color: white;
@@ -62,13 +63,25 @@ a {
   color: white;
 }
 
-/* .divider {
-  background-color: white;
-  height:10%;
-  outline-color: black;
-  align-content: center;
-  width: 100%;
-} */
+#right-content-main {
+  text-align: left;
+  vertical-align: super;
+  font-family: Open 'sans';
+  margin: 3px;
+  display: inline-block;
+  font-size: 50%;  
+  padding-left: 200px;
+  padding-top: 200px;
+}
+
+#right-content-header {
+  padding-left: 190px;;
+}
+
+.round {
+  border-radius: 40px;
+  margin-bottom: 10px;
+}
 
 
 li {
@@ -77,12 +90,8 @@ li {
 }
 
 #query {
-
   list-style-image: none;
-
-
 }
-
 
 .row {
   display: flex;

@@ -71,14 +71,14 @@ export default class App extends React.Component<{}, IState, null> {
           <div className="col-6 no-float"
             id={!this.state.fireClicked ? "left" : "leftClicked"}>
             <div id="left-content">
-              <div id="left-content-header">
+              <div id="left-content-header" className="content-header">
                 <h2>
                   Unlock your Portofio. <br></br>
-                  Sign Up Today for Free with DollarFlare
+                  Start Today for Free with DollarFlare
                 </h2>
                 <br></br>
               </div>
-              <div id="left-content-body">
+              <div id="left-content-body" className="content-header">
                 <div id="left-content-body-itme1">
                   <ul className="justify-content-center">
                     <h4>
@@ -150,7 +150,7 @@ export default class App extends React.Component<{}, IState, null> {
           </div>
           <div className="col-6 no-float" id="right">
             <div id="right-content">
-              <div id="right-content-header">
+              <div id="right-content-header" className="justify-content-center">
                 <LoginForm
                   field1="Email / Username"
                   field2="password"
@@ -158,8 +158,28 @@ export default class App extends React.Component<{}, IState, null> {
                   submitMsg="Log-in"
                   submitT="outline-" />              
               </div>
-              <div id="right-content-main">
+
+              <div id="right-content-main" className="justify-content-center">
+                
+                
+                
+      
+                <h2>
+                  Sign Up Now and Begin Exploring
+                </h2>
+                <br></br>
+                <br></br>
+                <br></br>
+                <h6>Join!</h6>
+                <button id="main-sign"type="button" className="btn btn-primary btn-block round">Sign-up</button>
+                
+                <button id="main-log" type="button" className="btn btn-outline-primary btn-block round">Log-in</button>
+
+
+               
               </div>
+
+
             </div>
           </div>
         </div>
