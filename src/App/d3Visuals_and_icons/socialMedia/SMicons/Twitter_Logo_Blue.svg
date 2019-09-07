@@ -1,8 +1,12 @@
-<svg id="Logo_FIXED" data-name="Logo — FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+
+
+
+<svg id="Logo_FIXED" fill="grey" data-name="Logo — FIXED" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <defs>
     <style>
     <!-- color is in fill -->
-    .cls-1{fill:none;}.cls-2{fill:#1da1f2;}
+    .cls-1{fill:none;}
+    <!-- .cls-2{fill:#1da1f2;} -->
     </style>
   </defs>
     <title>
