@@ -9,7 +9,7 @@ interface MyProps {
 
 export class Pie1 extends React.Component<{}, MyProps> {
 
-    constructor(props: object) {
+    constructor(props: MyProps) {
         super(props);
         this.makeBarChart = this.makeBarChart.bind(this);
     }
@@ -52,7 +52,7 @@ export class Pie1 extends React.Component<{}, MyProps> {
             d3.selectAll("circle").transition().style("fill", "blue").duration(1500);
         })
         
-        var sampleArray = [423, 124, 66, 424, 58, 10, 900, 44, 1];
+        var sampleArray: number [] = [423, 124, 66, 424, 58, 10, 900, 44, 1];
         var qScale = d3.scaleQuantile().domain(sampleArray).range([0, 1, 2]);
         qScale(423);
         qScale(20);

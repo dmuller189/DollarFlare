@@ -143,7 +143,7 @@ export default class App extends React.Component<{}, IState, null> {
                           Deploy and share your visual creations with the world!
                         </div>
                       </div>
-                    </li>
+                    </li>                
                   </ul>
                 </div>
               </div>
@@ -175,7 +175,6 @@ export default class App extends React.Component<{}, IState, null> {
           </div>
         </div>
         <div className="divider">
-          {/* <Pie1 /> */}
           <div className="row justify-content-center" id="divider-header">
             <div className="justify-content-between">
               <div className="d-flex flex-column">
