@@ -6,13 +6,18 @@
 
 
 img {
-  transform: scale(0.8);
-
+  transform: scale(0.5);
 }
 
 
 #tw {
-  transform: scale(1.2);
-  color: grey;
+  transform: scale(0.7) translateY(12px);
 }
 
+#gt {
+  transform: translateY(20px);
+}
+
+#yt {
+  transform: scale(1.5);
+}

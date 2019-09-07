@@ -216,9 +216,9 @@ export default class App extends React.Component<{}, IState, null> {
                     <li>
                       Proven strategies for modern data visualization and analytics
                     </li>
+                    <SocialMediaDisplay />
                   </ul>
                 </div>
-                <SocialMediaDisplay />
               </div>
             </div>
           </div>
