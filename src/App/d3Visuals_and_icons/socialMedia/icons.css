@@ -2,6 +2,14 @@
 
 
 /* main color */
-svg.cls-2 {
-  fill:#1da1f2;
+
+
+
+img {
+  transform: scale(0.8);
+}
+
+
+#tw {
+  transform: scale(1.2);
 }
