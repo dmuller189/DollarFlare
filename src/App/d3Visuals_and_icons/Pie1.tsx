@@ -41,21 +41,16 @@ export class Pie1 extends React.Component<{}, MyProps> {
     }
 
     componentDidMount(): void {
-        
-        // fetch('http://localhost:8080/users')
-        //     .then(function (response) {
-        //         if(response.ok) {
-        //             console.log(JSON.stringify(response.json()))
-        //             return response.json();
-        //         }
-        //         throw new Error('Network response was not ok.');
-        //     })
-        //     .then(function (myJson) {
-        //         console.log("react to java");
-        //         console.log(JSON.stringify(myJson));
-        //     }).catch(function(error){
-        //         console.log("error in fetch", error.message);
-        //     })
+
+        fetch('https://secure-bastion-86359.herokuapp.com/users')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (myJson) {
+                console.log(JSON.stringify(myJson));
+            }).catch(function(error) {
+                console.log(error.message);
+            })
 
         this.makeBarChart();
     }

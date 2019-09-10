@@ -72,9 +72,7 @@ export class LoginForm extends React.Component<IProps> {
         let forgotPassword;
         if (this.props.forgotPassword === "true") {
             forgotPassword = <button onClick={this.forgotPassword} type="submit" className="btn btn-outline-dark mb-2">
-                
                     ForgotPassword
-                
             </button>
         }
 
