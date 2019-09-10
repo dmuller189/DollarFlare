@@ -72,9 +72,9 @@ export class LoginForm extends React.Component<IProps> {
         let forgotPassword;
         if (this.props.forgotPassword === "true") {
             forgotPassword = <button onClick={this.forgotPassword} type="submit" className="btn btn-outline-dark mb-2">
-                <a href="#" id="FGL">
+                
                     ForgotPassword
-                </a>
+                
             </button>
         }
 
@@ -96,7 +96,7 @@ export class LoginForm extends React.Component<IProps> {
                 {
                     iFieldsProps.map(e => {  
                         return (
-                            <div className="form-group mx-sm-3 mb-2">
+                            <div key={e} className="form-group mx-sm-3 mb-2">
                                 <label className="sr-only">username</label>
                                 <input type={e} onChange={this.handleInput} className="form-control" id={e} placeholder={e} />
                             </div>

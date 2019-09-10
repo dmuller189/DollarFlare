@@ -49,7 +49,7 @@ interface IState {
   fireClicked: boolean;
 }
 
-export default class App extends React.Component<{}, IState, null> {
+export default class LandingPage extends React.Component<{}, IState, null> {
 
   constructor(props: object) {
     super(props);
@@ -247,7 +247,7 @@ export default class App extends React.Component<{}, IState, null> {
             <ul id="foot" className="list-group list-group-horizontal-sm justify-content-center">
               {footList.map((item) => {
                 return (
-                  <li className="list-group-item">
+                  <li key={item.title} className="list-group-item">
                     <a href={item.url}>
                       {item.title}
                     </a>

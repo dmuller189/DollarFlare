@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import * as serviceWorker from './serviceWorker';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from './App/LandingPage/LandingPage';
 import SignUp from './App/signUp/SignUp';
 import Login from './App/Login/Login';
 import ForgotPassword from './App/ForgotPassword/ForgotPassword';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 
 ReactDOM.render((
