@@ -3,6 +3,8 @@ import './App.css';
 import { LoginForm } from './LoginForm/LoginForm';
 import { Pie1 } from './d3Visuals_and_icons/Pie1';
 import { SocialMediaDisplay } from './d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+
 
 interface IFootList {
   title: string;

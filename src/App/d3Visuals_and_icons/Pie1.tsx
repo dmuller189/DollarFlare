@@ -7,6 +7,32 @@ interface MyProps {
     size: number;
 }
 
+let exampleFetchGBP: object = {
+    "success": true,
+    "historical": true,
+    "date": "2013-12-24",
+    "timestamp": 1387929599,
+    "base": "GBP",
+    "rates": {
+        "USD": 1.636492,
+        "EUR": 1.196476,
+        "CAD": 1.739516
+    }
+}
+
+let exampleFetchUSD: object = {
+    "success": true,
+    "historical": true,
+    "date": "2019-09-09",
+    "timestamp": 1387929599,
+    "base": "USD",
+    "rates": {
+        "GBP": 0.81,
+        "EUR": 0.90,
+        "CAD": 1.32
+    }
+}
+
 export class Pie1 extends React.Component<{}, MyProps> {
 
     constructor(props: MyProps) {
@@ -15,6 +41,14 @@ export class Pie1 extends React.Component<{}, MyProps> {
     }
 
     componentDidMount(): void {
+        // fetch('')
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (myJson) {
+        //         console.log(JSON.stringify(myJson));
+        //     });
+
         this.makeBarChart();
     }
 
@@ -47,12 +81,11 @@ export class Pie1 extends React.Component<{}, MyProps> {
             .style("opacity", 0)
             .text("Uh, hi.");
 
-        d3.selectAll("circle").on('mouseenter', (d) =>
-        {
+        d3.selectAll("circle").on('mouseenter', (d) => {
             d3.selectAll("circle").transition().style("fill", "blue").duration(1500);
         })
-        
-        var sampleArray: number [] = [423, 124, 66, 424, 58, 10, 900, 44, 1];
+
+        var sampleArray: number[] = [423, 124, 66, 424, 58, 10, 900, 44, 1];
         var qScale = d3.scaleQuantile().domain(sampleArray).range([0, 1, 2]);
         qScale(423);
         qScale(20);
@@ -67,5 +100,4 @@ export class Pie1 extends React.Component<{}, MyProps> {
             </div>
         )
     }
-
 }
