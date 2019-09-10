@@ -1,7 +1,4 @@
 import React from 'react';
-import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
-import './signUp.css';
-
 
 export default class SignUp extends React.Component {
 

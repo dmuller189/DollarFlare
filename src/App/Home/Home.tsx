@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
-import { LoginForm } from './LoginForm/LoginForm';
-import { Pie1 } from './d3Visuals_and_icons/Pie1';
-import { SocialMediaDisplay } from './d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
+import './Home.css';
+import { LoginForm } from '../LoginForm/LoginForm';
+import { Pie1 } from '../d3Visuals_and_icons/Pie1';
+import { SocialMediaDisplay } from '../d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 import { Link } from "react-router-dom";
 
 interface IFootList {
@@ -178,7 +178,9 @@ export default class App extends React.Component<{}, IState, null> {
                   <button id="main-log" type="button" className="btn btn-outline-primary btn-block round">Log-in</button>
                 </Link>
 
-                <button id="main-guest" type="button" className="btn btn-outline-dark round">Continue as Guest</button>
+                <Link to="/forgotPassword">
+                  <button id="main-guest" type="button" className="btn btn-outline-dark round">Continue as Guest</button>
+                </Link>
               </div>
             </div>
           </div>
