@@ -104,6 +104,7 @@ export class LoginForm extends React.Component<IProps> {
                     })
                 }
                 {loginButton}
+                
                 <Link to="/forgotPassword">
                 {forgotPassword}
                 </Link>
