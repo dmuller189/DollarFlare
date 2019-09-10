@@ -178,9 +178,9 @@ export default class App extends React.Component<{}, IState, null> {
                   <button id="main-log" type="button" className="btn btn-outline-primary btn-block round">Log-in</button>
                 </Link>
 
-                <Link to="/forgotPassword">
+                
                   <button id="main-guest" type="button" className="btn btn-outline-dark round">Continue as Guest</button>
-                </Link>
+              
               </div>
             </div>
           </div>

@@ -1,5 +1,7 @@
 import React, { MouseEvent } from 'react';
 import './LoginForm.css';
+import { Link } from "react-router-dom";
+
 
 interface IProps {
     forgotPassword: string;
@@ -102,7 +104,10 @@ export class LoginForm extends React.Component<IProps> {
                     })
                 }
                 {loginButton}
+                <Link to="/forgotPassword">
                 {forgotPassword}
+                </Link>
+
             </form>
         )
     }
