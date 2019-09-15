@@ -168,19 +168,15 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                 <br></br>
                 <br></br>
                 <h6>Join!</h6>
-
-
                 <Link to='/sign-up'>
                   <button id="main-sign" type="button" className="btn btn-primary btn-block round">Sign-up</button>
                 </Link>
-
                 <Link to="/login"> 
                   <button id="main-log" type="button" className="btn btn-outline-primary btn-block round">Log-in</button>
                 </Link>
-
-                
+                <Link to = "/home">
                   <button id="main-guest" type="button" className="btn btn-outline-dark round">Continue as Guest</button>
-              
+                </Link>
               </div>
             </div>
           </div>

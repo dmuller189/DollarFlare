@@ -42,21 +42,22 @@ export class Pie1 extends React.Component<{}, MyProps> {
 
     componentDidMount(): void {
 
-        fetch('https://secure-bastion-86359.herokuapp.com/users')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (myJson) {
-                console.log(JSON.stringify(myJson));
-            }).catch(function(error) {
-                console.log(error.message);
-            })
+        // fetch('http://localhost:8080/api')
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (myJson) {
+        //         console.log(JSON.stringify(myJson));
+        //     }).catch(function (error) {
+        //         console.log(error.message);
+        //     })
 
         this.makeBarChart();
     }
 
     makeBarChart(): void {
 
+        
         d3.select("#mySVG")
             .append("circle")
             .attr("r", 20)
@@ -84,15 +85,17 @@ export class Pie1 extends React.Component<{}, MyProps> {
             .style("opacity", 0)
             .text("Uh, hi.");
 
-        d3.selectAll("circle").on('mouseenter', (d) => {
-            d3.selectAll("circle").transition().style("fill", "blue").duration(1500);
-        })
+        d3.select("#a").transition().delay(1000).style("opacity", 1);
+        d3.select("#b").transition().delay(3000).style("opacity", .75);
+       
+        d3.selectAll("circle")
+            .transition()
+            .duration(1000)
+            .ease(d3.easeBounceOut)
+            .attr("cy", 200).attr("cx", 300);
 
-        var sampleArray: number[] = [423, 124, 66, 424, 58, 10, 900, 44, 1];
-        var qScale = d3.scaleQuantile().domain(sampleArray).range([0, 1, 2]);
-        qScale(423);
-        qScale(20);
-        qScale(10000);
+        
+    
     }
 
     render() {

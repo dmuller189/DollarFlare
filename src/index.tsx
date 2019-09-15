@@ -6,6 +6,7 @@ import LandingPage from './App/LandingPage/LandingPage';
 import SignUp from './App/signUp/SignUp';
 import Login from './App/Login/Login';
 import ForgotPassword from './App/ForgotPassword/ForgotPassword';
+import Home from './App/home/home';
 
 
 ReactDOM.render((
@@ -15,6 +16,7 @@ ReactDOM.render((
         <Route exact path="/sign-up" component={SignUp}></Route>
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/forgotPassword" component={ForgotPassword}></Route>
+        <Route exact path="/home" component={Home}></Route>
       </Switch>  
     </BrowserRouter>),
     document.getElementById('root'));
