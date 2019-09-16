@@ -8,31 +8,35 @@ interface IProps {
     edgeOnClicked: Function,
     allEdges: "true" | "false"
 }
+
+
 //implements the d3 graph network view
 //takes evet handlers as props to push data upwards to controller
-export default class GraphView extends React.Component {
+export default class GraphView extends React.Component<IProps> {
 
     constructor(props: IProps) {
         super(props);
-        this.state = {
-            title: "Your Graph",
-            pairs: props.pairs
-        }
-
-    
     }
 
 
     componentDidMount(): void {
         //renders d3 graph content here
+        
     }
+
 
 
 
     render () {
         return (
-            <div>
-                
+            <div id="graph">
+
+                {
+                    this.props.pairs.map(e => {
+                        return e;
+                    })
+                }
+ 
             </div>
         )
     }

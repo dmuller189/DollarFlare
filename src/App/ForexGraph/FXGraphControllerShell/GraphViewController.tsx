@@ -30,17 +30,30 @@ let avalableTokens: string[] = [
     - renders the 'shell' and controlling view parts to main d3 visual
 
 */
+
+
+
+interface IState {
+    pairs: string[],
+    date: string,
+    selectAllEdges: string,
+}
+
+
 export default class GraphViewController extends React.Component {
 
 
-    constructor(props: object) {
+    constructor(props: any) {
         super(props);
 
         this.state = {
-            pairs: ["USDtoEUR", "USDtoJPY", ""],
+            pairs: ["USDtoEUR", "USDtoJPY", "gold to silver"],
             date: "",
             selectAllEdges: "false",
+            
         }
+
+
 
         this.buildGraph = this.buildGraph.bind(this);
 
@@ -84,13 +97,15 @@ export default class GraphViewController extends React.Component {
 
     }
 
-    //probably will need other lifecycle methods for when user add/removes edges
+    //probably will need other lifecycle m
+
 
 
     render() {
         return (
             <div>
-                // @ts-ignore
+                {/*
+                // @ts-ignore */}
                 <GraphView pairs={this.state.pairs} allEdges={this.state.selectAllEdges} date={this.state.date} nodeOnClicked={this.handleNodeClick} edgeOnClicked={this.handleEdgeClick}/>
             </div>
         )

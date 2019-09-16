@@ -1,5 +1,6 @@
 import React from 'react';
 import './home.css';
+import GraphViewController from '../ForexGraph/FXGraphControllerShell/GraphViewController';
 
 
 export default class Home extends React.Component {
@@ -21,6 +22,7 @@ export default class Home extends React.Component {
                 <h2>
                     DF Home
                 </h2>
+            <GraphViewController />
             </div>
         )
 
