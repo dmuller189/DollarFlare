@@ -1,6 +1,6 @@
 import React from 'react';
 import './home.css';
-import GraphViewController from '../ForexGraph/FXGraphControllerShell/GraphViewController';
+import ForexGraph from '../ForexGraph/ForexGraphLanding'
 
 
 export default class Home extends React.Component {
@@ -23,7 +23,9 @@ export default class Home extends React.Component {
                     DF Home
                 </h2>
                 graphview controller (
-            <GraphViewController />
+
+
+            <ForexGraph />
                 )
             </div>
         )

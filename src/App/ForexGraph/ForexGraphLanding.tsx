@@ -1,6 +1,7 @@
 import React from 'react';
-import GraphViewController from './FXGraphControllerShell/GraphViewController';
+// import GraphViewController from './FXGraphControllerShell/GraphViewController';
 import './ForexGraphLanding.css';
+import GraphModel from './FXGraphModel/GraphModel'
 
 
 
@@ -16,7 +17,9 @@ export default class ForexGraph extends React.Component {
                 Forex graph landing page, controller shell bellow
                 <br>
                 </br>
-                <GraphViewController />
+        {/*
+        //@ts-ignore */}
+                <GraphModel />
             </div>
         )
     }

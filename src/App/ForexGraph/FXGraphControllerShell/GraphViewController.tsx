@@ -32,31 +32,27 @@ let avalableTokens: string[] = [
 
 
 
-interface IState {
+
+
+interface IProps {
+    setPairs: Function,
+    setDate: Function,
+    setSelectAllEdges: Function,
+    setArbitragePath: Function,
     pairs: string[],
     date: string,
     selectAllEdges: string,
+    arbitragePath: string []
 }
 
 
-export default class GraphViewController extends React.Component {
+export default class GraphViewController extends React.Component <IProps>{
 
 
-    constructor(props: any) {
+    constructor(props: IProps) {
         super(props);
 
-        this.state = {
-            pairs: ["USDtoEUR", "USDtoJPY", "gold to silver"],
-            edgeWeights: [0, 0, 0],
-            date: "09/15/2019",
-            selectAllEdges: "false",
-            arbitragePath: ["USDtoEUR", "EURtoUSD"]
-        }
-
-
-
         this.buildGraph = this.buildGraph.bind(this);
-
         //event handlers
         this.handleBuildGraphClick = this.handleBuildGraphClick.bind(this);
         this.handleEdgeClick = this.handleEdgeClick.bind(this);
@@ -92,6 +88,8 @@ export default class GraphViewController extends React.Component {
     }
 
 
+
+
     //fethes from server with graph info
     buildGraph(): void {
 
@@ -121,7 +119,9 @@ export default class GraphViewController extends React.Component {
             <div>
                 {/*
                 // @ts-ignore */}
-                <GraphView arbitragePath={this.state.arbitragePath} pairs={this.state.pairs} allEdges={this.state.selectAllEdges} date={this.state.date} nodeOnClicked={this.handleNodeClick} edgeOnClicked={this.handleEdgeClick}/>
+                <GraphView arbitragePath={this.props.arbitragePath} pairs={this.props.pairs} selectAllEdges={this.props.selectAllEdges} date={this.props.date} nodeOnClicked={this.handleNodeClick} edgeOnClicked={this.handleEdgeClick}/>
+                    {/* conside more props for eventhandling... maybe */}
+         
             </div>
         )
     }
