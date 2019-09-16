@@ -1,7 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
 import { LoginForm } from '../LoginForm/LoginForm';
-import { Pie1 } from '../d3Visuals_and_icons/Pie1';
+import NetDisplay from './NetDisplay';
 import { SocialMediaDisplay } from '../d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 import { Link } from "react-router-dom";
 
@@ -191,7 +191,7 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                 <h4>
                   made possible with DollarFlare
                 </h4>
-                <Pie1 />
+                <NetDisplay />
               </div>
             </div>
           </div>
