@@ -40,18 +40,15 @@ export default class GraphView extends React.Component<IProps> {
                 <br></br>
                 enter d3 graph
                 <br></br>
-
                 {
                     this.props.pairs.map(e => {
                         return e + " - ";
                     })
                 }
                 <br></br>
-
                 arbitrage path is:
                 <br></br>
                 {
-
                     this.props.arbitragePath.map(e => {
                         return e + " - "
                     })

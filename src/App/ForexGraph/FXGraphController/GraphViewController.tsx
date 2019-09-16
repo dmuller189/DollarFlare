@@ -30,10 +30,6 @@ let avalableTokens: string[] = [
 
 */
 
-
-
-
-
 interface IProps {
     setPairs: Function,
     setDate: Function,
@@ -45,9 +41,7 @@ interface IProps {
     arbitragePath: string []
 }
 
-
 export default class GraphViewController extends React.Component <IProps>{
-
 
     constructor(props: IProps) {
         super(props);
@@ -87,9 +81,6 @@ export default class GraphViewController extends React.Component <IProps>{
         this.buildGraph();
     }
 
-
-
-
     //fethes from server with graph info
     buildGraph(): void {
 
@@ -103,17 +94,11 @@ export default class GraphViewController extends React.Component <IProps>{
             this.setState({
                 // @ts-ignore
                 edgeWeights: response.edgeWeights
-
             })
         })
-
-
     }
 
-    //probably will need other lifecycle m
-
-
-
+    //probably will need other lifecycle methods
     render() {
         return (
             <div>

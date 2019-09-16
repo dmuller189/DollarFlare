@@ -3,6 +3,7 @@ import './home.css';
 import ForexGraph from '../ForexGraph/ForexGraphLanding'
 
 
+//home page after login/coninuing as guest
 export default class Home extends React.Component {
 
     constructor(props: object) {
@@ -19,14 +20,10 @@ export default class Home extends React.Component {
 
         return (
             <div>
-                <h2>
-                    DF Home
-                </h2>
-                graphview controller (
-
-
-            <ForexGraph />
-                )
+              <h2>
+                DF HomePAGE
+              </h2>
+              <ForexGraph />
             </div>
         )
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import GraphViewController from '../FXGraphControllerShell/GraphViewController';
+import GraphViewController from '../FXGraphController/GraphViewController';
 
 
 let avalableTokens: string[] = [
