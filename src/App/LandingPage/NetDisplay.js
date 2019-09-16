@@ -30,14 +30,14 @@ export default class NetDisplay extends React.Component {
         super(props)
 
         this.state = {
-            width: 600,
-            height: 600,
+            width: 900,
+            height: 500,
             graph: graphEx
         }
     }
 
     buildGraph() {
-        let svg = d3.select("#D"),
+        let svg = d3.select("#"+this.props.gid),
             width = +svg.attr("width"),
             height = +svg.attr("height");
 
@@ -134,16 +134,13 @@ export default class NetDisplay extends React.Component {
         }
 
         function dragstarted(d) {
-
             if (!d3.event.active) simulation.alphaTarget(0.3).restart()
             d.fx = d.x
             d.fy = d.y
             //  simulation.fix(d);
-
         }
 
         function dragged(d) {
-
             d.fx = d3.event.x
             d.fy = d3.event.y
             //  simulation.fix(d, d3.event.x, d3.event.y);
@@ -161,14 +158,18 @@ export default class NetDisplay extends React.Component {
 
     componentDidMount() {
 
+       // console.log(this.props.gid)
         this.buildGraph();
     }
 
 
     render() {
         return (
-            <div>
-                <svg id="D" width={this.state.width} height={this.state.height}></svg>
+            <div id="myDIV">
+                <h3>
+                    Forex Networks Made Simple
+                </h3>
+                <svg id={this.props.gid} width={this.state.width} height={this.state.height}></svg>
             </div>
         )
     }

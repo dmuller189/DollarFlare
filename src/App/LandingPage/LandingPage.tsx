@@ -144,7 +144,7 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                           Deploy and share your visual creations with the world!
                         </div>
                       </div>
-                    </li>                
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -171,10 +171,10 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                 <Link to='/sign-up'>
                   <button id="main-sign" type="button" className="btn btn-primary btn-block round">Sign-up</button>
                 </Link>
-                <Link to="/login"> 
+                <Link to="/login">
                   <button id="main-log" type="button" className="btn btn-outline-primary btn-block round">Log-in</button>
                 </Link>
-                <Link to = "/home">
+                <Link to="/home">
                   <button id="main-guest" type="button" className="btn btn-outline-dark round">Continue as Guest</button>
                 </Link>
               </div>
@@ -189,9 +189,15 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                   Complex Visualization Simplified
                 </h1>
                 <h4>
-                  made possible with DollarFlare
                 </h4>
-                <NetDisplay />
+
+                <div className="row">
+                  <div className="col"><NetDisplay gid="upper" /></div>
+                  <div className="col">
+                    <NetDisplay gid="righter"/>
+                    </div>
+                right
+                </div>
               </div>
             </div>
           </div>
