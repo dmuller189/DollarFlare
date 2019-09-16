@@ -1,7 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
 import { LoginForm } from '../LoginForm/LoginForm';
-import NetDisplay from './NetDisplay';
+import NetDisplay from './NetDisplay/NetDisplay';
 import { SocialMediaDisplay } from '../d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 import { Link } from "react-router-dom";
 
@@ -190,13 +190,13 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                 </h1>
                 <h4>
                 </h4>
-
                 <div className="row">
-                  <div className="col"><NetDisplay gid="upper" /></div>
+                  <div className="col">
+                    <NetDisplay gid="upper" />
+                  </div>
                   <div className="col">
                     <NetDisplay gid="righter"/>
-                    </div>
-                right
+                  </div>
                 </div>
               </div>
             </div>
