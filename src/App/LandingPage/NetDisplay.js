@@ -9,24 +9,24 @@ export default class NetDisplay extends React.Component {
 
         const graph = {
             "nodes": [
-                { "id": "1", "group": 1 },
-                { "id": "2", "group": 2 },
-                { "id": "4", "group": 3 },
-                { "id": "8", "group": 4 },
-                { "id": "16", "group": 5 },
-                { "id": "11", "group": 1 },
-                { "id": "12", "group": 2 },
-                { "id": "14", "group": 3 },
-                { "id": "18", "group": 4 },
-                { "id": "116", "group": 5 }
+                { "id": "1", "name": "USD"},
+                { "id": "2", "name": "GBP"},
+                { "id": "4", "name": "EUR"},
+                { "id": "8", "name": "JYP"},
+                { "id": "16", "name": "GLD"},
+                { "id": "11", "name": "SLV"},
+                { "id": "12", "name": "AUD"},
+                { "id": "14", "name": "CAD"},
+                { "id": "18", "name": "MXN"},
+                { "id": "116", "name": "BIT"}
             ],
             "links": [
                 { "source": "1", "target": "2", "value": 1 },
-                { "source": "2", "target": "4", "value": 1 },
-                { "source": "4", "target": "8", "value": 1 },
-                { "source": "4", "target": "8", "value": 1 },
-                { "source": "8", "target": "16", "value": 1 },
-                { "source": "16", "target": "1", "value": 1 }
+                { "source": "2", "target": "4", "value": 2 },
+                { "source": "4", "target": "8", "value": 3 },
+                { "source": "4", "target": "8", "value": 4 },
+                { "source": "8", "target": "16", "value": 5 },
+                { "source": "16", "target": "1", "value": 6 }
             ]
         }
 
@@ -50,18 +50,27 @@ export default class NetDisplay extends React.Component {
 
         function run(graph) {
 
-            graph.links.forEach(function (d) {
-                //     d.source = d.source_id;    
-                //     d.target = d.target_id;
-            });
 
-            var link = svg.append("g")
-                .style("stroke", "#aaa")
+            let link = svg.append("g")
+                //edge color
+                .style("stroke", "red")
                 .selectAll("line")
                 .data(graph.links)
-                .enter().append("line");
+                .enter().append("line").attr('marker-end','url(#arrowhead)')
+                
+                ;
 
-            var node = svg.append("g")
+
+            // var elabel = svg.append("g")
+            //     .attr("class", "labels")
+            //     .selectAll("text")
+            //     .data(graph.links)
+            //     .enter().append("text")
+            //     .attr("class", "label")
+            //     .text(function (d) { return d.name; });
+                
+
+            let node = svg.append("g")
                 .attr("class", "nodes")
                 .selectAll("circle")
                 .data(graph.nodes)
@@ -72,13 +81,13 @@ export default class NetDisplay extends React.Component {
                     .on("drag", dragged)
                     .on("end", dragended));
 
-            var label = svg.append("g")
+            let label = svg.append("g")
                 .attr("class", "labels")
                 .selectAll("text")
                 .data(graph.nodes)
                 .enter().append("text")
                 .attr("class", "label")
-                .text(function (d) { return d.id; });
+                .text(function (d) { return d.name; });
 
             simulation
                 .nodes(graph.nodes)
@@ -95,16 +104,19 @@ export default class NetDisplay extends React.Component {
                     .attr("y2", function (d) { return d.target.y; });
 
                 node
-                    .attr("r", 16)
-                    .style("fill", "#efefef")
-                    .style("stroke", "#424242")
-                    .style("stroke-width", "1px")
-                    .attr("cx", function (d) { return d.x + 5; })
-                    .attr("cy", function (d) { return d.y - 3; });
+                    .attr("r", 18) //node radius
+                    .style("fill", "#efefef") //fill color
+                    .style("stroke", "#424242") //stroke color
+                    .style("stroke-width", "1px") //stroke width
+                    .attr("cx", function (d) { return d.x; })//x position
+                    .attr("cy", function (d) { return d.y; });  //y position
 
                 label
+                    //sets position of node label
+                    .attr("text-anchor", "middle")
                     .attr("x", function (d) { return d.x; })
-                    .attr("y", function (d) { return d.y; })
+                    .attr("y", function (d) { return d.y+3; })
+                    //sets font color of node name
                     .style("font-size", "10px").style("fill", "#333");
             }
         }
@@ -128,18 +140,14 @@ export default class NetDisplay extends React.Component {
             if (!d3.event.active) simulation.alphaTarget(0);
             //simulation.unfix(d);
         }
-
         run(graph);
-
     }
 
 
     render() {
         return (
             <div>
-                
                 <svg id="D" width="960" height="600"></svg>
-
             </div>
         )
     }
