@@ -2,12 +2,17 @@ import React from 'react';
 import * as d3 from 'd3';
 import './Pie1.css';
 
-interface MyProps {
-    data: number[];
-    size: number;
+
+interface ITicker {
+    "success": boolean,
+    "historical": boolean,
+    "date": string,
+    "timestamp": number,
+    "base": string,
+    "rates": object
 }
 
-let exampleFetchGBP: object = {
+let exampleFetchGBP = {
     "success": true,
     "historical": true,
     "date": "2013-12-24",
@@ -20,7 +25,7 @@ let exampleFetchGBP: object = {
     }
 }
 
-let exampleFetchUSD: object = {
+let exampleFetchUSD = {
     "success": true,
     "historical": true,
     "date": "2019-09-09",
@@ -33,75 +38,77 @@ let exampleFetchUSD: object = {
     }
 }
 
-export class Pie1 extends React.Component<{}, MyProps> {
+let exampleFetchJYP = {
+    "success": true,
+    "historical": true,
+    "date": "2019-09-09",
+    "timestamp": 1387929599,
+    "base": "JYP",
+    "rates": {
+        "GBP": 2.81,
+        "EUR": 4.90,
+        "CAD": 3.32
+    }
+}
 
-    constructor(props: MyProps) {
+// let tickers: ITicker[] = [exampleFetchGBP, exampleFetchUSD, exampleFetchJYP];
+
+export class Pie1 extends React.Component {
+
+    constructor(props: any) {
         super(props);
         this.makeBarChart = this.makeBarChart.bind(this);
     }
 
-    componentDidMount(): void {
-
-        // fetch('http://localhost:8080/api')
-        //     .then(function (response) {
-        //         return response.json();
-        //     })
-        //     .then(function (myJson) {
-        //         console.log(JSON.stringify(myJson));
-        //     }).catch(function (error) {
-        //         console.log(error.message);
-        //     })
-
+    componentDidMount() {
         this.makeBarChart();
     }
 
-    makeBarChart(): void {
+    makeBarChart() {
 
-        
-        d3.select("#mySVG")
-            .append("circle")
-            .attr("r", 20)
-            .attr("cx", 20)
-            .attr("cy", 20)
-            .style("fill", "red");
-        d3.select("#mySVG")
-            .append("text")
-            .attr("id", "a")
-            .attr("x", 20)
-            .attr("y", 20)
-            .style("opacity", 0)
-            .text("HELLO WORLD");
-        d3.select("#mySVG")
-            .append("circle")
-            .attr("r", 100)
-            .attr("cx", 400)
-            .attr("cy", 400)
-            .style("fill", "lightblue");
-        d3.select("#mySVG")
-            .append("text")
-            .attr("id", "b")
-            .attr("x", 400)
-            .attr("y", 400)
-            .style("opacity", 0)
-            .text("Uh, hi.");
+        let width = 300, height = 300
+        let nodes = [{}, {}, {}, {}, {}]
 
-        d3.select("#a").transition().delay(1000).style("opacity", 1);
-        d3.select("#b").transition().delay(3000).style("opacity", .75);
-       
-        d3.selectAll("circle")
-            .transition()
-            .duration(1000)
-            .ease(d3.easeBounceOut)
-            .attr("cy", 200).attr("cx", 300);
+        let simulation = d3.forceSimulation(nodes)
+            .force('charge', d3.forceManyBody().strength(-20))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .on('tick', ticked);
 
-        
-    
+
+        function ticked() {
+            var u = d3.select('#MS')
+                .selectAll('circle')
+                .data(nodes)
+
+            u.enter()
+                .append('circle')
+                .attr('r', 5)
+                // @ts-ignore
+                .merge(u)
+                .attr('cx', function (d: any) {
+                    return d.x
+                })
+                .attr('cy', function (d: any) {
+                    return d.y
+                })
+
+            u.exit().remove()
+        }
+
+
+
+
     }
+
+
+
+
+
 
     render() {
         return (
-            <div id="vizcontainer">
-                <svg id="mySVG" >
+            <div id="content">
+                <svg id="MS" width="300" height="300">
                 </svg>
             </div>
         )

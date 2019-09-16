@@ -24,18 +24,13 @@ export default class GraphView extends React.Component<IProps> {
         // }
     }
 
-
     componentDidMount(): void {
         //renders d3 graph content here
         //'light up' each edge contained in the arbitrage path
     }
 
-
-
-
     render() {
         return (
-
             <div id="graph">
                 <br></br>
                 enter d3 graph
