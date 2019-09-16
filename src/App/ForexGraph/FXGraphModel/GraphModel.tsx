@@ -28,22 +28,31 @@ export default class GraphModel extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
+            //have initial, noilerplate pairs as starter vals for user
             pairs: ["USDtoEURat1.0", "USDtoJPYat2.1", "goldtosilverat3.2"],
             date: "09/15/2019",
             selectAllEdges: "false",
             arbitragePath: ["USDtoEUR", "EURtoUSD"]
         }
 
+        //setters
         this.setPairs = this.setPairs.bind(this);
         this.setDate = this.setDate.bind(this);
         this.setSelectAllEdges = this.setSelectAllEdges.bind(this);
         this.setArbitragePath = this.setArbitragePath.bind(this);
+
+        //mutatprs
+        this.addPair = this.addPair.bind(this);
+        this.removePair = this.removePair.bind(this);
     }
 
 
     addPair(pair: string): void {
-        // @ts-ignore
-        let newPairs = this.state.pairs.push(pair);
+        
+    }
+
+    removePair(pair: string): void {
+
     }
 
 
@@ -69,7 +78,9 @@ export default class GraphModel extends React.Component<IProps, IState> {
             // @ts-ignore  
             <GraphViewController setPairs={this.setPairs} setDate={this.setDate} setSelectAllEdges={this.setSelectAllEdges} setArbitragePath={this.setArbitragePath}  
            // @ts-ignore
-            pairs={this.state.pairs} date={this.state.date} selectAllEdges={this.state.selectAllEdges} arbitragePath={this.state.arbitragePath} />
+            pairs={this.state.pairs} date={this.state.date} selectAllEdges={this.state.selectAllEdges} arbitragePath={this.state.arbitragePath}
+            // @ts-ignore
+            addPair={this.addPair} removePair={this.removePair}/>
         )
     }
 }

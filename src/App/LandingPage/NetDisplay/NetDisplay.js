@@ -18,10 +18,10 @@ const graphEx = {
         { "source": 2, "target": 1, "value": 1 },
        // { "source": "1", "target": "2", "value": 1 },
         { "source": "2", "target": "4", "value": 2 },
-        // { "source": "4", "target": "8", "value": 3 },
-        // { "source": "4", "target": "8", "value": 4 },
-        // { "source": "8", "target": "16", "value": 5 },
-        // { "source": "16", "target": "1", "value": 6 }
+        { "source": "4", "target": "8", "value": 3 },
+        { "source": "4", "target": "8", "value": 4 },
+        { "source": "8", "target": "16", "value": 5 },
+        { "source": "16", "target": "1", "value": 6 }
     ]
 }
 
@@ -51,8 +51,8 @@ export default class NetDisplay extends React.Component {
         var simulation = d3.forceSimulation()
 
             .force("link", d3.forceLink().id(function (d) { return d.id; })
-                .distance(120))
-            .force("charge", d3.forceManyBody().strength(-30))
+                .distance(170))
+            .force("charge", d3.forceManyBody().strength(-75))
             // .force('charge', d3.forceManyBody()
             //     .strength(-400)
             //     .theta(0.4)
@@ -123,29 +123,32 @@ export default class NetDisplay extends React.Component {
                     .style("fill", "rgb(162, 179, 206)") //fill color
                     .style("stroke", "#424242") //stroke color
                     .style("stroke-width", "1px") //stroke width
-                    .attr("cx",function (d) {return (d.x < 30) ? 30 : (d.x > 800 ? 800: d.x);}) 
-                    .attr("cy", function (d) {return (d.y < 50) ? 50 : (d.y>450 ? 450: d.y);});  //y position
+                    .attr("cx",function (d) {
+                        return (d.x < 30) ? 31 : (d.x > 800 ? 799: d.x);}) 
+                    .attr("cy", function (d) {return (d.y < 50) ? 51 : (d.y>450 ? 449: d.y);});  //y position
 
                             //eventually abstract boundary conditions to helper from values from state
 
                 label
                     //sets position of node label
                     .attr("text-anchor", "middle")
-                    .attr("x", function (d)  {return (d.x < 30) ? 30 : (d.x > 800 ? 800: d.x);})
-                    .attr("y", function (d)  {return (d.y < 50) ? 50 : (d.y>450 ? 450: d.y);})
+                    .attr("x", function (d)  {return (d.x < 30) ? 31 : (d.x > 800 ? 799: d.x);})
+                    .attr("y", function (d)  {return (d.y < 50) ? 53 : (d.y>450 ? 453: d.y+3);})
                     //sets font color of node name
                     .style("font-size", "13px").style("fill", "#333")
                     .style("font-family", "open-sans");
 
                 link
-                    .attr("x1", function (d) {return (d.source.x < 30) ? 30 : (d.source.x > 800 ? 800: d.source.x);})
-                    .attr("y1", function (d)  {return (d.source.y < 50) ? 50 : (d.source.y>450 ? 450: d.source.y);})
-                    .attr("x2", function (d) {return (d.target.x < 30) ? 30 : (d.target.x > 800 ? 800: d.target.x);})
-                    .attr("y2", function (d)  {return (d.target.y < 50) ? 50 : (d.target.y>450 ? 450: d.target.y);});
+                    .attr("x1", function (d) {return (d.source.x < 30) ? 31 : (d.source.x > 800 ? 779: d.source.x);})
+                    .attr("y1", function (d)  {return (d.source.y < 50) ? 51 : (d.source.y>450 ? 449: d.source.y);})
+                    .attr("x2", function (d) {return (d.target.x < 30) ? 31 : (d.target.x > 800 ? 779: d.target.x);})
+                    .attr("y2", function (d)  {return (d.target.y < 50) ? 51 : (d.target.y>450 ? 449: d.target.y);});
             }
         }
 
         function dragstarted(d) {
+            console.log("x is " + d.x +  " y is " + d.y)
+
             if (!d3.event.active) simulation.alphaTarget(0.3).restart()
             d.fx = d.x
             d.fy = d.y
@@ -164,6 +167,8 @@ export default class NetDisplay extends React.Component {
             d.fy = d3.event.y
             if (!d3.event.active) simulation.alphaTarget(0);
             //simulation.unfix(d);
+            console.log("x ended is " + d.x +  " y ended is " + d.y)
+
         }
         run(this.state.graph);
     }

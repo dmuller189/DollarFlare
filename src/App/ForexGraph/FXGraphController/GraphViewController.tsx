@@ -38,7 +38,9 @@ interface IProps {
     pairs: string[],
     date: string,
     selectAllEdges: string,
-    arbitragePath: string []
+    arbitragePath: string [],
+    addPair: Function,
+    removePair: Function
 }
 
 export default class GraphViewController extends React.Component <IProps>{
@@ -49,27 +51,15 @@ export default class GraphViewController extends React.Component <IProps>{
         this.buildGraph = this.buildGraph.bind(this);
         //event handlers
         this.handleBuildGraphClick = this.handleBuildGraphClick.bind(this);
-        this.handleEdgeClick = this.handleEdgeClick.bind(this);
-        this.handleNodeClick = this.handleNodeClick.bind(this);
     }
 
     componentDidMount(): void {
         //render graph with d3
     }
 
-
-    handleEdgeClick(): void {
-        //event handler for clicking an edge (passed to GraphView.tsx in props)
-
-    }
-
-    handleNodeClick(): void {
-        //event handler when clicking on a node (passed to GraphView.tsx in props)
-
-    }
-
     handleAddEdge() {
         //event handler for when user adds an edge (relationship pair at certain date)
+        //user selects from available edges on graph (nodes must exist on graph)
     }
 
     handleAddNode() {
