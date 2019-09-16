@@ -1,6 +1,5 @@
 import React from 'react';
-import GraphView from '../FXGraphView/GraphView';
-
+import GraphView from '../FXGraphD3View/GraphView';
 
 
 /*

@@ -22,7 +22,9 @@ export default class Home extends React.Component {
                 <h2>
                     DF Home
                 </h2>
+                graphview controller (
             <GraphViewController />
+                )
             </div>
         )
 

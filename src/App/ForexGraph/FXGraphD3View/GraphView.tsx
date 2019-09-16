@@ -16,12 +16,17 @@ export default class GraphView extends React.Component<IProps> {
 
     constructor(props: IProps) {
         super(props);
+
+        this.state = {
+            //represents a negative cycle in a graph for arbitrage
+            arbitragePaths: []
+        }
     }
 
 
     componentDidMount(): void {
         //renders d3 graph content here
-        
+        //'light up' each edge contained in the arbitrage path
     }
 
 
@@ -33,7 +38,7 @@ export default class GraphView extends React.Component<IProps> {
 
                 {
                     this.props.pairs.map(e => {
-                        return e;
+                        return e + " - ";
                     })
                 }
  
