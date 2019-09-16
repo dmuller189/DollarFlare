@@ -47,9 +47,10 @@ export default class GraphViewController extends React.Component {
 
         this.state = {
             pairs: ["USDtoEUR", "USDtoJPY", "gold to silver"],
-            date: "",
+            edgeWeights: [0, 0, 0],
+            date: "09/15/2019",
             selectAllEdges: "false",
-            
+            arbitragePath: ["USDtoEUR", "EURtoUSD"]
         }
 
 
@@ -87,12 +88,27 @@ export default class GraphViewController extends React.Component {
 
     handleBuildGraphClick(): void {
         //handles clickin of buildGraph button; fetches edge data from server and bellman for results
-
+        this.buildGraph();
     }
 
 
     //fethes from server with graph info
     buildGraph(): void {
+
+        let url =  "https://localhost8080/api";
+        let data = this.state;
+        
+        fetch(url, {
+            method: 'GET',
+            body: JSON.stringify(data),
+        }).then(response => {
+            this.setState({
+                // @ts-ignore
+                edgeWeights: response.edgeWeights
+
+            })
+        })
+
 
     }
 
@@ -105,7 +121,7 @@ export default class GraphViewController extends React.Component {
             <div>
                 {/*
                 // @ts-ignore */}
-                <GraphView pairs={this.state.pairs} allEdges={this.state.selectAllEdges} date={this.state.date} nodeOnClicked={this.handleNodeClick} edgeOnClicked={this.handleEdgeClick}/>
+                <GraphView arbitragePath={this.state.arbitragePath} pairs={this.state.pairs} allEdges={this.state.selectAllEdges} date={this.state.date} nodeOnClicked={this.handleNodeClick} edgeOnClicked={this.handleEdgeClick}/>
             </div>
         )
     }
