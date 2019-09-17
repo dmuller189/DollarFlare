@@ -195,7 +195,8 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                     <NetDisplay gid="upper" />
                   </div>
                   <div className="col">
-                    <NetDisplay gid="righter"/>
+                   second cool viz display
+                    {/* <NetDisplay gid="righter"/> */}
                   </div>
                 </div>
               </div>
