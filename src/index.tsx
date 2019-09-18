@@ -7,13 +7,10 @@ import SignUp from './App/signUp/SignUp';
 import Login from './App/LoginPage/Login';
 import ForgotPassword from './App/ForgotPasswordPage/ForgotPassword';
 import Home from './App/homePage/home';
-
 import { createStore, combineReducers, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
-
 import { landinPageReducer } from './App/LandingPage/LandingPage';
-
 
 
 let rootReducer = combineReducers({
