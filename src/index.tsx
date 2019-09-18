@@ -12,19 +12,26 @@ import { createStore, combineReducers, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 
+import { landinPageReducer } from './App/LandingPage/LandingPage';
 
 
-const rootReducer = combineReducers({});
+// let rootReducer = combineReducers({
+//   landinPageState: landinPageReducer,
+// })
 
-const store = createStore(rootReducer, applyMiddleware(createLogger()));
+// const store = createStore(rootReducer, applyMiddleware(createLogger()));
 
+
+const store = createStore(landinPageReducer, applyMiddleware(createLogger()));
 
 ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LandingPage}></Route>
+          
           <Route exact path="/sign-up" component={SignUp}></Route>
+
           <Route exact path="/login" component={Login}></Route>
           <Route exact path="/forgotPassword" component={ForgotPassword}></Route>
           <Route exact path="/home" component={Home}></Route>

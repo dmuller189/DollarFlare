@@ -5,6 +5,8 @@ import NetDisplay from './NetDisplay/NetDisplay';
 import { SocialMediaDisplay } from '../d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 import { Link } from "react-router-dom";
 
+import { connect } from 'react-redux';
+
 interface IFootList {
   title: string;
   url: string;
@@ -45,25 +47,24 @@ let footList: IFootList[] = [
   },
 ];
 
-interface IState {
+interface IProps {
   fireClicked: boolean;
+  changeColor: Function
 }
 
-export default class LandingPage extends React.Component<{}, IState, null> {
 
-  constructor(props: object) {
+class LandingPage extends React.Component<IProps> {
+
+  constructor(props: IProps) {
     super(props);
 
-    this.state = {
-      fireClicked: false
-    };
-
-    this.fireClicked = this.fireClicked.bind(this);
+    //this.fireClicked = this.fireClicked.bind(this);
   }
 
-  fireClicked(): void {
-    const next: boolean = !this.state.fireClicked;
-    this.setState({ fireClicked: next });
+  fireClickedHandle = () => {
+    // @ts-ignore
+    this.props.dispatch({type: "CHANGE_COLOR"})
+    //this.props.changeColor();
   }
 
   render() {
@@ -71,7 +72,7 @@ export default class LandingPage extends React.Component<{}, IState, null> {
       <div className="container-fluid" id="m">
         <div className="row h-100"  >
           <div className="col-6 no-float"
-            id={!this.state.fireClicked ? "left" : "leftClicked"}>
+            id={!this.props.fireClicked ? "left" : "leftClicked"}>
             <div id="left-content">
               <div id="left-content-header" className="content-header">
                 <h2>
@@ -258,7 +259,7 @@ export default class LandingPage extends React.Component<{}, IState, null> {
                 )
               })}
               <li className="list-group-item">
-                <a href='#' onClick={this.fireClicked}>
+                <a href='#' onClick={this.fireClickedHandle}>
                   Fire
                 </a>
               </li>
@@ -269,3 +270,42 @@ export default class LandingPage extends React.Component<{}, IState, null> {
     )
   }
 }
+
+
+interface IState {
+  fireClicked: boolean
+}
+
+interface IAction {
+  type: "CHANGE_COLOR"
+}
+
+const initialState: IState = {fireClicked: false}
+
+
+export function landinPageReducer(state=initialState, action: IAction): IState {
+  switch(action.type) {
+    case "CHANGE_COLOR":
+      return {
+        fireClicked: !state.fireClicked
+      };
+    default:
+      return state;
+  }
+}
+
+const mapStateToProps = (state: IState) => {
+  return {
+    fireClicked: state.fireClicked
+  };
+}
+
+// let mapDispatchToProps = (dispatch: any) => {
+//   return ({
+//     changeColor: () => dispatch("CHANGE_COLOR")
+//   }) 
+// }
+
+
+
+export default connect(mapStateToProps)(LandingPage);
