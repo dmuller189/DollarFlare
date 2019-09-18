@@ -25,6 +25,9 @@ const graphEx = {
     ]
 }
 
+const width = 900;
+const height = 500;
+
 /*
 eventuall ths will just be an instance graph
 coming fron the main engine.  i.e. on
@@ -33,23 +36,12 @@ pass is into the props of GraphModel or the like to render
 */
 export default class NetDisplay extends React.Component {
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            width: 900,
-            height: 500,
-            graph: graphEx
-        }
-    }
-
     buildGraph() {
         let svg = d3.select("#"+this.props.gid),
             width = +svg.attr("width"),
             height = +svg.attr("height");
 
         var simulation = d3.forceSimulation()
-
             .force("link", d3.forceLink().id(function (d) { return d.id; })
                 .distance(170))
             .force("charge", d3.forceManyBody().strength(-75))
@@ -59,11 +51,10 @@ export default class NetDisplay extends React.Component {
             //     .distanceMax(100)
             // )
             .force('collide', d3.forceCollide()
-                .radius(d => 5)
+                .radius(d => 7)
                 .iterations(1)
             )
-            .force("center", d3.forceCenter(width / 2, height / 2))
-            ;
+            .force("center", d3.forceCenter(width / 2, height / 2));
 
         function run(graph) {
 
@@ -147,35 +138,25 @@ export default class NetDisplay extends React.Component {
         }
 
         function dragstarted(d) {
-            console.log("x is " + d.x +  " y is " + d.y)
-
             if (!d3.event.active) simulation.alphaTarget(0.3).restart()
             d.fx = d.x
             d.fy = d.y
-            //  simulation.fix(d);
         }
 
         function dragged(d) {
             d.fx = d3.event.x
             d.fy = d3.event.y
-            //  simulation.fix(d, d3.event.x, d3.event.y);
         }
 
         function dragended(d) {
-
             d.fx = d3.event.x
             d.fy = d3.event.y
             if (!d3.event.active) simulation.alphaTarget(0);
-            //simulation.unfix(d);
-            console.log("x ended is " + d.x +  " y ended is " + d.y)
-
         }
-        run(this.state.graph);
+        run(graphEx);
     }
 
     componentDidMount() {
-
-       // console.log(this.props.gid)
         this.buildGraph();
     }
 
@@ -186,7 +167,7 @@ export default class NetDisplay extends React.Component {
                 <h3>
                     Forex Networks Made Simple
                 </h3>
-                <svg id={this.props.gid} width={this.state.width} height={this.state.height}></svg>
+                <svg id={this.props.gid} width={width} height={height}></svg>
             </div>
         )
     }

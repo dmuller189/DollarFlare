@@ -1,51 +1,13 @@
 import React from 'react';
 import './LandingPage.css';
 import { LoginForm } from '../LoginForm/LoginForm';
+import Footer from '../utilityComponents/footer';
 import NetDisplay from './NetDisplay/NetDisplay';
 import { SocialMediaDisplay } from '../d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 import { Link } from "react-router-dom";
-
 import { connect } from 'react-redux';
 
-interface IFootList {
-  title: string;
-  url: string;
-}
 
-let footList: IFootList[] = [
-  {
-    title: "About",
-    url: "#",
-  },
-  {
-    title: "Help",
-    url: "#",
-  },
-  {
-    title: "Blog",
-    url: "#",
-  },
-  {
-    title: "Privacy",
-    url: "#",
-  },
-  {
-    title: "Apps",
-    url: "#",
-  },
-  {
-    title: "Advertise",
-    url: "#",
-  },
-  {
-    title: "Developers",
-    url: "#",
-  },
-  {
-    title: "@ DollarFare",
-    url: "#",
-  },
-];
 
 interface IProps {
   fireClicked: boolean;
@@ -244,26 +206,7 @@ class LandingPage extends React.Component<IProps> {
             </div>
           </div>
         </div>
-        <footer className="page-footer" id="pFooter">
-          <div className="fixed-bottom bg-light">
-            <ul id="foot" className="list-group list-group-horizontal-sm justify-content-center">
-              {footList.map((item) => {
-                return (
-                  <li key={item.title} className="list-group-item">
-                    <a href={item.url}>
-                      {item.title}
-                    </a>
-                  </li>
-                )
-              })}
-              <li className="list-group-item">
-                <a href='#' onClick={this.fireClickedHandle}>
-                  Fire
-                </a>
-              </li>
-            </ul>
-          </div>
-        </footer>
+        <Footer  />
       </div>
     )
   }
