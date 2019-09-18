@@ -2,7 +2,6 @@ import React from 'react';
 import './home.css';
 import { connect } from 'react-redux';
 import Footer from '../utilityComponents/footer';
-import { LoginForm } from '../LoginForm/LoginForm';
 
 
 
@@ -17,69 +16,47 @@ class Home extends React.Component {
     return (
       <div id="home-root">
 
-        {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    Navbar
-                   
-                        <div className="navbar-nav">
-                            <div className="nav-item nav-link">Features</div>
-                            <a className="nav-item nav-link" href="#">Pricing</a>
-                            <a className="nav-item nav-link" href="#">Disabled</a>
-                        </div>
-                    
-                </nav> */}
 
-        <header className="navbar navbar-static-top" role="navigation" id="raw-nav">
-          <div className="container">
-            {/* <div className="navbar-header">
-              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#raw-navbar">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span> <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
 
-              <a className="navbar-brand" href="" target="_blank">
-                
-              </a>
-        </div> */}
+        <div className="container">
+          <nav className="navbar navbar-expand-lg navbar-light" role="navigation" id="raw-navbar">
+            <div className="nav navbar-nav">
+              <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
 
-              <nav className="collapse navbar-collapse" role="navigation" id="raw-navbar">
-                <ul className="nav navbar-nav navbar-right">
-                  <li>
-                    <a href="" target="_blank">About</a>
-                  </li>
-                  <li>
-                    <a href="" >Gallery</a>
-                  </li>
-                  <li>
-                    <a href="" target="_blank">Learning</a>
-                  </li>
-                  <li>
-                    <a href="" target="_blank">FAQs</a>
-                  </li>
-                  <li>
-                    <a href="" target="_blank">User survey</a>
-                  </li>
-                  <li>
-                    <a href="" target="_blank">Developer Guide</a>
-                  </li>
-                </ul>
-              </nav>
+                <li className="nav-item active">
+                  <a className="nav-link" href="#">About</a>
+                </li>
 
-          
-      </div>
-    </header>
+                <li className="nav-item active">
+                  <a className="nav-link" href="#">Link</a>
+                </li>
 
-          <div id="page-content">
-            content
-                </div>
+                <li>
+                  <a className="nav-link active" href="#">Learning</a>
+                </li>
 
-          <div id="page-footer">
-            <Footer />
-          </div>
+                <li>
+                  <a className="nav-link active" href="#">Faq</a>
+                </li>
 
+              </ul>
             </div>
-        )
-    }
+          </nav>
+        </div>
+
+
+
+
+
+        <div id="page-content">
+          content
+          </div>
+        <div id="page-footer">
+          <Footer />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default connect()(Home);
