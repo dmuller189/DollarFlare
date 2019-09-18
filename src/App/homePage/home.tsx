@@ -38,7 +38,7 @@ class Home extends React.Component {
                   <a className="nav-link active" href="#">Learning</a>
                 </li>
                 <li>
-                  <a className="nav-link active" href="#">Faq</a>
+                  <a className="nav-link active" href="#">FAQ</a>
                 </li>
                 <li>
                   <a href="https://github.ccs.neu.edu/dmuller189/DollarFlare/" id="gitlogo">
