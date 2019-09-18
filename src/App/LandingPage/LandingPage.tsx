@@ -213,25 +213,6 @@ class LandingPage extends React.Component<IProps> {
 }
 
 
-interface IState {
-  fireClicked: boolean
-}
-interface IAction {
-  type: "CHANGE_COLOR"
-}
-const initialState: IState = {fireClicked: false}
-
-export function landinPageReducer(state=initialState, action: IAction): IState {
-  switch(action.type) {
-    case "CHANGE_COLOR":
-      return {
-        fireClicked: !state.fireClicked
-      };
-    default:
-      return state;
-  }
-}
-
 const mapStateToProps = (state: any) => {
   return {
     fireClicked: state.landingState.fireClicked
