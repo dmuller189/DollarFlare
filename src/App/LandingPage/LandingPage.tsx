@@ -62,8 +62,6 @@ class LandingPage extends React.Component<IProps> {
   }
 
   fireClickedHandle = () => {
-    // @ts-ignore
-    // this.props.dispatch({type: "CHANGE_COLOR"})
     this.props.changeColor();
   }
 
@@ -294,13 +292,14 @@ export function landinPageReducer(state=initialState, action: IAction): IState {
   }
 }
 
-const mapStateToProps = (state: IState) => {
+const mapStateToProps = (state: any) => {
   return {
-    fireClicked: state.fireClicked
+    // @ts-ignore
+    fireClicked: state.landingState.fireClicked
   };
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: Function) => {
   return ({
     changeColor: () => dispatch({type: "CHANGE_COLOR"})
   }) 

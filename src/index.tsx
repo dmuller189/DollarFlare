@@ -15,14 +15,12 @@ import { createLogger } from 'redux-logger';
 import { landinPageReducer } from './App/LandingPage/LandingPage';
 
 
-// let rootReducer = combineReducers({
-//   landinPageState: landinPageReducer,
-// })
 
-// const store = createStore(rootReducer, applyMiddleware(createLogger()));
+let rootReducer = combineReducers({
+  landingState: landinPageReducer
+})
 
-
-const store = createStore(landinPageReducer, applyMiddleware(createLogger()));
+const store = createStore(rootReducer, applyMiddleware(createLogger()));
 
 ReactDOM.render(
     <Provider store={store}>
