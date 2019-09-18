@@ -63,8 +63,8 @@ class LandingPage extends React.Component<IProps> {
 
   fireClickedHandle = () => {
     // @ts-ignore
-    this.props.dispatch({type: "CHANGE_COLOR"})
-    //this.props.changeColor();
+    // this.props.dispatch({type: "CHANGE_COLOR"})
+    this.props.changeColor();
   }
 
   render() {
@@ -300,12 +300,12 @@ const mapStateToProps = (state: IState) => {
   };
 }
 
-// let mapDispatchToProps = (dispatch: any) => {
-//   return ({
-//     changeColor: () => dispatch("CHANGE_COLOR")
-//   }) 
-// }
+let mapDispatchToProps = (dispatch: any) => {
+  return ({
+    changeColor: () => dispatch({type: "CHANGE_COLOR"})
+  }) 
+}
 
 
 
-export default connect(mapStateToProps)(LandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
