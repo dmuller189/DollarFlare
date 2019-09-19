@@ -1,8 +1,8 @@
 import React from 'react';
 import './home.css';
 import { connect } from 'react-redux';
-import Footer from '../utilityComponents/footer';
-import NavBar from '../utilityComponents/NavBar';
+import Footer from '../utilityComponents/footer/footer';
+import NavBar from '../utilityComponents/navBar/NavBar';
 
 //home page after login/coninuing as guest
 class Home extends React.Component {
@@ -14,7 +14,7 @@ class Home extends React.Component {
       <div id="home-root">
 
         <div className="container" id="main-bar" >
-          <NavBar />
+          <NavBar where="Home" />
         </div>
 
         <div id="page-content">
