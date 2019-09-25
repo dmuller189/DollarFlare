@@ -5,17 +5,16 @@
 
 #page-content {
     background-color: rgb(240,240,240);
-    height: 100%
+    height: 100%;
 }
+
+
 
 .home-img {
     transform: scale(1.5);
 }
 
-#logo {
-    padding-right: 20px;
- 
-}
+
 
 #nav-info {
     float: right 

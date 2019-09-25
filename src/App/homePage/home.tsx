@@ -24,21 +24,33 @@ class Home extends React.Component {
         <div className="container" id="main-bar" >
           <NavBar where="Home" />
         </div>
+
         
 
-
-       
-        <div id="page-content">
-          <SideBar />
+        <div className="container-fluid" id="page-content">  
+         <div className="row">
+           <div className="col-6">
+             <SideBar />
+           </div>
+           <div className="col-fluid">
+             col2
+           </div>
+         </div>
         </div>
+        
+      
 
-arga
+        {/* <div id="page-content">
+          <SideBar />
+        </div> */}
+
+
 
         <div id="page-footer">
           <Footer />
         </div>
-agag
-        
+
+
 
       </div>
     )
