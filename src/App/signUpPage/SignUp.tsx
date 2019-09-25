@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from "../utilityComponents/navBar/NavBar";
+//import NavBar from "../utilityComponents/navBar/NavBar";
 
 
 export default class SignUp extends React.Component {
