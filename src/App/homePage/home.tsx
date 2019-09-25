@@ -26,33 +26,27 @@ class Home extends React.Component {
         </div>
 
 
-        <div className="container-fluid" id="main-bar" >
+
+
+
+        <div className="container-fluid no-padding" id="main-bar" >
           <div className="row">
-          <SideBar />
+
+            <div className="col-2 no-padding" id="sidebar">
+              <SideBar />
+            </div>
+          
+            <div className="col-fluid no-padding" id="page-content">
+              content
+            </div>
           </div>
+        
+        </div> 
 
-          j
-        </div>
-
-
-
-
-        {/* <div className="container-fluid" id="page-content">  
-         <div className="row">
-           <div className="col-fluid">
-             <SideBar />
-           </div>
-           <div className="col-fluid">
-             col2
-           </div>
-         </div>
-        </div> */}
+        
 
 
 
-        {/* <div id="page-content">
-          <SideBar />
-        </div> */}
 
 
 

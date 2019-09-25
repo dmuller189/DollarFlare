@@ -1,23 +1,26 @@
 #home-root {
-    height: 92%;
-    font-size: 115%;
     
+    font-size: 115%;
 }
 
-#page-content {
-    background-color: rgb(240,240,240);
-    height: 100%;
+#main-bar {
+    height: 200%;
 }
 
-
-
+.no-padding {
+    padding: 0;
+    margin: 0;
+}
 
 .home-img {
     transform: scale(1.5);
 }
 
+#page-content {
+    background-color: grey;
+    width: inherit;
+}
 
-
-#nav-info {
-    float: right 
+#sidebar {
+    background-color: red;
 }
