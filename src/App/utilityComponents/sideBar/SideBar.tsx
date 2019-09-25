@@ -10,9 +10,8 @@ class SideBar extends React.Component {
 
     render() {
         return (
-
             /**
-             * replacing <a> with <link>
+             * replacing <a> with <link> ...
              */
             <nav className="col-md-2 d-none d-md-block sidebar" id="side-bar">
                 <div className="sidebar-sticky">
