@@ -32,11 +32,11 @@ class Home extends React.Component {
         <div className="container-fluid no-padding" id="main-bar" >
           <div className="row">
 
-            <div className="col-2 no-padding" id="sidebar">
+            <div className="col-7 no-padding" id="sidebar">
               <SideBar />
             </div>
           
-            <div className="col-fluid no-padding" id="page-content">
+            <div className="col no-padding" id="page-content">
               content
             </div>
           </div>
@@ -46,16 +46,9 @@ class Home extends React.Component {
         
 
 
-
-
-
-
         <div id="page-footer">
           <Footer />
         </div>
-
-
-
       </div>
     )
   }

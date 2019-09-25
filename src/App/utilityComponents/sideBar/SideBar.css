@@ -1,6 +1,7 @@
-
 nav {
     height: 100%;
+    background-color: white;
+    width: 110%;
 }
 
 .nav-item {
