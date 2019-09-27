@@ -27,11 +27,9 @@ class LoggenIn extends React.Component {
             <div className="col-fluid" id="main-bar">
               <SideBar />
             </div>
-
             <div className="col" id="page-content">
               <LoggedInContainer />
             </div>
-
           </div>
         </div>
         <div id="page-footer">
