@@ -28,12 +28,10 @@ class LoggenIn extends React.Component {
               <SideBar />
             </div>
 
-
             <div className="col" id="page-content">
               <LoggedInContainer />
             </div>
 
-            
           </div>
         </div>
         <div id="page-footer">

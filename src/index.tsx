@@ -23,10 +23,10 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={LandingPage}></Route>
-          <Route exact path="/sign-up" component={SignUp}></Route>
-          <Route exact path="/login" component={Login}></Route>
-          <Route exact path="/forgotPassword" component={ForgotPassword}></Route>
-          <Route exact path="/loggedIn/home" component={LoggenIn}></Route>
+          <Route  path="/sign-up" component={SignUp}></Route>
+          <Route  path="/login" component={Login}></Route>
+          <Route  path="/forgotPassword" component={ForgotPassword}></Route>
+          <Route  path="/loggedIn/home" component={LoggenIn}></Route>
         </Switch>  
       </BrowserRouter>
     </Provider>,
