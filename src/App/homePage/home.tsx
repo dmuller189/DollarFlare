@@ -29,22 +29,22 @@ class Home extends React.Component {
 
 
 
+
         <div className="container-fluid no-padding" id="main-bar" >
+          
           <div className="row">
 
-            <div className="col-7 no-padding" id="sidebar">
+            <div className="col" id="main-bar">
               <SideBar />
             </div>
-          
-            <div className="col no-padding" id="page-content">
+
+            <div className="col" id="page-content">
               content
             </div>
-          </div>
-        
+          </div>  
         </div> 
 
-        
-
+  
 
         <div id="page-footer">
           <Footer />

@@ -13,8 +13,7 @@ class SideBar extends React.Component {
             /**
              * replacing <a> with <link> ...
              */
-            <div className="container-fluid">
-                <nav className="col-md-2 d-none d-md-block sidebar" id="side-bar">
+                <nav className="d-none d-md-block sidebar" id="side-bar">
                     <div className="sidebar">
                         <h5 className="sidebar-heading align-items-center px-3 mt-4 mb-1 text-muted">
                             <span>Welcome, USERNAME</span>
@@ -49,7 +48,7 @@ class SideBar extends React.Component {
                             <li className="nav-item">
                                 <a className="nav-link" href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                                    Comy
+                                    Community
                             </a>
                             </li>
                         </ul>
@@ -67,7 +66,6 @@ class SideBar extends React.Component {
                         </ul>
                     </div>
                 </nav>
-            </div>
         )
     }
 }

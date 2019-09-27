@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "@types/react-router-dom": "^4.3.5"
   }
 }
