@@ -10,10 +10,10 @@ import LoggenIn from './App/LoggedInPage/LoggenIn';
 import { createStore, combineReducers, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
-import LandingPageReducer from './App/LandingPage/LandingPageReducer';
+import loggedInReducer from './App/LoggedInPage/LoggedInReducer';
 
 let rootReducer = combineReducers({
-  landingState: LandingPageReducer
+  loggedInState: loggedInReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(createLogger()));

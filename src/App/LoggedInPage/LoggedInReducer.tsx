@@ -11,7 +11,7 @@ interface IHomeAction {
 
 const initialState: IHomeState = {viewSelection: "none"}
 
-export default function homeReducer(state=initialState, action: IHomeAction): IHomeState {
+export default function loggenInReducer(state=initialState, action: IHomeAction): IHomeState {
     switch(action.type) {
         default:
             return state;

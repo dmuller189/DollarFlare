@@ -1,14 +1,14 @@
 import React from 'react';
-import './home.css';
 import { connect } from 'react-redux';
 import Footer from '../utilityComponents/footer/footer';
 import NavBar from '../utilityComponents/navBar/NavBar';
 import SideBar from '../utilityComponents/sideBar/SideBar';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Profile from '../profilePage/Profile';
+import './LoggedIn.css';
 
 //home page after login/coninuing as guest
-class Home extends React.Component {
+class LoggenIn extends React.Component {
 
 
 
@@ -52,5 +52,5 @@ class Home extends React.Component {
   }
 }
 
-export default connect()(Home);
+export default connect()(LoggenIn);
 
