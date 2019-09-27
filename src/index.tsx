@@ -12,24 +12,11 @@ import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import loggedInReducer from './App/LoggedInPage/LoggedInReducer';
 
-let rootReducer = combineReducers({
-  loggedInState: loggedInReducer
-})
 
-const store = createStore(rootReducer, applyMiddleware(createLogger()));
+import App from './App/App';
 
-ReactDOM.render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={LandingPage}></Route>
-          <Route  path="/sign-up" component={SignUp}></Route>
-          <Route  path="/login" component={Login}></Route>
-          <Route  path="/forgotPassword" component={ForgotPassword}></Route>
-          <Route  path="/loggedIn/home" component={LoggenIn}></Route>
-        </Switch>  
-      </BrowserRouter>
-    </Provider>,
+
+ReactDOM.render(<App /> ,
     document.getElementById('root'));
 
 serviceWorker.unregister();
