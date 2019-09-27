@@ -5,7 +5,7 @@ import LandingPage from './LandingPage/LandingPage';
 import SignUp from './signUpPage/SignUp';
 import Login from './LoginPage/Login';
 import ForgotPassword from './ForgotPasswordPage/ForgotPassword';
-import LoggenIn from './LoggedInPage/LoggenIn';
+import LoggedIn from './LoggedInPage/LoggedIn';
 import { createStore, combineReducers, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
@@ -26,7 +26,9 @@ const App = () => {
           <Route path="/sign-up" component={SignUp}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/forgotPassword" component={ForgotPassword}></Route>
-          <Route path="/loggedIn/home" component={LoggenIn}></Route>
+          <Route path="/loggedIn/home" component={LoggedIn}></Route>
+          <Route path="/loggedIn/profile" component={LoggedIn}></Route>
+          <Route path="/loggedIn/community" component={LoggedIn}></Route>
         </Switch>  
       </Router>
     </Provider>

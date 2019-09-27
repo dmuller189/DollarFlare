@@ -3,8 +3,6 @@ import React from 'react';
 
 class CommunityPage extends React.Component {
 
-
-
     render() {
         return (
             <div>
@@ -15,3 +13,5 @@ class CommunityPage extends React.Component {
         )
     }
 }
+
+export default CommunityPage;

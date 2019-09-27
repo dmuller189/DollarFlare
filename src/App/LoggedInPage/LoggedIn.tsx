@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Footer from '../utilityComponents/footer/footer';
 import NavBar from '../utilityComponents/navBar/NavBar';
 import SideBar from '../utilityComponents/sideBar/SideBar';
-import LoggedInContainer from '../LoggedInPage/LoggedInContainer/LoggedInContainer';
+import LoggedInContainer from './LoggedInContainer/LoggedInContainer';
 import './LoggedIn.css';
 
 //home page after login/coninuing as guest
