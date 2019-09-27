@@ -9,30 +9,16 @@ import { connect } from 'react-redux';
 
 
 
-interface IProps {
-  fireClicked: boolean;
-  changeColor: Function
-}
+export default class LandingPage extends React.Component {
 
-
-class LandingPage extends React.Component<IProps> {
-
-  constructor(props: IProps) {
-    super(props);
-
-    //this.fireClicked = this.fireClicked.bind(this);
-  }
-
-  fireClickedHandle = () => {
-    this.props.changeColor();
-  }
+  
 
   render() {
     return (
       <div className="container-fluid" id="m">
         <div className="row h-100"  >
           <div className="col-6 no-float"
-            id={!this.props.fireClicked ? "left" : "leftClicked"}>
+            id="left">
             <div id="left-content">
               <div id="left-content-header" className="content-header">
                 <h2>
@@ -135,7 +121,7 @@ class LandingPage extends React.Component<IProps> {
                 <Link to="/login">
                   <button id="main-log" type="button" className="btn btn-outline-primary btn-block round">Log-in</button>
                 </Link>
-                <Link to="/home">
+                <Link to="/loggedIn/home">
                   <button id="main-guest" type="button" className="btn btn-outline-dark round">Continue as Guest</button>
                 </Link>
               </div>
@@ -210,19 +196,6 @@ class LandingPage extends React.Component<IProps> {
       </div>
     )
   }
+
+
 }
-
-
-const mapStateToProps = (state: any) => {
-  return {
-    fireClicked: state.landingState.fireClicked
-  };
-}
-
-let mapDispatchToProps = (dispatch: Function) => {
-  return ({
-    changeColor: () => dispatch({type: "CHANGE_COLOR"})
-  }) 
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
