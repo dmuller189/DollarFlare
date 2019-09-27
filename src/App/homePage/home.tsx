@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import Footer from '../utilityComponents/footer/footer';
 import NavBar from '../utilityComponents/navBar/NavBar';
 import SideBar from '../utilityComponents/sideBar/SideBar';
-import { Route } from 'react-router';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Profile from '../profilePage/Profile';
+
 //home page after login/coninuing as guest
 class Home extends React.Component {
 
@@ -26,20 +28,21 @@ class Home extends React.Component {
         </div>
 
 
-        <div className="container-fluid no-padding" id="main-bar" >
+        <div className="container-fluid" id="main-bar" >
           <div className="row">
-
             <div className="col-fluid" id="main-bar">
               <SideBar />
             </div>
 
             <div className="col" id="page-content">
-              content
+              <Profile />
+              <Route exact path="/home/profile" component={Profile}></Route>
             </div>
-          </div>  
-        </div> 
 
-  
+          </div>
+        </div>
+
+
 
         <div id="page-footer">
           <Footer />

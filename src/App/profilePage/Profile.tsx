@@ -1,13 +1,15 @@
 import React from 'react';
 
 
-class Profile extends React.Component {
+export default class Profile extends React.Component {
 
 
     render() {
         return (
             <div>
-                profile page
+                <h1>
+                    Profile
+                </h1>
             </div>
         )
     }
