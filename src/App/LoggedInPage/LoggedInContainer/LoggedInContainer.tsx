@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from '../../profilePage/Profile';
+import Profile from '../../LoggedInContainers/profilePage/Profile';
 import { Route } from "react-router-dom";
 
 
@@ -10,8 +10,8 @@ export default class LoggedInContainer extends React.Component {
     render() {
         return (
             <div>
-                home container
-                <Route exact path="/home/profile" component={Profile}></Route>
+                logged in container
+                <Route exact path="/loggedIn/profile" component={Profile}></Route>
             </div>
         )
     }
