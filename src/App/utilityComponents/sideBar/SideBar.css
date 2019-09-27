@@ -1,6 +1,4 @@
-nav {
-    height: 100%;
-}
+
 
 .nav-item {
     padding-left: 15px;
@@ -8,8 +6,8 @@ nav {
 
 #side-bar {
     border-top: 1px solid grey;
-    background-color: blueviolet;
     display: block;
+    padding-left: 20px;
     
 }
 

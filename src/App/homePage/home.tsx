@@ -26,15 +26,10 @@ class Home extends React.Component {
         </div>
 
 
-
-
-
-
         <div className="container-fluid no-padding" id="main-bar" >
-          
           <div className="row">
 
-            <div className="col" id="main-bar">
+            <div className="col-fluid" id="main-bar">
               <SideBar />
             </div>
 

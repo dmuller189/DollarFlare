@@ -1,10 +1,9 @@
 #home-root {
-    
     font-size: 115%;
 }
 
 #main-bar {
-    height: 200%;
+    height: 100%;
 }
 
 .no-padding {
@@ -17,7 +16,7 @@
 }
 
 #page-content {
-    background-color: grey;
+    background-color: rgb(240,240,240);
     
 }
 
