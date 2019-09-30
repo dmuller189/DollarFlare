@@ -26,7 +26,6 @@ const App = () => {
           <Route path="/sign-up" component={SignUp}></Route>
           <Route path="/login" component={Login}></Route>
           <Route path="/forgotPassword" component={ForgotPassword}></Route>
-          <Route path="/loggedIn/home" component={LoggedIn}></Route>
           <Route path="/:loggedIn([A-Za-z]+)" component={LoggedIn}></Route>
         </Switch>  
       </Router>
@@ -34,4 +33,6 @@ const App = () => {
     )
 };
 //https://stackoverflow.com/questions/48723370/react-router-4-regex-paths-match-doesnt-find-parameters
+//look into react redirect for user fucking with url
+
 export default App;
