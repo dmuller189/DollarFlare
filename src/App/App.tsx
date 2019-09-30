@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 import LandingPage from './LandingPage/LandingPage';
 import SignUp from './signUpPage/SignUp';
 import Login from './LoginPage/Login';
@@ -27,12 +27,11 @@ const App = () => {
           <Route path="/login" component={Login}></Route>
           <Route path="/forgotPassword" component={ForgotPassword}></Route>
           <Route path="/loggedIn/home" component={LoggedIn}></Route>
-          <Route path="/loggedIn/profile" component={LoggedIn}></Route>
-          <Route path="/loggedIn/community" component={LoggedIn}></Route>
+          <Route path="/:loggedIn([A-Za-z]+)" component={LoggedIn}></Route>
         </Switch>  
       </Router>
     </Provider>
     )
 };
-
+//https://stackoverflow.com/questions/48723370/react-router-4-regex-paths-match-doesnt-find-parameters
 export default App;
