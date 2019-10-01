@@ -17,6 +17,7 @@ class LoggedInContainer extends React.Component {
                     <Route path="/loggedIn/profile" component={Profile}></Route>
                     <Route path="/loggedIn/community" component={CommunityPage}></Route>
                     <Route path="/loggedIn/createForex" component={ForexBuilder}></Route>
+                    
             </div>
         )
     }

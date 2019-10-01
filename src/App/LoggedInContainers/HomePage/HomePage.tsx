@@ -5,26 +5,77 @@ import FXTemplate from '../../utilityComponents/TemplateViews/FXTemplate/FXTempl
 import './HomePage.css';
 
 
+interface IViewTemplate {
+    title: string,
+    description: string[],
+    link: string,
+    ViewComponent: any,
+}
+
+let viewTemplates: IViewTemplate[] = [
+    {
+        title: "Forex Networks",
+        description: [
+            "Query Real-time and Historical Currency-pair Values",
+            "Build custom networks from any major currency",
+            "Uncover arbirage with advanced graph algorithms"
+        ],
+        link: "./createForex",
+        ViewComponent: <FXTemplate gid="templateView" />,
+    },
+
+    {
+        title: "Forex Networks",
+        description: ["build a forex network"],
+        link: "./createForex",
+        ViewComponent: <FXTemplate gid="templateView2" />,
+    }
+]
+
 class HomePage extends React.Component {
 
     render() {
         return (
-                <div className="center-div" id="page-header">
-                    <h1>
-                        Welcome to DollarFlare!
+            <div className="center-div" id="page-header">
+                <h1>
+                    Welcome to DollarFlare!
                     </h1>
-                    <br></br>
-                    <h4>
-                        Choose a template to begin your creation!
-                    </h4>
-                    viewholder:
-                    
-                    {/* {ViewHolder(<NetDisplay />, {title:"title"})} */}
-                    <br></br>
-                    <FXTemplate gid="upper" />
-                    <br>
-                    </br>
-                </div>
+                <h5>
+                    Choose a template to begin your creation!
+                    </h5>
+                <br></br>
+                <br></br>
+                {viewTemplates.map(e => {
+                        return (
+                            <div id={e.title}>
+                                <div className = "view-holder">
+                                <div className="center-div">
+
+                                    <Link to={e.link} >
+                                        <h2>
+                                            {e.title} <br></br>
+                                        </h2>
+                                    </Link>
+
+                                </div>
+                                {e.ViewComponent}
+                                <div className="container center-div">
+                                    <ul>
+                                        {e.description.map(d => {
+                                            return (
+                                                <li>
+                                                    {d}
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                                </div>
+                                <br></br>
+                            </div>)})}
+                <br>
+                </br>
+            </div>
         )
     }
 }
