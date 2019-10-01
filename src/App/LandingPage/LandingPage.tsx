@@ -2,7 +2,7 @@ import React from 'react';
 import './LandingPage.css';
 import { LoginForm } from '../utilityComponents/LoginForm/LoginForm';
 import Footer from '../utilityComponents/footer/footer';
-import NetDisplay from './NetDisplay/NetDisplay';
+import NetDisplay from '../utilityComponents/ViewHolder/TemplateViews/ForexTemplate/NetDisplay';
 import { SocialMediaDisplay } from '../d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import ViewHolder from '../../utilityComponents/ViewHolder/ViewHolder';
-import NetDisplay from '../../LandingPage/NetDisplay/NetDisplay';
+import NetDisplay from '../../utilityComponents/ViewHolder/TemplateViews/ForexTemplate/NetDisplay';
 import './HomePage.css';
 
 
@@ -11,8 +11,6 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <div>
-
                 <div className="center-div" id="page-header">
                     <h1>
                         Welcome to DollarFlare!
@@ -21,10 +19,10 @@ class HomePage extends React.Component {
                     <h4>
                         Choose a template to begin your creation!
                     </h4>
-                        {ViewHolder(NetDisplay, {title: "forex", date: "today"})}
+                    viewholder:
+                    <br></br>
+                        {ViewHolder(<div> indiv</div>, {title: "forex"})}
                 </div>
-
-            </div>
         )
     }
 }
