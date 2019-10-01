@@ -13,10 +13,6 @@ nav li svg {
 }
 
 a {
-      text-decoration: none !important;
+    text-decoration: none !important;
 }
 
-#page-foot {
-    position: fixed;
-    width: 100%;
-}

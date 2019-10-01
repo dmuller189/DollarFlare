@@ -7,9 +7,9 @@ class SideBar extends React.Component {
 
     render() {
         return (
-            <div className="container">
-                <nav className="d-none d-md-block sidebar" id="side-bar">
-                    <div className="sidebar">
+            <div className="container" id="side-bar">
+                <nav className="d-none d-md-block sidebar">
+                    <div className="sidebar" id="navigation">
                         <h5 className="sidebar-heading align-items-center px-3 mt-4 mb-1 text-muted">
                             <span>Welcome, USERNAME</span>
                         </h5>

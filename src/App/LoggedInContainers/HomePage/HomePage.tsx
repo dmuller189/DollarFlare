@@ -44,7 +44,6 @@ class HomePage extends React.Component {
                     Choose a template to begin your creation!
                     </h5>
                 <br></br>
-                <br></br>
                 {viewTemplates.map(e => {
                         return (
                             <div id={e.title}>
@@ -60,7 +59,7 @@ class HomePage extends React.Component {
                                 </div>
                                 {e.ViewComponent}
                                 <div className="container center-div">
-                                    <ul>
+                                    <ul className="d-list">
                                         {e.description.map(d => {
                                             return (
                                                 <li>
