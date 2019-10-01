@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import FXTemplate from '../../utilityComponents/TemplateViews/FXTemplate/FXTemplate';
+import FXTemplate from '../../../../utilityComponents/TemplateViews/FXTemplate/FXTemplate';
 import './HomePage.css';
 
 

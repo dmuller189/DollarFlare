@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route } from "react-router-dom";
 import { connect } from 'react-redux';
-import Profile from '../../LoggedInContainers/profilePage/Profile';
-import HomePage from '../../LoggedInContainers/HomePage/HomePage';
-import CommunityPage from '../../LoggedInContainers/CommunityPage/CommunityPage';
-import ForexBuilder from '../../LoggedInContainers/ViewBuilders/ForexBuilder/ForexBuilder';
+import Profile from './LoggedInContainers/profilePage/Profile';
+import HomePage from './LoggedInContainers/HomePage/HomePage';
+import CommunityPage from './LoggedInContainers/CommunityPage/CommunityPage';
+import ForexBuilder from './LoggedInContainers/viewBuilders/ForexBuilder/ForexBuilder';
 
 import './LoggedInContainer.css';
 
