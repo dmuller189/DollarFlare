@@ -13,11 +13,13 @@ class LoggenIn extends React.Component {
   render() {
     return (
       <div id="home-root">
+
         <div className="container" id="main-bar" >
           <NavBar where="Home" />
         </div>
+
         <div className="container-fluid" id="main-bar" >
-          <div className="row">
+          <div className="row" id="page-row">
             <div className="col-fluid" id="side-bar">
               <SideBar />
             </div>
