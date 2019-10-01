@@ -2,7 +2,6 @@ html, body, #root, #m{
   height: 100%;
   font-weight: bold;
   font-size: 89%;
-
 }
 
 body {
@@ -102,7 +101,7 @@ a {
 }
 
 #main-log {
-  -webkit-transition-duration: 0.1s; /* Safari */
+  -webkit-transition-duration: 0.1s; 
   transition-duration: .1s;
 }
 
@@ -126,7 +125,6 @@ li {
 
 ul {
   list-style-type: none
-
 }
 
 .list-title {

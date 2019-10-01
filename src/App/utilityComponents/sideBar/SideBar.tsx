@@ -3,16 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import './SideBar.css';
 
-
 class SideBar extends React.Component {
-
-
 
     render() {
         return (
-            /**
-             * replacing <a> with <link> ...
-             */
             <nav className="d-none d-md-block sidebar" id="side-bar">
                 <div className="sidebar">
                     <h5 className="sidebar-heading align-items-center px-3 mt-4 mb-1 text-muted">

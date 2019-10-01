@@ -10,13 +10,7 @@ import './LoggedIn.css';
 class LoggenIn extends React.Component {
 
 
-
   render() {
-    /**
-     * render a side bar (tablue example),
-     * then route for the 'center' of the page
-     * between various views (profile, home, community)
-     */
     return (
       <div id="home-root">
         <div className="container" id="main-bar" >
@@ -24,7 +18,7 @@ class LoggenIn extends React.Component {
         </div>
         <div className="container-fluid" id="main-bar" >
           <div className="row">
-            <div className="col-fluid" id="main-bar">
+            <div className="col-fluid" id="side-bar">
               <SideBar />
             </div>
             <div className="col" id="page-content">
