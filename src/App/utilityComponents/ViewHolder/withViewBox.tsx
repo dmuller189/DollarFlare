@@ -1,12 +1,12 @@
 import React from 'react';
-import './ViewHolder.css';
+import './withViewBox.css';
 
 interface IData {
     title: string,
 }
 
 //HOC to render pretty and interactive template views
-const ViewHolder = (WrappedComponent: any, selectData: IData) => {
+const withViewBox = (WrappedComponent: any, data: IData) => {
 
     class VH extends React.Component {
         render() {
@@ -33,4 +33,4 @@ const ViewHolder = (WrappedComponent: any, selectData: IData) => {
     return VH;
 }
 
-export default ViewHolder;
+export default withViewBox;

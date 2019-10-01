@@ -139,7 +139,7 @@ export default class LandingPage extends React.Component {
                 </h4>
                 <div className="row">
                   <div className="col">
-                    <NetDisplay gid="upper" />
+                    <NetDisplay gid="upper" title="Forex Networks Made Simple"/>
                   </div>
                   <div className="col">
                    second cool viz display

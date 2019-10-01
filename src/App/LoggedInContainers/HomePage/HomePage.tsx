@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
-import ViewHolder from '../../utilityComponents/ViewHolder/ViewHolder';
+import ViewHolder from '../../utilityComponents/ViewHolder/withViewBox';
 import NetDisplay from '../../utilityComponents/ViewHolder/TemplateViews/ForexTemplate/NetDisplay';
 import './HomePage.css';
 
@@ -20,8 +20,12 @@ class HomePage extends React.Component {
                         Choose a template to begin your creation!
                     </h4>
                     viewholder:
+                    
+                    {/* {ViewHolder(<NetDisplay />, {title:"title"})} */}
                     <br></br>
-                        {ViewHolder(<div> indiv</div>, {title: "forex"})}
+                    <NetDisplay gid="upper" />
+                    <br>
+                    </br>
                 </div>
         )
     }
