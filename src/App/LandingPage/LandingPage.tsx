@@ -2,7 +2,7 @@ import React from 'react';
 import './LandingPage.css';
 import { LoginForm } from '../utilityComponents/LoginForm/LoginForm';
 import Footer from '../utilityComponents/footer/footer';
-import NetDisplay from '../utilityComponents/ViewHolder/TemplateViews/ForexTemplate/NetDisplay';
+import FXTemplate from '../utilityComponents/TemplateViews/FXTemplate/FXTemplate';
 import { SocialMediaDisplay } from '../d3Visuals_and_icons/socialMedia/SocialMediaDisplay';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -139,7 +139,7 @@ export default class LandingPage extends React.Component {
                 </h4>
                 <div className="row">
                   <div className="col">
-                    <NetDisplay gid="upper" title="Forex Networks Made Simple"/>
+                    <FXTemplate gid="upper" title="Forex Networks Made Simple"/>
                   </div>
                   <div className="col">
                    second cool viz display

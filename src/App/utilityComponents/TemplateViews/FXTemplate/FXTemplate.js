@@ -1,6 +1,5 @@
 import React from 'react';
 import * as d3 from 'd3';
-import ViewHolder from '../../withViewBox';
 
 const graphEx = {
     "nodes": [
@@ -35,7 +34,7 @@ coming fron the main engine.  i.e. on
 landing page, it will predefine data, then
 pass is into the props of GraphModel or the like to render
 */
-class NetDisplay extends React.Component {
+class FXTemplate extends React.Component {
 
     buildGraph() {
         let svg = d3.select("#"+this.props.gid),
@@ -174,4 +173,4 @@ class NetDisplay extends React.Component {
     }
 }
 
-export default NetDisplay;
+export default FXTemplate;
