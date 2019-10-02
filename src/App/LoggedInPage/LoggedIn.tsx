@@ -4,12 +4,9 @@ import Footer from '../utilityComponents/footer/footer';
 import NavBar from '../utilityComponents/navBar/NavBar';
 import SideBar from '../utilityComponents/sideBar/SideBar';
 import LoggedInContainer from './LoggedInContainer/LoggedInContainer';
-import loggenInReducer from './LoggedInReducer';
 import './LoggedIn.css';
 
-//home page after login/coninuing as guest
 class LoggenIn extends React.Component {
-
 
   render() {
     return (

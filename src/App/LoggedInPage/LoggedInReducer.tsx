@@ -1,20 +1,20 @@
 
 
 
-interface IViewed {
+export interface IViewed {
     type: "forex" | "other", // add other views in future 
-    name: string
+    name: string,
     dateModified: string
 }
 
 //this state keeps track of recently viewed 'views'
 //'view' can be form community, self, or when creating an new view
-interface IHomeState {
+export interface IHomeState {
     recentlyViewed: IViewed []
 }
 
 
-interface IHomeAction {
+export interface IHomeAction {
     type: "ADD_RECENTLY_VIEWED",
     data: IViewed
 }
@@ -34,8 +34,8 @@ export default function loggenInReducer(state = initialState, action: IHomeActio
             return {
                 recentlyViewed: state.recentlyViewed.concat([action.data])
             }
-            break;
         default:
             return state;
     }
 }
+
