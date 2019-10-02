@@ -31,10 +31,8 @@ export default function loggenInReducer(state = initialState, action: IHomeActio
     switch(action.type) {
 
         case "ADD_RECENTLY_VIEWED":
-            {
-                let newState = state;
-                newState.recentlyViewed.push(action.data)
-                return newState;
+            return {
+                recentlyViewed: state.recentlyViewed.concat([action.data])
             }
             break;
         default:
