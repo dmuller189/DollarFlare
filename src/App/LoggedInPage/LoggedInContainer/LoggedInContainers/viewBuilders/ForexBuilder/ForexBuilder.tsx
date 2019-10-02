@@ -8,8 +8,8 @@ class ForexBuilder extends React.Component {
         //@ts-ignore
         this.props.dispatch({type:  "ADD_RECENTLY_VIEWED",
                             data: {
-                                type: "forex",
-                                name: "new forex build",
+                                type: "forex graph",
+                                name: "new forex build" + Math.floor(100*Math.random()),
                                 dateModified: "10/01/2019"
                             }
                         })
