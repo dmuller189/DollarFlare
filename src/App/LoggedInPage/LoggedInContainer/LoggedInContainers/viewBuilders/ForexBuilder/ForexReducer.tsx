@@ -1,5 +1,3 @@
-
-
 export interface INode {
     name: string
 }
@@ -11,13 +9,13 @@ interface IEdge {
 }
 
 interface IForexBuilderState {
-
     nodes: INode [],
     edges: IEdge [],
-
-
+    presentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
+    FXName: string,
+    FXDate: string,
+    FXID: number
 }
-
 
 
 interface IForexBuilderAction {
