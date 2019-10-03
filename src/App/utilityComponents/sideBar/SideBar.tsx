@@ -43,9 +43,7 @@ class SideBar extends React.Component {
                         <h5 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                             <span>Recently Viewed</span>
                         </h5>
-
                         <ul className="nav flex-column mb-2">
-
                             {
                                 //@ts-ignore
                                 this.props.recentlyViewed.reverse().slice(0,5).map(e => {
