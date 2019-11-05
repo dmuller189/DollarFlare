@@ -1,17 +1,111 @@
-export interface INode {
-    name: string
+type NodeName =
+    "USD" //US Dolar
+    | "EUR" // EU Euro
+    | "JPY" //Japanese Yen
+    | "GBP" //British pound
+    | "CHF" //swiss franc
+    | "AUD" //australian dollar
+    | "CNY" //chinese renminbi
+    | "HKD" //hong kong dollar
+    | "NZD" //new zealand dollar
+    | "SEK" //swedish krona
+    | "KRW" //south korean won
+    | "SGD" //singapore dollar
+    | "NOK" //norwegian kronw
+    | "MXN" //mexican peso
+    | "INR" //Indian rupee
+    | "RUB" //russian ruble
+    | "ZAR" //south african rand
+    | "TRY" //turkish Lira
+    | "BRL"; //brazzilian real
+    //20 currency tickers
+
+
+
+
+
+export interface IGraph {
+    nodeList: INode [],
+
+    addNode(node: NodeName): void,
+    removeNode(node: NodeName): void,
+    addEdge(from: NodeName, to: NodeName): void,
+    removeEdge(from: NodeName, to: NodeName): void;
+}
+
+interface INode {
+    readonly name: NodeName,
+    neighbors:  IEdge []
 }
 
 interface IEdge {
-    to: INode,
-    from: INode
+    toNode: INode,
     weight: number
 }
 
+class Graph implements IGraph {
+
+    nodeList: INode [];
+
+    constructor() {
+        this.nodeList = [];
+        this.nodeList.push(new Node("USD"));
+        this.nodeList.push(new Node("GBP"));
+    }
+
+    addNode(node: NodeName) {
+        if (this.nodeList.map(e => e.name).includes(node)) {
+            throw new Error('Node alread in graph');
+        }
+        this.nodeList.push(new Node(node))
+    }
+
+    removeNode(node: NodeName) {
+        //remove node, then all in-edge references
+    }
+
+    addEdge(from: NodeName, to: NodeName) {
+
+    }
+
+    removeEdge(from: NodeName, to: NodeName) {
+        
+    }
+
+}
+
+class Edge implements IEdge {
+    toNode: INode;
+    weight: number;
+
+    constructor(node: INode, w: number) {
+        this.toNode = node;
+        this.weight = w;
+    }
+}
+
+class Node implements INode {
+    name: NodeName;
+    neighbors: IEdge [];
+
+    constructor(n: NodeName) {
+        this.name = n;
+        this.neighbors = [];
+    } 
+
+}
+
+
+
+
+
+
+
+
+
 interface IForexBuilderState {
-    nodes: INode [],
-    edges: IEdge [],
-    presentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
+    Graph: IGraph 
+    CurrPresentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
     FXName: string,
     FXDate: string,
     FXID: number
