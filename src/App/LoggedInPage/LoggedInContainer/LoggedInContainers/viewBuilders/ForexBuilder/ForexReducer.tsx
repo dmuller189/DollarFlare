@@ -1,3 +1,4 @@
+//20 currency tickers
 type NodeName =
     "USD" //US Dolar
     | "EUR" // EU Euro
@@ -18,10 +19,6 @@ type NodeName =
     | "ZAR" //south african rand
     | "TRY" //turkish Lira
     | "BRL"; //brazzilian real
-    //20 currency tickers
-
-
-
 
 
 export interface IGraph {
@@ -30,7 +27,8 @@ export interface IGraph {
     addNode(node: NodeName): void,
     removeNode(node: NodeName): void,
     addEdge(from: NodeName, to: NodeName): void,
-    removeEdge(from: NodeName, to: NodeName): void;
+    removeEdge(from: NodeName, to: NodeName): void,
+    printGraph: Function;
 }
 
 interface INode {
@@ -43,14 +41,12 @@ interface IEdge {
     weight: number
 }
 
-class Graph implements IGraph {
+export class Graph implements IGraph {
 
     nodeList: INode [];
 
     constructor() {
         this.nodeList = [];
-        this.nodeList.push(new Node("USD"));
-        this.nodeList.push(new Node("GBP"));
     }
 
     addNode(node: NodeName) {
@@ -60,16 +56,22 @@ class Graph implements IGraph {
         this.nodeList.push(new Node(node))
     }
 
-    removeNode(node: NodeName) {
+    removeNode(node: NodeName): void {
         //remove node, then all in-edge references
     }
 
-    addEdge(from: NodeName, to: NodeName) {
+    addEdge(from: NodeName, to: NodeName):void {
 
     }
 
-    removeEdge(from: NodeName, to: NodeName) {
-        
+    removeEdge(from: NodeName, to: NodeName): void {
+
+    }
+
+    printGraph(): void {
+        this.nodeList.map(
+            e => console.log(e.name + ", with edges: " + e.neighbors.map(j => j.toNode))
+        )
     }
 
 }
@@ -94,12 +96,6 @@ class Node implements INode {
     } 
 
 }
-
-
-
-
-
-
 
 
 

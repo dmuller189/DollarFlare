@@ -1,10 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {Graph, IGraph} from './ForexReducer'
 
 
 class ForexBuilder extends React.Component {
 
     componentDidMount() {
+
+        let g: IGraph = new Graph();
+        g.addNode("AUD");
+        g.addNode("JPY");
+        g.printGraph();
+        console.log('gggggggggggggg');
+
+
         //@ts-ignore
         this.props.dispatch({type:  "ADD_RECENTLY_VIEWED",
                             data: {
@@ -12,7 +21,14 @@ class ForexBuilder extends React.Component {
                                 name: "new forex build" + Math.floor(100*Math.random()),
                                 dateModified: "10/01/2019"
                             }
-                        })
+                        });
+                
+
+                         
+        
+
+                    
+
     }
 
     render() {
