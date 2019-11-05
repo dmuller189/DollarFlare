@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {Graph, IGraph} from './ForexReducer'
+import {Graph, IGraph} from './forexGraphStructureAndLogic/EverythingGraphs';
 
 
 class ForexBuilder extends React.Component {
@@ -14,12 +14,9 @@ class ForexBuilder extends React.Component {
         g.addNode("GBP");
         g.addEdge("JPY", "AUD");
         g.addEdge("JPY", "USD");
+       // g.removeEdge("JPY", "USD");
         g.printGraph();
 
-        console.log("first graph printed");
-        g.removeNode("AUD");
-        g.removeNode("USD");
-        g.printGraph();
 
 
         //@ts-ignore
