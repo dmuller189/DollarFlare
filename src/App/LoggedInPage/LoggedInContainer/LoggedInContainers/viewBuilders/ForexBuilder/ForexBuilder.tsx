@@ -10,8 +10,16 @@ class ForexBuilder extends React.Component {
         let g: IGraph = new Graph();
         g.addNode("AUD");
         g.addNode("JPY");
+        g.addNode("USD");
+        g.addNode("GBP");
+        g.addEdge("JPY", "AUD");
+        g.addEdge("JPY", "USD");
         g.printGraph();
-        console.log('gggggggggggggg');
+
+        console.log("first graph printed");
+        g.removeNode("AUD");
+        g.removeNode("USD");
+        g.printGraph();
 
 
         //@ts-ignore
