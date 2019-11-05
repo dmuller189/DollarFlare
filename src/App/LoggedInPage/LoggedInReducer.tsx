@@ -10,7 +10,7 @@ export interface IViewed {
 //this state keeps track of recently viewed 'views'
 //'view' can be form community, self, or when creating an new view
 export interface IHomeState {
-    recentlyViewed: IViewed []
+    recentlyViewed: IViewed [],
 }
 
 

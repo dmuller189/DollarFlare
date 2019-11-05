@@ -14,9 +14,7 @@ class ForexBuilder extends React.Component {
         g.addNode("GBP");
         g.addEdge("JPY", "AUD");
         g.addEdge("JPY", "USD");
-       // g.removeEdge("JPY", "USD");
         g.printGraph();
-
 
 
         //@ts-ignore
@@ -27,13 +25,6 @@ class ForexBuilder extends React.Component {
                                 dateModified: "10/01/2019"
                             }
                         });
-                
-
-                         
-        
-
-                    
-
     }
 
     render() {

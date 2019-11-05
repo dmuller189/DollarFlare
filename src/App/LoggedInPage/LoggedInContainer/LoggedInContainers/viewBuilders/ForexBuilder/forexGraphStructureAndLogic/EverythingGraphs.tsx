@@ -1,5 +1,5 @@
 //20 currency tickers
-type NodeName =
+export type NodeName =
     "USD" //US Dolar
     | "EUR" // EU Euro
     | "JPY" //Japanese Yen
@@ -18,7 +18,7 @@ type NodeName =
     | "RUB" //russian ruble
     | "ZAR" //south african rand
     | "TRY" //turkish Lira
-    | "BRL"; //brazzilian real
+    | "BRL" | undefined; //brazzilian real
 
 //represents a set of paths in a graph, then when followed, yeidls a negative cycle of the log product of the weights, 
 //therefore an arbitrage opportunity in the graph 
@@ -64,14 +64,15 @@ export class Graph implements IGraph {
         this.nodeList = [];
     }
 
-    addNode(node: NodeName) {
+    addNode(node: NodeName): IGraph {
         if (this.nodeList.map(e => e.name).includes(node)) {
             throw new Error('Node alread in graph');
         }
-        this.nodeList.push(new Node(node))
+        this.nodeList.push(new Node(node));
+        return this;
     }
 
-    removeNode(node: NodeName): void {
+    removeNode(node: NodeName): IGraph {
         //removes subject node:
         this.nodeList = this.nodeList.filter(e => e.name !== node);
 
@@ -79,32 +80,36 @@ export class Graph implements IGraph {
         this.nodeList = this.nodeList.map(
             e => e.removeEdge(node)
         );
+        return this;
     }
 
-    addEdge(from: NodeName, to: NodeName):void {
+    addEdge(from: NodeName, to: NodeName): IGraph {
         //can only add edges to existing nodes
         if(this.nodeList.filter(e => e.name === from || e.name === to).length < 2) {
            console.log("to and from node must exist");
-           return;
+           return this;
         }
         let fromNode: INode = this.nodeList.filter(e => e.name === from)[0];
         let toNode: INode = this.nodeList.filter(e => e.name === to)[0];
         fromNode.addEdge(toNode);
+        return this;
     }
 
-    removeEdge(from: NodeName, to: NodeName): void {
+    removeEdge(from: NodeName, to: NodeName): IGraph {
         //can only add edges to existing nodes
         if(this.nodeList.filter(e => e.name === from || e.name === to).length < 2) {
             console.log("to and from node must exist");
-            return;
+            return this;
          }
         let fromNode: INode = this.nodeList.filter(e => e.name === from)[0];
         let toNode: INode = this.nodeList.filter(e => e.name === to)[0];
         fromNode.removeEdge(to);
+        return this;
     }
 
-    updateEdgeWeights(): void {
+    updateEdgeWeights(): IGraph {
         //calling server -> API -> updating edge weights
+        return this;
     }
 
     findArbitrage(): IGraphArbitragePath {
