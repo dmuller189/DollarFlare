@@ -29,13 +29,15 @@ interface IGraphArbitragePath {
 export interface IGraph {
     //Graph Data structures
     nodeList: INode [],
+    name: string,
 
     //Graph manipulations (construction and deconstruction)
-    addNode(node: NodeName): void,
-    removeNode(node: NodeName): void,
-    addEdge(from: NodeName, to: NodeName): void,
-    removeEdge(from: NodeName, to: NodeName): void,
-    updateEdgeWeights(): void,
+    setName(name: string): IGraph,
+    addNode(node: NodeName): IGraph,
+    removeNode(node: NodeName): IGraph,
+    addEdge(from: NodeName, to: NodeName): IGraph,
+    removeEdge(from: NodeName, to: NodeName): IGraph,
+    updateEdgeWeights(): IGraph,
 
     //Graph Algorithms
     findArbitrage(): IGraphArbitragePath,
@@ -59,9 +61,16 @@ interface IEdge {
 export class Graph implements IGraph {
 
     nodeList: INode [];
+    name: string;
 
     constructor() {
         this.nodeList = [];
+        this.name = "";
+    }
+
+    setName(name: string): IGraph {
+        this.name = name;
+        return this;
     }
 
     addNode(node: NodeName): IGraph {
