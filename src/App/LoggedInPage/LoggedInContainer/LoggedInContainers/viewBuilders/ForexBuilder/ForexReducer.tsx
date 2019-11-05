@@ -1,12 +1,13 @@
-import { IGraph} from './forexGraphStructureAndLogic/EverythingGraphs';
+import { IGraph, Graph} from './forexGraphStructureAndLogic/EverythingGraphs';
+import { randomNormal } from 'd3';
 
 
 
 interface IForexBuilderState {
-    Graph: IGraph 
+    BuiltGraph: IGraph 
     CurrPresentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
     FXName: string,
-    FXDate: string,
+    FXDate: Date,
     FXID: number
 }
 
@@ -29,8 +30,12 @@ interface IForexBuilderAction {
     }
 }
 
+let initGraph: IGraph = new Graph();
 
-
-// const initialState: IForexBuilderState {
-    
-// }
+const initialState: IForexBuilderState = {
+    BuiltGraph: initGraph,
+    CurrPresentationView: "BASIC",
+    FXName: "Untitled",
+    FXDate: new Date(),
+    FXID: 1    
+}

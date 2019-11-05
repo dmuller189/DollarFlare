@@ -20,22 +20,32 @@ type NodeName =
     | "TRY" //turkish Lira
     | "BRL"; //brazzilian real
 
+//represents a set of paths in a graph, then when followed, yeidls a negative cycle of the log product of the weights, 
+//therefore an arbitrage opportunity in the graph 
+interface IGraphArbitragePath {
+    readonly paths: IGraph []
+}
 
 export interface IGraph {
+    //Graph Data structures
     nodeList: INode [],
 
+    //Graph manipulations (construction and deconstruction)
     addNode(node: NodeName): void,
     removeNode(node: NodeName): void,
     addEdge(from: NodeName, to: NodeName): void,
     removeEdge(from: NodeName, to: NodeName): void,
     updateEdgeWeights(): void,
+
+    //Graph Algorithms
+    findArbitrage(): IGraphArbitragePath,
+
     printGraph: Function;
 }
 
 interface INode {
     readonly name: NodeName,
     neighbors:  IEdge []
-
     //which signature? (INode vs NodeName)
     addEdge(to: INode): void,
     removeEdge(to: NodeName): INode;
@@ -95,6 +105,16 @@ export class Graph implements IGraph {
 
     updateEdgeWeights(): void {
         //calling server -> API -> updating edge weights
+    }
+
+    findArbitrage(): IGraphArbitragePath {
+        
+        //placeholder code for eventual implementation of bellman ford arbitrage algorithm
+        let g: IGraph = new Graph();
+
+        let paths: IGraphArbitragePath = {paths: [g]};
+        
+        return paths;
     }
 
     printGraph(): void {
