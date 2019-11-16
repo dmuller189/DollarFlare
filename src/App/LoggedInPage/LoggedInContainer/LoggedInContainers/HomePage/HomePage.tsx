@@ -52,7 +52,7 @@ class HomePage extends React.Component {
 
                                     <Link to={e.link} >
                                         <h2>
-                                            {e.title} <br></br>
+                                          <button id="main-log" type="button" className="btn btn-outline-primary title-Button">Forex Networks</button>
                                         </h2>
                                     </Link>
 
