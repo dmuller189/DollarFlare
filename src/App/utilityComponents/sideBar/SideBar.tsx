@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import './SideBar.css';
-import { IViewed, IHomeAction, IHomeState } from '../../LoggedInPage/LoggedInReducer';
+//import { IViewed, IHomeAction, IHomeState } from '../../LoggedInPage/LoggedInReducer';
 
 class SideBar extends React.Component {
 

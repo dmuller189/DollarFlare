@@ -16,7 +16,7 @@ initGraph.setName("Untitled");
 const initialFXState: IForexBuilderState = {
     BuiltGraph: initGraph,
     CurrPresentationView: "BASIC",
-    FXName: "Untitled",
+    FXName: "Project Name: 'Untitled'",
     FXDate: new Date(),
     FXID: 1    
 }
@@ -25,8 +25,10 @@ const initialFXState: IForexBuilderState = {
 interface IForexBuilderAction {
     type: "ADD_NODE" | "REMOVE_NODE"
     | "ADD_EDGE" | "REMOVE_EDGE" | "CLEAR_NODES"
-    | "CLEAR_EDGES" | "ADD_ALL_NODES" | "ADD_ALL_EDGES" | "BUILD_EDGE_VALS",
+    | "CLEAR_EDGES" | "ADD_ALL_NODES" | "ADD_ALL_EDGES" | "BUILD_EDGE_VALS"
+    | "SET_VIEW_NAME",
     data: {
+        viewName?: string,
         addNode?: NodeName,
         removeNode?: NodeName,
         addEdge?: {
@@ -43,6 +45,11 @@ interface IForexBuilderAction {
 export default function forexBuilderReducer(state = initialFXState, action: IForexBuilderAction): IForexBuilderState {
 
     switch(action.type) {
+
+        case "SET_VIEW_NAME":
+            return Object.assign({}, state, {
+                FXName: action.data.viewName
+            })
 
         case "ADD_NODE":
             return Object.assign({}, state, {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import forexBuilderReducer from '../ForexReducer';
 
 class BaseNetworkViewLevel extends React.Component {
 
@@ -10,11 +10,21 @@ class BaseNetworkViewLevel extends React.Component {
     render() {
         return (
             <h1>
-                baseNetworkViewlevel
+            
+            Drawing layer
             </h1>
         )
     }
 }
 
 
-export default connect()(BaseNetworkViewLevel);
+function mapStateToProps(state: any) {
+    return {
+        //projName: state.forexBuilderState.FXName
+    }
+}
+
+
+
+
+export default connect(mapStateToProps)(BaseNetworkViewLevel);
