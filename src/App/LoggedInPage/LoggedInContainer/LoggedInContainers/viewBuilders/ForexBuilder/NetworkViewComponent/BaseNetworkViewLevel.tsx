@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 
-class BaseNetworkView extends React.Component {
+class BaseNetworkViewLevel extends React.Component {
 
 
 
@@ -10,10 +10,11 @@ class BaseNetworkView extends React.Component {
     render() {
         return (
             <h1>
-                baseNetworkView
+                baseNetworkViewlevel
             </h1>
         )
     }
 }
 
-export default connect()(BaseNetworkView);
+
+export default connect()(BaseNetworkViewLevel);
