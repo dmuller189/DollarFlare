@@ -1,4 +1,4 @@
-import {Graph, IGraph} from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/EverythingGraphs';
+import {Graph, IGraph} from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 export interface IViewed {
     name: string,
