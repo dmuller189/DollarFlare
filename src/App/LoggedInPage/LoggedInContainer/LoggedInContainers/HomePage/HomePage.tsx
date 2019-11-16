@@ -25,7 +25,7 @@ let viewTemplates: IViewTemplate[] = [
     },
 
     {
-        title: "Forex Networks",
+        title: "Forex Networks II",
         description: ["build a forex network"],
         link: "./createForex",
         ViewComponent: <FXTemplate gid="templateView2" />,
@@ -52,7 +52,11 @@ class HomePage extends React.Component {
 
                                     <Link to={e.link} >
                                         <h2>
-                                          <button id="main-log" type="button" className="btn btn-outline-primary title-Button">Forex Networks</button>
+                                          <button id="main-log" type="button" className="btn btn-outline-dark title-Button">
+                                            <h4>
+                                              {e.title}
+                                            </h4>
+                                            </button>
                                         </h2>
                                     </Link>
 

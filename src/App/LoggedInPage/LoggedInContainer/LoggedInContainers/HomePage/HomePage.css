@@ -8,12 +8,11 @@
 }
 
 .title-Button{
-    width: 25%;
+    width: 20%;
     color: black;
     outline-color: red;
-
+    outline: red;
+    background-color: white;
+    padding-top: 10px;
 }
 
-.btn:active {
-    outline-color: red;
-}

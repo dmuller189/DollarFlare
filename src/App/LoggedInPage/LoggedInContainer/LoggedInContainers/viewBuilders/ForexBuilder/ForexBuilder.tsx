@@ -31,7 +31,7 @@ class ForexBuilder extends React.Component {
         return(
             <div>
                 <h1>
-                    forex builder
+                    forex builderhhh
                 </h1>
             </div>
         )
