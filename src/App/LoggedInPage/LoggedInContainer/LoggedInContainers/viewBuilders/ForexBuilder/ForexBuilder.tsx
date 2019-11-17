@@ -7,6 +7,10 @@ import BaseNetworkViewLevel from './NetworkViewComponent/BaseNetworkViewLevel';
 class ForexBuilder extends React.Component {
 
 
+    constructor(props: any){
+        super(props);
+        this.onChange = this.onChange.bind(this);
+    }
 
     onChange(event: any): void {
         
@@ -15,12 +19,13 @@ class ForexBuilder extends React.Component {
         //@ts-ignore
         //this.props.updateName(str);
 
+
         this.props.dispatch({
             type: "SET_VIEW_NAME",
             data: {
                 viewName: str
             }
-        })
+        });
 
     }
 
