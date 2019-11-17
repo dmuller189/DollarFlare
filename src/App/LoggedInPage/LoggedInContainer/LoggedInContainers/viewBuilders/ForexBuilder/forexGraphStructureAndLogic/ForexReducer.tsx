@@ -1,4 +1,4 @@
-import { IGraph, Graph, NodeName} from './forexGraphStructureAndLogic/GraphDataModelandLogic';
+import { IGraph, Graph, NodeName} from './GraphDataModelandLogic';
 //import {loggenInReducer} from '../../../../LoggedInReducer';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import forexBuilderReducer from '../ForexReducer';
+import forexBuilderReducer from '../forexGraphStructureAndLogic/ForexReducer';
 
 class BaseNetworkViewLevel extends React.Component {
 

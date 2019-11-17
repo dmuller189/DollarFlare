@@ -10,7 +10,7 @@ import { createStore, combineReducers, applyMiddleware  } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import loggedInReducer from './LoggedInPage/LoggedInReducer';
-import forexBuilderReducer from './LoggedInPage/LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/ForexReducer';
+import forexBuilderReducer from './LoggedInPage/LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/ForexReducer';
 
 let rootReducer = combineReducers({
   forexBuilderState: forexBuilderReducer,
