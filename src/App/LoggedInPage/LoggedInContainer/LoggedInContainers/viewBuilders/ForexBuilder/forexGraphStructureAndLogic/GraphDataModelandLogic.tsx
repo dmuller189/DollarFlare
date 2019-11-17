@@ -1,4 +1,5 @@
 import UniversalModel from '../../universalModel';
+import { interpolateRound } from 'd3';
 
 //20 currency tickers
 export type NodeName =
@@ -64,11 +65,14 @@ export class Graph implements IGraph {
     nodeList: INode [];
     name: string;
     date: Date;
+    ID: number;
 
     constructor() {
         this.nodeList = [];
-        this.name = "";
+        this.name = "New Graph";
         this.date = new Date();
+        //eventually look at database for ID
+        this.ID = Math.round(10000*Math.random());
     }
 
     setName(name: string): IGraph {

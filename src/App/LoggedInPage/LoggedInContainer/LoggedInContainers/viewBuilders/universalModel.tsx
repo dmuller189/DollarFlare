@@ -2,6 +2,7 @@ import {IGraph} from './ForexBuilder/forexGraphStructureAndLogic/GraphDataModela
 
 
 export default interface UniversalModel {
+    ID: number,
     name: string,
     date: Date
 }
