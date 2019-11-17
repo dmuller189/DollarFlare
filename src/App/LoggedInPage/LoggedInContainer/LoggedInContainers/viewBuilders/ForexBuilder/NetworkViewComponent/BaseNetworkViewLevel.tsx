@@ -1,16 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import forexBuilderReducer from '../forexGraphStructureAndLogic/ForexReducer';
 
+
+
+//class representing the drawing library to render the forex model
 class BaseNetworkViewLevel extends React.Component {
 
+    
 
 
 
     render() {
         return (
             <h1>
-            
             Drawing layer
             </h1>
         )
