@@ -13,8 +13,8 @@ import loggedInReducer from './LoggedInPage/LoggedInReducer';
 import forexBuilderReducer from './LoggedInPage/LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/ForexReducer';
 
 let rootReducer = combineReducers({
-  loggedInState: loggedInReducer,
-  forexBuilderState: forexBuilderReducer
+  forexBuilderState: forexBuilderReducer,
+  loggedInState: loggedInReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(createLogger()));

@@ -1,3 +1,5 @@
+import UniversalModel from '../../universalModel';
+
 //20 currency tickers
 export type NodeName =
     "USD" //US Dolar
@@ -26,10 +28,9 @@ interface IGraphArbitragePath {
     readonly paths: IGraph []
 }
 
-export interface IGraph {
+export interface IGraph extends UniversalModel {
     //Graph Data structures
     nodeList: INode [],
-    name: string,
 
     //Graph manipulations (construction and deconstruction)
     setName(name: string): IGraph,
@@ -62,10 +63,12 @@ export class Graph implements IGraph {
 
     nodeList: INode [];
     name: string;
+    date: Date;
 
     constructor() {
         this.nodeList = [];
         this.name = "";
+        this.date = new Date();
     }
 
     setName(name: string): IGraph {

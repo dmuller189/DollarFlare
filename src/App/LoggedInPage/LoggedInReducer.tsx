@@ -1,36 +1,39 @@
 import {Graph, IGraph} from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
+import { IForexBuilderState } from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/ForexReducer';
 
-export interface IViewed {
-    name: string,
-    dateModified: Date,
-    model: IForexViewed | IOtherViewed
-}
+// export interface IViewed {
+//     name: string,
+//     dateModified: Date,
+//     model: IForexViewed | IOtherViewed
+// }
 
-interface IForexViewed {
-    model: IGraph
-}
+// interface IForexViewed {
+//     model: IGraph
+// }
 
-//to be implemented
-interface IOtherViewed {
-    model: any
-}
+// //to be implemented
+// interface IOtherViewed {
+//     model: any
+// }
 
 //this state keeps track of recently viewed 'views'
 //'view' can be form community, self, or when creating an new view
+
+
+interface IModelState {
+    model: IForexBuilderState | any//add addition views as they are implemented
+}
+
 export interface IHomeState {
-    currFXModel: IGraph,
-    currOtherModel: any //implement other view model
-    recentlyViewed: IViewed [],
+    recentlyViewed: IModelState  [],
 }
 
 export interface IHomeAction {
     type: "ADD_RECENTLY_VIEWED",
-    data: IViewed
+    data: IModelState
 }
 
 const initialState: IHomeState = {
-    currFXModel: new Graph(),
-    currOtherModel: undefined,
     recentlyViewed: []
 }
 

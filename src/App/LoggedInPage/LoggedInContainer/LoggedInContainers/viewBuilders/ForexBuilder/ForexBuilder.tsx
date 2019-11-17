@@ -9,15 +9,11 @@ class ForexBuilder extends React.Component {
 
 
     onCHange(event: any): void {
+        
         let str = event.target.value;
-
+        console.log(str);
         //@ts-ignore
-        this.props.dispatch({
-            type: "SET_VIEW_NAME",
-            date: {
-                name: str
-            }
-        })
+        //this.props.updateName(str);
 
     }
 
@@ -37,9 +33,11 @@ class ForexBuilder extends React.Component {
         this.props.dispatch({
             type: "ADD_RECENTLY_VIEWED",
             data: {
-                type: "forex graph",
-                name: "new forex build" + Math.floor(100 * Math.random()),
-                dateModified: "10/01/2019"
+                // type: "forex graph",
+                // //@ts-ignore
+                // name: this.props.projName + Math.floor(100 * Math.random()),
+                // dateModified: "10/01/2019"
+                data: g
             }
         });
     }
@@ -83,6 +81,15 @@ function mapStateToProps(state: any) {
 //             type: "SET_VIEW_NAME",
 //             data: name
 //         })
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch: any) => {
+//     return {
+//         updateName: (projName: string) => {dispatch(
+//             {type: "SET_VIEW_NAME", 
+//             viewName: projName}
+//             )} 
 //     }
 // }
 

@@ -2,7 +2,7 @@ import { IGraph, Graph, NodeName} from './forexGraphStructureAndLogic/GraphDataM
 //import {loggenInReducer} from '../../../../LoggedInReducer';
 
 
-interface IForexBuilderState {
+export interface IForexBuilderState {
     BuiltGraph: IGraph 
     CurrPresentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
     FXName: string,
@@ -47,6 +47,7 @@ export default function forexBuilderReducer(state = initialFXState, action: IFor
     switch(action.type) {
 
         case "SET_VIEW_NAME":
+            console.log(action.data.viewName);
             return Object.assign({}, state, {
                 FXName: action.data.viewName
             })
