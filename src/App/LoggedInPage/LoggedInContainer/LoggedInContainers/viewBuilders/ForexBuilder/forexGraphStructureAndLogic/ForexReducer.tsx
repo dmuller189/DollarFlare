@@ -1,32 +1,33 @@
-import { IGraph, Graph, NodeName} from './GraphDataModelandLogic';
+import { IGraph, Graph, NodeName } from './GraphDataModelandLogic';
 
 
 export interface IForexBuilderState {
-    BuiltGraph: IGraph 
+    BuiltGraph: IGraph
     CurrPresentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
-    FXName: string,
+    //FXName: string,
     FXDate: Date,
     FXID: number
 }
 
 let initGraph: IGraph = new Graph();
-initGraph.setName("initG");
+initGraph.setName("Untitiled G");
 
 const initialFXState: IForexBuilderState = {
     BuiltGraph: initGraph,
     CurrPresentationView: "BASIC",
-    FXName: "Project Name: 'Untitled'",
+    //FXName: "Project Name: 'Untitled'",
     FXDate: new Date(),
-    FXID: 1    
+    FXID: 1
 }
 
 
 interface IForexBuilderAction {
-    type: "ADD_NODE" | "REMOVE_NODE"
+    type: "SET_GRAPH" | "ADD_NODE" | "REMOVE_NODE"
     | "ADD_EDGE" | "REMOVE_EDGE" | "CLEAR_NODES"
     | "CLEAR_EDGES" | "ADD_ALL_NODES" | "ADD_ALL_EDGES" | "BUILD_EDGE_VALS"
     | "SET_VIEW_NAME",
     data: {
+        gModel?: IGraph
         viewName?: string,
         addNode?: NodeName,
         removeNode?: NodeName,
@@ -43,12 +44,16 @@ interface IForexBuilderAction {
 
 export default function forexBuilderReducer(state = initialFXState, action: IForexBuilderAction): IForexBuilderState {
 
-    switch(action.type) {
+    switch (action.type) {
+
+        case "SET_GRAPH":
+            return Object.assign({}, state, {
+                BuiltGraph: action.data
+            })
 
         case "SET_VIEW_NAME":
-            console.log(action.data.viewName);
             return Object.assign({}, state, {
-                FXName: action.data.viewName
+                BuiltGraph: state.BuiltGraph.setName(String(action.data.viewName))
             })
 
         case "ADD_NODE":
@@ -72,7 +77,7 @@ export default function forexBuilderReducer(state = initialFXState, action: IFor
                 //@ts-ignore
                 BuiltGraph: state.BuiltGraph.removeEdge(action.data.addEdge.from, action.data.addEdge.to)
             })
-        
+
         default:
             return state;
     }
