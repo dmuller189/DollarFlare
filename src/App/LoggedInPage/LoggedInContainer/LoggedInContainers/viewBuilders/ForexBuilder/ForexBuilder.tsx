@@ -8,12 +8,19 @@ class ForexBuilder extends React.Component {
 
 
 
-    onCHange(event: any): void {
+    onChange(event: any): void {
         
         let str = event.target.value;
         console.log(str);
         //@ts-ignore
         //this.props.updateName(str);
+
+        this.props.dispatch({
+            type: "SET_VIEW_NAME",
+            data: {
+                viewName: str
+            }
+        })
 
     }
 
@@ -33,10 +40,6 @@ class ForexBuilder extends React.Component {
         this.props.dispatch({
             type: "ADD_RECENTLY_VIEWED",
             data: {
-                // type: "forex graph",
-                // //@ts-ignore
-                // name: this.props.projName + Math.floor(100 * Math.random()),
-                // dateModified: "10/01/2019"
                 data: g
             }
         });
@@ -49,7 +52,7 @@ class ForexBuilder extends React.Component {
                 </br>
                 <form>
                     <div className="form-groun" >
-                    <input className="form-control" type="text" name="name" onChange={this.onCHange}
+                    <input className="form-control" type="text" name="name" onChange={this.onChange}
                     //@ts-ignore
                     placeholder={this.props.projName}/>
                     </div>

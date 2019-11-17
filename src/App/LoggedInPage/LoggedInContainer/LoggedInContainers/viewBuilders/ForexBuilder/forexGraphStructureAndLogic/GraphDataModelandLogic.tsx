@@ -32,7 +32,6 @@ interface IGraphArbitragePath {
 export interface IGraph extends UniversalModel {
     //Graph Data structures
     nodeList: INode [],
-
     //Graph manipulations (construction and deconstruction)
     setName(name: string): IGraph,
     addNode(node: NodeName): IGraph,
