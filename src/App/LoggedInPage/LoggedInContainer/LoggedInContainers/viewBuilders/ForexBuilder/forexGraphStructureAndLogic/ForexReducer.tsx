@@ -1,5 +1,4 @@
 import { IGraph, Graph, NodeName} from './GraphDataModelandLogic';
-//import {loggenInReducer} from '../../../../LoggedInReducer';
 
 
 export interface IForexBuilderState {
@@ -11,7 +10,7 @@ export interface IForexBuilderState {
 }
 
 let initGraph: IGraph = new Graph();
-initGraph.setName("Untitled");
+initGraph.setName("initG");
 
 const initialFXState: IForexBuilderState = {
     BuiltGraph: initGraph,

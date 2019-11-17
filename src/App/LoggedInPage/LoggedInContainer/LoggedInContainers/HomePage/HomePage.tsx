@@ -23,13 +23,6 @@ let viewTemplates: IViewTemplate[] = [
         link: "./createForex",
         ViewComponent: <FXTemplate gid="templateView" />,
     },
-
-    {
-        title: "Forex Networks II",
-        description: ["build a forex network"],
-        link: "./createForex",
-        ViewComponent: <FXTemplate gid="templateView2" />,
-    }
 ]
 
 class HomePage extends React.Component {
