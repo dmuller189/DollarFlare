@@ -35,38 +35,12 @@ class ForexBuilder extends React.Component {
         g.addNode("JPY");
         g.addNode("USD");
         g.addNode("GBP");
-        //console.log("adding edges");
-        // g.addEdge("JPY", "AUD");
-        // g.addEdge("JPY", "USD");
-        //g.printGraph();
 
-        console.log("setting curr view. Name should be: " + g.name);
         //@ts-ignore
         this.props.dispatch({
             type: "SET_CURR_VIEW",
             data: g
         })
-        console.log("completed setting current View");  
-
-        //@ts-ignore
-        console.log("Model is: ");
-        //@ts-ignore
-        console.log(this.props.projModel.name);
-
-
-        console.log("dispatching add recently viewed");
-        //@ts-ignore
-        this.props.dispatch({
-            type: "ADD_RECENTLY_VIEWED",
-            //@ts-ignore
-            data: this.props.projModel
-        });
-        
-
-        //@ts-ignore
-        console.log(this.props.recentlyViewed);
-        console.log('UNmounting');
-        
     }
 
     componentWillUnmount() {
