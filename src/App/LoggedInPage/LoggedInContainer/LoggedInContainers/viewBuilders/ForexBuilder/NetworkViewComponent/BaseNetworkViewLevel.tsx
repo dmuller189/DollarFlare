@@ -6,15 +6,17 @@ import { connect } from 'react-redux';
 //class representing the drawing library to render the forex model
 class BaseNetworkViewLevel extends React.Component {
 
-    
 
 
 
     render() {
         return (
-            <h1>
-            Drawing layer
-            </h1>
+
+            <div className="d-flex justify-content-center">
+              <h1>
+                    Drawing layer
+              </h1>
+            </div>
         )
     }
 }
@@ -22,11 +24,9 @@ class BaseNetworkViewLevel extends React.Component {
 
 function mapStateToProps(state: any) {
     return {
-        //projName: state.forexBuilderState.FXName
+        model: state.forexBuilderState.BuiltGraph
     }
 }
-
-
 
 
 export default connect(mapStateToProps)(BaseNetworkViewLevel);

@@ -2,12 +2,11 @@
     scale: 1.2;
 }
 
-
 #GName {
     background-color: transparent;
     border: none;
 }
 
 #GName:hover {
-    background-color: inherit;
+    background-color: white;
 }

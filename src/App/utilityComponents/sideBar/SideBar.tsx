@@ -2,16 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from "react-router-dom";
 import './SideBar.css';
-//import { IViewed, IHomeAction, IHomeState } from '../../LoggedInPage/LoggedInReducer';
 
+
+//in future, add functionality to support clicking to open recently viewed 
+//  -- clicking on  recntly viewed project:
+//       - opens that project
+//       - moves that project to top of  recently viewed list
 class SideBar extends React.Component {
 
-    shouldComponentUpdate() {
-
-        //@ts-ignore
-        console.log("should recieve" + this.props.recentlyViewed);
-        return true;
-    }
 
     render() {
         return (
@@ -54,18 +52,15 @@ class SideBar extends React.Component {
                             {                             
                                 //@ts-ignore
                                 this.props.recentlyViewed.reverse().map(e => {
-                                    console.log("SideBar mapping:    ");
-                                    //@ts-ignore
-                                    console.log( e );
                                     return (
-                                        //eventuall biuld in better linking to actual view in data base / redux store
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="/">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                                                {
-                                                    e.name.length < 18 ? e.name+e.ID : e.name.substring(0,18)+"..."+e.ID}
-                                            </a>
-                                        </li>
+                                      //eventuall biuld in better linking to actual view in data base / redux store
+                                      <li className="nav-item" key={e.ID}>
+                                          <a className="nav-link" href="/">
+                                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                              {
+                                                e.name.length < 18 ? e.name+e.ID : e.name.substring(0,18)+"..."+e.ID}
+                                          </a>
+                                      </li>
                                     )
                                 })
                             }
