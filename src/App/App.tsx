@@ -17,6 +17,8 @@ let rootReducer = combineReducers({
   loggedInState: loggedInReducer
 })
 
+export type RootState = ReturnType<typeof rootReducer>;
+
 const store = createStore(rootReducer, applyMiddleware(createLogger()));
 
 const App = () => {

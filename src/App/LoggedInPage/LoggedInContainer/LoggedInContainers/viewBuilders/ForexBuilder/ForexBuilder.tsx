@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import { connect } from 'react-redux';
+import {RootState} from '../../../../../App';
 import { Graph, IGraph } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 import BaseNetworkViewLevel from './NetworkViewComponent/BaseNetworkViewLevel';
 import './ForexBuilder.css';
@@ -88,7 +89,7 @@ class ForexBuilder extends React.Component {
 }
 
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
     return {
         builtGraph: state.forexBuilderState.BuiltGraph,
         recentlyViewed: state.loggedInState.recentlyViewed
