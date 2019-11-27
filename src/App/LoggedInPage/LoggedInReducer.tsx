@@ -26,7 +26,7 @@ interface AddRecentlyViewedAction {
     data: UniversalModel
 }
 
-interface SetCurView {
+interface SetCurViewAction {
     type: typeof SET_CURR_VIEW,
     data: UniversalModel
 }
@@ -35,7 +35,7 @@ interface SetCurView {
 //     "SET_CURR_VIEW",
 //     data: UniversalModel
 // }
-export type logedInActionTypes = AddRecentlyViewedAction | SetCurView;
+export type logedInActionTypes = AddRecentlyViewedAction | SetCurViewAction;
 
 export function addRecentlyViewed(m: UniversalModel): logedInActionTypes {
     return {

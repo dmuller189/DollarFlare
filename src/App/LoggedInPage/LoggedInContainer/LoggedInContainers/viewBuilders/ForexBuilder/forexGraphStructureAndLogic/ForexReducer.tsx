@@ -1,7 +1,7 @@
 import { IGraph, Graph, NodeName } from './GraphDataModelandLogic';
 
 
-export interface IForexBuilderState {
+interface IForexBuilderState {
     BuiltGraph: IGraph
     CurrPresentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
     //FXName: string,
@@ -21,61 +21,129 @@ const initialFXState: IForexBuilderState = {
 }
 
 
-interface IForexBuilderAction {
-    type: "SET_GRAPH" | "ADD_NODE" | "REMOVE_NODE"
-    | "ADD_EDGE" | "REMOVE_EDGE" | "CLEAR_NODES"
-    | "CLEAR_EDGES" | "ADD_ALL_NODES" | "ADD_ALL_EDGES" | "BUILD_EDGE_VALS"
-    | "SET_VIEW_NAME",
+const SET_GRAPH = "SET_GRAPH";
+const ADD_NODE = "ADD_NODE";
+const REMOVE_NODE = "REMOVE_NODE";
+const ADD_EDGE = "ADD_EDGE";
+const REMOVE_EDGE = "REMOVE_EDGE";
+const CLEAR_NODES = "CLEAR_NODES";
+const CLEAR_EDGES = "CLEAR_EDGES";
+const ADD_ALL_NODES = "ADD_ALL_NODES";
+const ADD_ALL_EDGES = "ADD_ALL_EDGES";
+const BUILD_EDGE_VALS = "BUILD_EDGE_VALS";
+const SET_VIEW_NAME = "SET_VIEW_NAME";
+
+interface SetGraphAction {
+    type: typeof SET_GRAPH,
+    data: IGraph
+}
+interface AddNodeAction {
+    type: typeof ADD_NODE,
+    data: NodeName
+}
+interface RemoveNodeAction {
+    type: typeof REMOVE_NODE,
+    data: NodeName
+}
+interface AddEdgeAction {
+    type: typeof ADD_EDGE,
     data: {
-        gModel?: IGraph
-        viewName?: string,
-        addNode?: NodeName,
-        removeNode?: NodeName,
-        addEdge?: {
-            to: NodeName,
-            from: NodeName
-        },
-        removeEdge?: {
-            to: NodeName,
-            from: NodeName
-        }
+        to: NodeName,
+        from: NodeName
     }
 }
+interface RemoveEdgeAction {
+    type: typeof REMOVE_EDGE,
+    data: {
+        to: NodeName,
+        from: NodeName
+    }
+}
+interface ClearNodesAction {
+    type: typeof CLEAR_NODES,
+}
+interface ClearEdgesAction {
+    type: typeof CLEAR_EDGES
+}
+interface AddAllNodesAction {
+    type: typeof ADD_ALL_NODES
+}
+interface AddAllEdgesAction {
+    type: typeof ADD_ALL_EDGES
+}
+interface BuildEdgeValsAction {
+    type: typeof BUILD_EDGE_VALS
+}
+interface SetViewNameAction {
+    type: typeof SET_VIEW_NAME,
+    data: string
+}
 
-export default function forexBuilderReducer(state = initialFXState, action: IForexBuilderAction): IForexBuilderState {
+type ForexActionTypes = SetGraphAction | 
+                        AddNodeAction |
+                        RemoveNodeAction |
+                        AddEdgeAction |
+                        RemoveEdgeAction |
+                        ClearNodesAction |
+                        ClearEdgesAction |
+                        AddAllNodesAction |
+                        AddAllEdgesAction |
+                        BuildEdgeValsAction |
+                        SetViewNameAction;
+
+// interface IForexBuilderAction {
+//     type: "SET_GRAPH" | "ADD_NODE" | "REMOVE_NODE"
+//     | "ADD_EDGE" | "REMOVE_EDGE" | "CLEAR_NODES"
+//     | "CLEAR_EDGES" | "ADD_ALL_NODES" | "ADD_ALL_EDGES" | "BUILD_EDGE_VALS"
+//     | "SET_VIEW_NAME",
+//     data: {
+//         gModel?: IGraph
+//         viewName?: string,
+//         addNode?: NodeName,
+//         removeNode?: NodeName,
+//         addEdge?: {
+//             to: NodeName,
+//             from: NodeName
+//         },
+//         removeEdge?: {
+//             to: NodeName,
+//             from: NodeName
+//         }
+//     }
+// }
+
+export default function forexBuilderReducer(state = initialFXState, action: ForexActionTypes): IForexBuilderState {
 
     switch (action.type) {
 
-        case "SET_GRAPH":
+        case SET_GRAPH:
             return Object.assign({}, state, {
                 BuiltGraph: action.data
             })
 
-        case "SET_VIEW_NAME":
+        case SET_VIEW_NAME:
             return Object.assign({}, state, {
-                BuiltGraph: state.BuiltGraph.setName(String(action.data.viewName))
+                BuiltGraph: state.BuiltGraph.setName(String(action.data))
             })
 
-        case "ADD_NODE":
+        case ADD_NODE:
             return Object.assign({}, state, {
-                BuiltGraph: state.BuiltGraph.addNode(action.data.addNode)
+                BuiltGraph: state.BuiltGraph.addNode(action.data)
             })
 
-        case "REMOVE_NODE":
+        case REMOVE_NODE:
             return Object.assign({}, state, {
-                BuiltGraph: state.BuiltGraph.removeNode(action.data.addNode)
+                BuiltGraph: state.BuiltGraph.removeNode(action.data)
             })
 
-        case "ADD_EDGE":
+        case ADD_EDGE:
             return Object.assign({}, state, {
-                //@ts-ignore
-                BuiltGraph: state.BuiltGraph.addEdge(action.data.addEdge.from, action.data.addEdge.to)
+                BuiltGraph: state.BuiltGraph.addEdge(action.data.from, action.data.to)
             })
 
-        case "REMOVE_EDGE":
+        case REMOVE_EDGE:
             return Object.assign({}, state, {
-                //@ts-ignore
-                BuiltGraph: state.BuiltGraph.removeEdge(action.data.addEdge.from, action.data.addEdge.to)
+                BuiltGraph: state.BuiltGraph.removeEdge(action.data.from, action.data.to)
             })
 
         default:
