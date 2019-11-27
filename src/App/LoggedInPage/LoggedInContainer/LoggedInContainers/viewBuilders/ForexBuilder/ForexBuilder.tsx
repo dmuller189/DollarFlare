@@ -4,6 +4,9 @@ import { connect, ConnectedProps  } from 'react-redux';
 import {RootState} from '../../../../../App';
 import { Graph, IGraph } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 import BaseNetworkViewLevel from './NetworkViewComponent/BaseNetworkViewLevel';
+import { ADD_NODE, REMOVE_NODE, ADD_EDGE, 
+    REMOVE_EDGE, CLEAR_NODES, CLEAR_EDGES, ADD_ALL_NODES,
+    ADD_ALL_EDGES, BUILD_EDGE_VALS, SET_VIEW_NAME} from './forexGraphStructureAndLogic/ForexReducer';
 import './ForexBuilder.css';
 
 export const uniqueName = (): boolean => {
@@ -23,16 +26,18 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     }
 
 
-
     onChange(event: any): void {
+
+        
 
         //@ts-ignore
         this.props.dispatch({
-            type: "SET_VIEW_NAME",
+            type: SET_VIEW_NAME,
             data: {
                 viewName: event.target.value
             }
         });
+        
     }
 
     componentDidMount() {
@@ -61,14 +66,12 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     componentWillUnmount() {
         
         //tests if name is in recently viewed
-        //@ts-ignore
         let recentlyViewed: string[] = this.props.recentlyViewed.map(e => e.name);
 
 
         //@ts-ignore
         this.props.dispatch({
             type: "ADD_RECENTLY_VIEWED",
-            //@ts-ignore
             data: this.props.builtGraph
         });
     }
@@ -81,7 +84,6 @@ class ForexBuilder extends React.Component<propsFromRedux> {
                     <div className="form-groun" >
                         <svg id="Nsvg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                         <input id="GName" className="form-control form-control-lg" type="text" name="name" onChange={this.onChange}
-                            //@ts-ignore
                             placeholder={this.props.builtGraph === undefined ? "Untitled Graph" : this.props.builtGraph.name} />
                     </div>
                 </form>
@@ -97,14 +99,11 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = {
-    //@ts-ignore
-    addRecentlyViewed: () => ({type: "ADD_RECENTLY_VIEWED", data: this.props.builtGraph})
+    DISPATCH: {
+        AddRecentlyViewed: (data: IGraph) => ({type: "ADD_RECENTLY_VIEWED", data: data}),
+        SetViewName: (data: IGraph) => ({type: SET_VIEW_NAME, data: data})
+    }
 }
-
-type StateProps = ReturnType<typeof mapStateToProps>;
-type DispatchProps = typeof mapDispatchToProps;
-
-type Props = StateProps & DispatchProps;
 
 
 const connector = connect(

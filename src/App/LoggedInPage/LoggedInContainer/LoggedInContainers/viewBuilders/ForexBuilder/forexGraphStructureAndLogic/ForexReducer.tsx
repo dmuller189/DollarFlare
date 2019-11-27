@@ -21,17 +21,17 @@ const initialFXState: IForexBuilderState = {
 }
 
 
-const SET_GRAPH = "SET_GRAPH";
-const ADD_NODE = "ADD_NODE";
-const REMOVE_NODE = "REMOVE_NODE";
-const ADD_EDGE = "ADD_EDGE";
-const REMOVE_EDGE = "REMOVE_EDGE";
-const CLEAR_NODES = "CLEAR_NODES";
-const CLEAR_EDGES = "CLEAR_EDGES";
-const ADD_ALL_NODES = "ADD_ALL_NODES";
-const ADD_ALL_EDGES = "ADD_ALL_EDGES";
-const BUILD_EDGE_VALS = "BUILD_EDGE_VALS";
-const SET_VIEW_NAME = "SET_VIEW_NAME";
+export const SET_GRAPH = "SET_GRAPH";
+export const ADD_NODE = "ADD_NODE";
+export const REMOVE_NODE = "REMOVE_NODE";
+export const ADD_EDGE = "ADD_EDGE";
+export const REMOVE_EDGE = "REMOVE_EDGE";
+export const CLEAR_NODES = "CLEAR_NODES";
+export const CLEAR_EDGES = "CLEAR_EDGES";
+export const ADD_ALL_NODES = "ADD_ALL_NODES";
+export const ADD_ALL_EDGES = "ADD_ALL_EDGES";
+export const BUILD_EDGE_VALS = "BUILD_EDGE_VALS";
+export const SET_VIEW_NAME = "SET_VIEW_NAME";
 
 interface SetGraphAction {
     type: typeof SET_GRAPH,
