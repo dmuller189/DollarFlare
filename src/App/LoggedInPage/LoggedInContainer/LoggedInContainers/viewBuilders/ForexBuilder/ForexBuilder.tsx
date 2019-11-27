@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps  } from 'react-redux';
 import {RootState} from '../../../../../App';
 import { Graph, IGraph } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 import BaseNetworkViewLevel from './NetworkViewComponent/BaseNetworkViewLevel';
@@ -12,9 +12,12 @@ export const uniqueName = (): boolean => {
   }
 
 
-class ForexBuilder extends React.Component {
 
-    constructor(props: any) {
+
+
+class ForexBuilder extends React.Component<propsFromRedux> {
+
+    constructor(props: propsFromRedux) {
         super(props);
         this.onChange = this.onChange.bind(this);
     }
@@ -47,6 +50,7 @@ class ForexBuilder extends React.Component {
             data: g
         })
 
+    
         //@ts-ignore
         this.props.dispatch({
             type: "SET_CURR_VIEW",
@@ -55,8 +59,7 @@ class ForexBuilder extends React.Component {
     }
 
     componentWillUnmount() {
-
-
+        
         //tests if name is in recently viewed
         //@ts-ignore
         let recentlyViewed: string[] = this.props.recentlyViewed.map(e => e.name);
@@ -88,13 +91,28 @@ class ForexBuilder extends React.Component {
     }
 }
 
-
-function mapStateToProps(state: RootState) {
-    return {
+const mapStateToProps = (state: RootState) => ({
         builtGraph: state.forexBuilderState.BuiltGraph,
         recentlyViewed: state.loggedInState.recentlyViewed
-    }
+})
+
+const mapDispatchToProps = {
+    //@ts-ignore
+    addRecentlyViewed: () => ({type: "ADD_RECENTLY_VIEWED", data: this.props.builtGraph})
 }
 
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
 
-export default connect(mapStateToProps)(ForexBuilder);
+type Props = StateProps & DispatchProps;
+
+
+const connector = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)
+
+type propsFromRedux = ConnectedProps<typeof connector>;
+
+export default connector(ForexBuilder);
+//export default connect(mapStateToProps)(ForexBuilder);
