@@ -29,14 +29,15 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     onChange(event: any): void {
 
         
+        this.props.DISPATCH.setViewName(event.target.value);
 
-        //@ts-ignore
-        this.props.dispatch({
-            type: SET_VIEW_NAME,
-            data: {
-                viewName: event.target.value
-            }
-        });
+        // //@ts-ignore
+        // this.props.dispatch({
+        //     type: SET_VIEW_NAME,
+        //     data: {
+        //         viewName: event.target.value
+        //     }
+        // });
         
     }
 
@@ -69,11 +70,12 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         let recentlyViewed: string[] = this.props.recentlyViewed.map(e => e.name);
 
 
-        //@ts-ignore
-        this.props.dispatch({
-            type: "ADD_RECENTLY_VIEWED",
-            data: this.props.builtGraph
-        });
+        this.props.DISPATCH.addRecentlyViewed(this.props.builtGraph);
+        // //@ts-ignore
+        // this.props.dispatch({
+        //     type: "ADD_RECENTLY_VIEWED",
+        //     data: this.props.builtGraph
+        // });
     }
 
     render() {
@@ -100,8 +102,9 @@ const mapStateToProps = (state: RootState) => ({
 
 const mapDispatchToProps = {
     DISPATCH: {
-        AddRecentlyViewed: (data: IGraph) => ({type: "ADD_RECENTLY_VIEWED", data: data}),
-        SetViewName: (data: IGraph) => ({type: SET_VIEW_NAME, data: data})
+        addRecentlyViewed: (data: IGraph) => ({type: "ADD_RECENTLY_VIEWED", data: data}),
+        setViewName: (data: string) => ({type: SET_VIEW_NAME, data: data}),
+        
     }
 }
 
