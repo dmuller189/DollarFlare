@@ -1,6 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { Link } from "react-router-dom";
+import {RootState} from '../../App';
 import './SideBar.css';
 
 
@@ -8,7 +9,7 @@ import './SideBar.css';
 //  -- clicking on  recntly viewed project:
 //       - opens that project
 //       - moves that project to top of  recently viewed list
-class SideBar extends React.Component {
+class SideBar extends React.Component<propsFromRedux> {
 
 
     render() {
@@ -50,7 +51,8 @@ class SideBar extends React.Component {
                         </h5>
                         <ul className="nav flex-column mb-2">
                             {                             
-                                //@ts-ignore
+                                
+                                
                                 this.props.recentlyViewed.reverse().map(e => {
                                     return (
                                       //eventuall biuld in better linking to actual view in data base / redux store
@@ -72,11 +74,15 @@ class SideBar extends React.Component {
     }
 }
 
-function mapStateToProps(state: any) {
-    return {
-        recentlyViewed: state.loggedInState.recentlyViewed
-    }
-}
+const mapStateToProps = (state: RootState) => ({
+    builtGraph: state.forexBuilderState.BuiltGraph,
+    recentlyViewed: state.loggedInState.recentlyViewed
+})
 
+const connector = connect(
+    mapStateToProps
+)
+
+type propsFromRedux = ConnectedProps<typeof connector>;
 
 export default connect(mapStateToProps)(SideBar);

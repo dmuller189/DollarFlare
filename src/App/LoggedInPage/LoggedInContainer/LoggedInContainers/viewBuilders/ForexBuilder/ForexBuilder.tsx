@@ -9,14 +9,13 @@ import { ADD_NODE, REMOVE_NODE, ADD_EDGE,
     ADD_ALL_EDGES, BUILD_EDGE_VALS, SET_VIEW_NAME, SET_GRAPH} from './forexGraphStructureAndLogic/ForexReducer';
 import {SET_CURR_VIEW, ADD_RECENTLY_VIEWED} from '../../../../LoggedInReducer';
 import './ForexBuilder.css';
-
-export const uniqueName = (): boolean => {
-    //@ts-ignore
-    return   !(this.props.recentlyViewed.filter(e => e === document.getElementById("GName").value).length > 0);
-  }
+import UniversalModel from '../universalModel';
 
 
 
+export function containsVal(array: UniversalModel [], val: string): boolean {
+    return (array.filter(e => e.name === val).length > 0);
+}
 
 
 class ForexBuilder extends React.Component<propsFromRedux> {
@@ -26,20 +25,17 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         this.onChange = this.onChange.bind(this);
     }
 
+     uniqueName = (): boolean => {
+         
+        const ans = containsVal(this.props.recentlyViewed, this.props.builtGraph.name);
+        console.log(ans);
+        return ans;
+    }
 
-    onChange(event: any): void {
 
-        
-        this.props.setViewName(event.target.value);
-
-        // //@ts-ignore
-        // this.props.dispatch({
-        //     type: SET_VIEW_NAME,
-        //     data: {
-        //         viewName: event.target.value
-        //     }
-        // });
-        
+    onChange(event: React.FormEvent<HTMLInputElement>): void {
+        this.props.setViewName(event.currentTarget.value); 
+        this.uniqueName();       
     }
 
     componentDidMount() {
@@ -51,22 +47,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         g.addNode("USD");
         g.addNode("GBP");
 
-        // //@ts-ignore
-        // this.props.dispatch({
-        //     type: "SET_GRAPH",
-        //     data: g
-        // })
-        console.log("here");
-        console.log(g);
-
         this.props.setGraph(g);
-        
-    
-        // //@ts-ignore
-        // this.props.dispatch({
-        //     type: "SET_CURR_VIEW",
-        //     data: g
-        // })
     }
 
     componentWillUnmount() {
@@ -74,13 +55,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         //tests if name is in recently viewed
         let recentlyViewed: string[] = this.props.recentlyViewed.map(e => e.name);
 
-
         this.props.addRecentlyViewed(this.props.builtGraph);
-        // //@ts-ignore
-        // this.props.dispatch({
-        //     type: "ADD_RECENTLY_VIEWED",
-        //     data: this.props.builtGraph
-        // });
     }
 
     render() {
@@ -112,7 +87,6 @@ const mapDispatchToProps = {
     setCurView: (data: IGraph) => ({type: SET_CURR_VIEW, data: data})
 }
 
-
 const connector = connect(
     mapStateToProps,
     mapDispatchToProps
@@ -121,4 +95,3 @@ const connector = connect(
 type propsFromRedux = ConnectedProps<typeof connector>;
 
 export default connector(ForexBuilder);
-//export default connect(mapStateToProps)(ForexBuilder);
