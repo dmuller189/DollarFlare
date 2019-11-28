@@ -18,8 +18,8 @@ class FakeModel implements UniversalModel {
     }
 }
 
-const ADD_RECENTLY_VIEWED =  "ADD_RECENTLY_VIEWED";
-const SET_CURR_VIEW = "SET_CURR_VIEW"
+export const ADD_RECENTLY_VIEWED =  "ADD_RECENTLY_VIEWED";
+export const SET_CURR_VIEW = "SET_CURR_VIEW"
 
 interface AddRecentlyViewedAction {
     type: typeof ADD_RECENTLY_VIEWED,
