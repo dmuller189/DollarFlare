@@ -20,8 +20,8 @@ class LoggenIn extends React.Component {
               <SideBar />
             </div>
             <div className="col" id="page-content">
-              
-              //@ts-ignore
+              {/* 
+              // @ts-ignore */ }
               <LoggedInContainer  />
             </div>
           </div>

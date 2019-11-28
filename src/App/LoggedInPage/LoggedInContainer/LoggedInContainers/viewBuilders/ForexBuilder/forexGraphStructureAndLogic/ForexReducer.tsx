@@ -4,7 +4,6 @@ import { IGraph, Graph, NodeName } from './GraphDataModelandLogic';
 interface IForexBuilderState {
     BuiltGraph: IGraph
     CurrPresentationView: "BASIC" | "ROUND" | "OTHER" //lists which layout for network
-    //FXName: string,
     FXDate: Date,
     FXID: number
 }
@@ -15,7 +14,6 @@ initGraph.setName("Untitiled G");
 const initialFXState: IForexBuilderState = {
     BuiltGraph: initGraph,
     CurrPresentationView: "BASIC",
-    //FXName: "Project Name: 'Untitled'",
     FXDate: new Date(),
     FXID: 1
 }
@@ -30,7 +28,6 @@ export const CLEAR_NODES = "CLEAR_NODES";
 export const CLEAR_EDGES = "CLEAR_EDGES";
 export const ADD_ALL_NODES = "ADD_ALL_NODES";
 export const ADD_ALL_EDGES = "ADD_ALL_EDGES";
-export const BUILD_EDGE_VALS = "BUILD_EDGE_VALS";
 export const SET_VIEW_NAME = "SET_VIEW_NAME";
 
 interface SetGraphAction {
@@ -71,9 +68,7 @@ interface AddAllNodesAction {
 interface AddAllEdgesAction {
     type: typeof ADD_ALL_EDGES
 }
-interface BuildEdgeValsAction {
-    type: typeof BUILD_EDGE_VALS
-}
+
 interface SetViewNameAction {
     type: typeof SET_VIEW_NAME,
     data: string
@@ -88,29 +83,8 @@ type ForexActionTypes = SetGraphAction |
                         ClearEdgesAction |
                         AddAllNodesAction |
                         AddAllEdgesAction |
-                        BuildEdgeValsAction |
                         SetViewNameAction;
 
-// interface IForexBuilderAction {
-//     type: "SET_GRAPH" | "ADD_NODE" | "REMOVE_NODE"
-//     | "ADD_EDGE" | "REMOVE_EDGE" | "CLEAR_NODES"
-//     | "CLEAR_EDGES" | "ADD_ALL_NODES" | "ADD_ALL_EDGES" | "BUILD_EDGE_VALS"
-//     | "SET_VIEW_NAME",
-//     data: {
-//         gModel?: IGraph
-//         viewName?: string,
-//         addNode?: NodeName,
-//         removeNode?: NodeName,
-//         addEdge?: {
-//             to: NodeName,
-//             from: NodeName
-//         },
-//         removeEdge?: {
-//             to: NodeName,
-//             from: NodeName
-//         }
-//     }
-// }
 
 export default function forexBuilderReducer(state = initialFXState, action: ForexActionTypes): IForexBuilderState {
 

@@ -30,21 +30,17 @@ interface SetCurViewAction {
     type: typeof SET_CURR_VIEW,
     data: UniversalModel
 }
-// export interface IHomeAction {
-//     type: "ADD_RECENTLY_VIEWED" |
-//     "SET_CURR_VIEW",
-//     data: UniversalModel
-// }
-export type logedInActionTypes = AddRecentlyViewedAction | SetCurViewAction;
 
-export function addRecentlyViewed(m: UniversalModel): logedInActionTypes {
+type loggedInActionTypes = AddRecentlyViewedAction | SetCurViewAction;
+
+export function addRecentlyViewed(m: UniversalModel): loggedInActionTypes {
     return {
         type: ADD_RECENTLY_VIEWED,
         data: m
     }
 }
 
-export function setCurView(m: UniversalModel): logedInActionTypes {
+export function setCurView(m: UniversalModel): loggedInActionTypes {
     return {
         type: SET_CURR_VIEW,
         data: m
@@ -57,7 +53,25 @@ const initialState: IHomeState = {
     recentlyViewed: []
 }
 
-export default function loggenInReducer(state = initialState, action: logedInActionTypes): IHomeState {
+///////////////////
+export function dispatchSetCurView(m: UniversalModel): loggedInActionTypes {
+    return {
+        type: SET_CURR_VIEW,
+        data: m
+    }
+} 
+
+export function dispatchAddRecentlyViewed(m: UniversalModel): loggedInActionTypes {
+    return {
+        type: ADD_RECENTLY_VIEWED,
+        data: m
+    }
+}
+////////////////
+
+
+
+export default function loggenInReducer(state = initialState, action: loggedInActionTypes): IHomeState {
     switch(action.type) {
 
         case SET_CURR_VIEW:
