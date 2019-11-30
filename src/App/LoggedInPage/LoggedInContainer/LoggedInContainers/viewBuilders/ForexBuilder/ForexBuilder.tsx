@@ -12,6 +12,17 @@ import './ForexBuilder.css';
 import UniversalModel from '../universalModel';
 
 
+//componenet did mount:
+// -  read ID from url
+// - if model ID exists in recently viewed:
+//   - extract that data and set it in the ForexBuilder state curmodel... 
+// - if model ID does not exists, initiate default data
+
+//always reads data from curmodel
+//on a url change, read the new ID, traverse reently viewed, extract data and set to curModel...
+
+//consider adding model to recently viewed in component did mount
+
 
 export function containsVal(array: UniversalModel [], val: string): boolean {
     return (array.filter(e => e.name === val).length > 0);
@@ -38,7 +49,34 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         this.uniqueName();       
     }
 
+    componentWillReceiveProps(nextProps: propsFromRedux) {
+        alert("WillRecieveProps function alert url: " + window.location.href);
+        //update curodel by going through id and recently viewed
+        //to extract model and have values stored  
+
+        //extract ID from url:
+        let url = "";
+
+        //see if model exists:
+
+
+        //if match model, update ForexeBuilderState cur model
+        //from the recently viewed data
+
+        //if new model, do nothing
+    }
+
     componentDidMount() {
+
+        let url: string = window.location.href;
+
+
+        //find right regex
+        let regex: RegExp = /[\n\r].*ID:\s*([^\n\r]*)/;
+        let id: RegExpMatchArray  | null = url.match(regex);
+        console.log("url is: " + url);
+
+        //read url:
 
         let g: IGraph = new Graph();
         g.setName("Untitled Forex Dan");
