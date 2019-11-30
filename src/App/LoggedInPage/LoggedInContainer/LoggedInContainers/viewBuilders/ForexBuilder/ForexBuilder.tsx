@@ -12,6 +12,10 @@ import './ForexBuilder.css';
 import UniversalModel from '../universalModel';
 
 
+//TODO: 
+
+
+
 //componenet did mount:
 // -  read ID from url
 // - if model ID exists in recently viewed:
@@ -22,6 +26,9 @@ import UniversalModel from '../universalModel';
 //on a url change, read the new ID, traverse reently viewed, extract data and set to curModel...
 
 //consider adding model to recently viewed in component did mount
+
+//on component willUnMount(), don't just add a new entry to recently viewed,
+// rather update the history if it already exists.
 
 
 export function containsVal(array: UniversalModel [], val: string): boolean {
@@ -58,16 +65,26 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         let url:string = window.location.href;
         let rg: string = "\\d{4}$";
         //@ts-ignore
-        let id: string | null | number = url.match(rg);
+        let id: string | null = url.match(rg);
 
-        if (id !== null) {
-            id = parseInt(id);
-        }
+ 
 
         console.log("ID is " + id);
 
         //see if model exists:
-        let nextModel: IGraph | null = this.props.recentlyViewed.filter(e => e.ID === id)
+        let nextModel: UniversalModel | undefined;
+
+        nextModel = this.props.recentlyViewed.find(function(graph){
+            //@ts-ignore
+            graph.ID == id;
+        })
+
+        //if found 
+        if (nextModel != undefined) {
+        
+        }
+            
+
 
 
         //if match model, update ForexeBuilderState cur model

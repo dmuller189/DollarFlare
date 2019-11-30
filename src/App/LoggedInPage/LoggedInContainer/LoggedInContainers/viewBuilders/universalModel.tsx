@@ -1,8 +1,11 @@
-export default interface UniversalModel {
-    ID: number,
-    name: string,
-    date: Date
-}
+import {IGraph} from './ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
+// export default interface UniversalModel {
+//     ID: number,
+//     name: string,
+//     date: Date
+// }
+
+type UniversalModel = IGraph | any;
 
 
 
