@@ -50,14 +50,24 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     }
 
     componentWillReceiveProps(nextProps: propsFromRedux) {
-        alert("WillRecieveProps function alert url: " + window.location.href);
+        //alert("WillRecieveProps function alert url: " + window.location.href);
         //update curodel by going through id and recently viewed
         //to extract model and have values stored  
 
         //extract ID from url:
-        let url = "";
+        let url:string = window.location.href;
+        let rg: string = "\\d{4}$";
+        //@ts-ignore
+        let id: string | null | number = url.match(rg);
+
+        if (id !== null) {
+            id = parseInt(id);
+        }
+
+        console.log("ID is " + id);
 
         //see if model exists:
+        let nextModel: IGraph | null = this.props.recentlyViewed.filter(e => e.ID === id)
 
 
         //if match model, update ForexeBuilderState cur model
@@ -74,7 +84,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         //find right regex
         let regex: RegExp = /[\n\r].*ID:\s*([^\n\r]*)/;
         let id: RegExpMatchArray  | null = url.match(regex);
-        console.log("url is: " + url);
+       // console.log("url is: " + url);
 
         //read url:
 
