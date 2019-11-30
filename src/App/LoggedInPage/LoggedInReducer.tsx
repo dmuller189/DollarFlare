@@ -54,6 +54,9 @@ const initialState: IHomeState = {
 }
 
 
+
+
+
 export default function loggenInReducer(state = initialState, action: loggedInActionTypes): IHomeState {
     switch(action.type) {
 
