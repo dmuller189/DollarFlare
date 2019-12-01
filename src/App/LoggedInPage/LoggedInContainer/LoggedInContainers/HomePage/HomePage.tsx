@@ -1,5 +1,5 @@
 import React from 'react';
-import {RootState} from '../.././../../App';
+import { RootState } from '../.././../../App';
 import INCREMENT_ID from '../viewBuilders/ForexBuilder/forexGraphStructureAndLogic/ForexReducer';
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from "react-router-dom";
@@ -13,13 +13,7 @@ interface IViewTemplate {
     ViewComponent: any,
 }
 
-//NEED: access redux props to render link and rest...
 class HomePage extends React.Component<HpropsFromRedux> {
-
-    constructor(props: HpropsFromRedux) {
-        super(props);
-
-    }
 
     viewTemplates: IViewTemplate[] = [
         {
@@ -29,16 +23,10 @@ class HomePage extends React.Component<HpropsFromRedux> {
                 "Build custom networks from any major currency",
                 "Uncover arbirage with advanced graph algorithms"
             ],
-            link: "/loggedIn/createForex/?ID="+this.props.IDcount, 
+            link: "/loggedIn/createForex/?ID=" + this.props.IDcount,
             ViewComponent: <FXTemplate gid="templateView" />,
         },
     ]
-
-    componentDidMount() {
-        // this.props.incrementID();
-        //alert(this.props.IDcount);
-        console.log("In home page, IDcount is: " + this.props.IDcount);
-    }
 
     render() {
         return (
@@ -52,21 +40,19 @@ class HomePage extends React.Component<HpropsFromRedux> {
                 <br></br>
 
                 {this.viewTemplates.map(e => {
-                        return (
-                            <div id={e.title}>
-                                <div className = "view-holder">
+                    return (
+                        <div id={e.title}>
+                            <div className="view-holder">
                                 <div className="center-div">
-
                                     <Link to={e.link} >
                                         <h2>
-                                          <button id="main-log" type="button" className="btn btn-outline-dark title-Button">
-                                            <h4>
-                                              {e.title}
-                                            </h4>
+                                            <button id="main-log" type="button" className="btn btn-outline-dark title-Button">
+                                                <h4>
+                                                    {e.title}
+                                                </h4>
                                             </button>
                                         </h2>
                                     </Link>
-
                                 </div>
                                 {e.ViewComponent}
                                 <div className="container center-div">
@@ -80,9 +66,10 @@ class HomePage extends React.Component<HpropsFromRedux> {
                                         })}
                                     </ul>
                                 </div>
-                                </div>
-                                <br></br>
-                            </div>)})}
+                            </div>
+                            <br></br>
+                        </div>)
+                })}
                 <br>
                 </br>
             </div>
@@ -90,16 +77,12 @@ class HomePage extends React.Component<HpropsFromRedux> {
     }
 }
 
-
 const mapStateToProps = (state: RootState) => ({
     IDcount: state.loggedInState.IDcount
 })
-
-
-const hConnector = connect(
+const Connector = connect(
     mapStateToProps
 )
+type HpropsFromRedux = ConnectedProps<typeof Connector>;
 
-type HpropsFromRedux = ConnectedProps<typeof hConnector>;
-
-export default hConnector(HomePage);
+export default Connector(HomePage);

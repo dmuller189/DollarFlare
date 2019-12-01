@@ -124,6 +124,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         let rg: string = "\\d{4}$";
         //@ts-ignore
         let id: string | null = url.match(rg);
+        console.log("mounting id is " + id);
 
        // console.log("in mounting, ");
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
@@ -148,16 +149,14 @@ class ForexBuilder extends React.Component<propsFromRedux> {
 
     componentWillUnmount() {
 
-        let url: string = window.location.href;
-        let rg: string = "\\d{4}$";
-        //@ts-ignore
-        let id: string | null = url.match(rg);
+        let id = this.props.builtGraph.ID;
+        console.log("unmounting ID: " + id);
 
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
         //console.log("---NM---- " + nextModel);
 
         if (nextModel === undefined) {
-           // console.log("next model is " + this.props.builtGraph.ID);
+           console.log("next model is " + this.props.builtGraph.ID);
             this.props.addRecentlyViewed(this.props.builtGraph);
         } else {
             //update recently viewed data with built graph data,
