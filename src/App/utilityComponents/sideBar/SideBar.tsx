@@ -29,6 +29,7 @@ class SideBar extends React.Component<propsFromRedux> {
     -traverses rough redus store's recently viewed models and pick the matching model by id
 
     */
+   //maybe optional
     updateCurModel() {
         
     }

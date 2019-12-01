@@ -1,25 +1,19 @@
-import UniversalModel from './LoggedInContainer/LoggedInContainers/viewBuilders/universalModel';
+import {UniversalModel} from './LoggedInContainer/LoggedInContainers/viewBuilders/universalModel';
+import { Graph } from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 
 interface IHomeState {
     curModel: UniversalModel,
     recentlyViewed: UniversalModel  [],
+    IDcount: number
 }
 
 
-class FakeModel implements UniversalModel {
-    name: string;
-    ID: number;
-    date: Date;
-    constructor(n: string, i: number, d: Date) {
-        this.name =n;
-        this.ID = i;
-        this.date = d;
-    }
-}
+
 
 export const ADD_RECENTLY_VIEWED =  "ADD_RECENTLY_VIEWED";
-export const SET_CURR_VIEW = "SET_CURR_VIEW"
+export const SET_CURR_VIEW = "SET_CURR_VIEW";
+export const INCREMENT_ID = "INCREMENT_ID";
 
 interface AddRecentlyViewedAction {
     type: typeof ADD_RECENTLY_VIEWED,
@@ -31,7 +25,12 @@ interface SetCurViewAction {
     data: UniversalModel
 }
 
-type loggedInActionTypes = AddRecentlyViewedAction | SetCurViewAction;
+interface IncrementIDCount {
+    type: typeof INCREMENT_ID,
+
+}
+
+type loggedInActionTypes = AddRecentlyViewedAction | SetCurViewAction | IncrementIDCount;
 
 export function addRecentlyViewed(m: UniversalModel): loggedInActionTypes {
     return {
@@ -49,11 +48,10 @@ export function setCurView(m: UniversalModel): loggedInActionTypes {
 
 
 const initialState: IHomeState = {
-    curModel: new FakeModel("fake", 1, new Date()),
-    recentlyViewed: []
+    curModel: new Graph(),
+    recentlyViewed: [],
+    IDcount: 1000
 }
-
-
 
 
 
@@ -65,6 +63,9 @@ export default function loggenInReducer(state = initialState, action: loggedInAc
 
         case ADD_RECENTLY_VIEWED:
             return  Object.assign({}, state, {recentlyViewed: state.recentlyViewed.concat([action.data])})
+
+        case INCREMENT_ID:
+            return Object.assign({}, state, {IDcount: state.IDcount+1})
             
         default:
             return state;

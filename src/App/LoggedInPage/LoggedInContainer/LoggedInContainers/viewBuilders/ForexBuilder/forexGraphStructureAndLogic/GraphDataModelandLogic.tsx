@@ -1,4 +1,4 @@
-import UniversalModel from '../../universalModel';
+import {UniversalModel} from '../../universalModel';
 import { interpolateRound } from 'd3';
 
 //20 currency tickers
@@ -29,7 +29,10 @@ interface IGraphArbitragePath {
     readonly paths: IGraph []
 }
 
-export interface IGraph extends UniversalModel {
+export interface IGraph {
+    name: string,
+    ID: number,
+    date: Date,
     //Graph Data structures
     nodeList: INode [],
     //Graph manipulations (construction and deconstruction)

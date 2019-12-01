@@ -5,7 +5,10 @@ import {IGraph} from './ForexBuilder/forexGraphStructureAndLogic/GraphDataModela
 //     date: Date
 // }
 
-type UniversalModel = IGraph | any;
+
+// add other models
+export type UniversalModel = IGraph ;
+
 
 
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {RootState} from '../.././../../App';
+import INCREMENT_ID from '../viewBuilders/ForexBuilder/forexGraphStructureAndLogic/ForexReducer';
+import { connect, ConnectedProps } from 'react-redux';
 import { Link } from "react-router-dom";
 import FXTemplate from '../../../../utilityComponents/TemplateViews/FXTemplate/FXTemplate';
 import './HomePage.css';
@@ -20,7 +22,7 @@ let viewTemplates: IViewTemplate[] = [
             "Build custom networks from any major currency",
             "Uncover arbirage with advanced graph algorithms"
         ],
-        link: "./createForex",
+        link: "/loggedIn/createForex/?ID=",
         ViewComponent: <FXTemplate gid="templateView" />,
     },
 ]
@@ -75,5 +77,19 @@ class HomePage extends React.Component {
         )
     }
 }
+
+
+
+
+const mapDispatchToProps = {
+    incrementID: () => ({type: INCREMENT_ID}) 
+}
+
+const connector = connect(
+    null,
+    mapDispatchToProps
+)
+
+type propsFromRedux = ConnectedProps<typeof connector>;
 
 export default connect()(HomePage);

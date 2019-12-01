@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
-import { connect, ConnectedProps  } from 'react-redux';
-import {RootState} from '../../../../../App';
+import { connect, ConnectedProps } from 'react-redux';
+import { RootState } from '../../../../../App';
 import { Graph, IGraph } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 import BaseNetworkViewLevel from './NetworkViewComponent/BaseNetworkViewLevel';
-import { ADD_NODE, REMOVE_NODE, ADD_EDGE, 
+import {
+    ADD_NODE, REMOVE_NODE, ADD_EDGE,
     REMOVE_EDGE, CLEAR_NODES, CLEAR_EDGES, ADD_ALL_NODES,
-    ADD_ALL_EDGES, SET_VIEW_NAME, SET_GRAPH} from './forexGraphStructureAndLogic/ForexReducer';
-import {SET_CURR_VIEW, ADD_RECENTLY_VIEWED} from '../../../../LoggedInReducer';
+    ADD_ALL_EDGES, SET_VIEW_NAME, SET_GRAPH
+} from './forexGraphStructureAndLogic/ForexReducer';
+import { SET_CURR_VIEW, ADD_RECENTLY_VIEWED } from '../../../../LoggedInReducer';
 import './ForexBuilder.css';
-import UniversalModel from '../universalModel';
+import { UniversalModel } from '../universalModel';
 
 
 //TODO: 
@@ -31,7 +33,7 @@ import UniversalModel from '../universalModel';
 // rather update the history if it already exists.
 
 
-export function containsVal(array: UniversalModel [], val: string): boolean {
+export function containsVal(array: UniversalModel[], val: string): boolean {
     return (array.filter(e => e.name === val).length > 0);
 }
 
@@ -41,10 +43,12 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     constructor(props: propsFromRedux) {
         super(props);
         this.onChange = this.onChange.bind(this);
+
+        this.findIGraph = this.findIGraph.bind(this);
     }
 
-     uniqueName = (): boolean => {
-         
+    uniqueName = (): boolean => {
+
         const ans = containsVal(this.props.recentlyViewed, this.props.builtGraph.name);
         console.log(ans);
         return ans;
@@ -52,8 +56,17 @@ class ForexBuilder extends React.Component<propsFromRedux> {
 
 
     onChange(event: React.FormEvent<HTMLInputElement>): void {
-        this.props.setViewName(event.currentTarget.value); 
-        this.uniqueName();       
+        this.props.setViewName(event.currentTarget.value);
+        this.uniqueName();
+    }
+
+    findIGraph(id: string): IGraph | undefined {
+
+        let nextModel: IGraph | undefined = this.props.recentlyViewed.find(function (view: any) {
+            return view.ID + "" == id;
+        })
+
+        return nextModel;
     }
 
     componentWillReceiveProps(nextProps: propsFromRedux) {
@@ -62,29 +75,35 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         //to extract model and have values stored  
 
         //extract ID from url:
-        let url:string = window.location.href;
+        let url: string = window.location.href;
         let rg: string = "\\d{4}$";
         //@ts-ignore
         let id: string | null = url.match(rg);
 
- 
-
         console.log("ID is " + id);
 
-        //see if model exists:
-        let nextModel: UniversalModel | undefined;
+        // //see if model exists:
+        // let nextModel: UniversalModel | undefined;
 
-        nextModel = this.props.recentlyViewed.find(function(graph){
-            //@ts-ignore
-            graph.ID == id;
-        })
+        // nextModel = this.props.recentlyViewed.find(function(graph){
 
-        //if found 
-        if (nextModel != undefined) {
-        
+        //     graph.ID == id;
+        // })
+
+        // //if found 
+        // if (nextModel != undefined) {
+
+        // }
+
+        let nextModel: IGraph | undefined = this.findIGraph(id + "");
+
+
+        if (nextModel === undefined) {
+            return;
+        } else {
+            console.log("next model is " + nextModel.ID);
+            this.props.setGraph(nextModel);
         }
-            
-
 
 
         //if match model, update ForexeBuilderState cur model
@@ -93,34 +112,62 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         //if new model, do nothing
     }
 
+
+    //same process as above.  check url, if new, create new set up, if exists, render that view
     componentDidMount() {
+
+        let url: string = window.location.href;
+
+        //find right regex
+        let rg: string = "\\d{4}$";
+        //@ts-ignore
+        let id: string | null = url.match(rg);
+
+        let nextModel: IGraph | undefined = this.findIGraph(id + "");
+
+        if (nextModel === undefined) {
+            let g: IGraph = new Graph();
+            g.setName("Untitled Forex Dan");
+            g.addNode("AUD");
+            g.addNode("JPY");
+            g.addNode("USD");
+            g.addNode("GBP");
+
+            this.props.setGraph(g);
+        }
+        // console.log("url is: " + url);
+
+        //read url:
+
+    }
+
+    componentWillUnmount() {
 
         let url: string = window.location.href;
 
 
         //find right regex
-        let regex: RegExp = /[\n\r].*ID:\s*([^\n\r]*)/;
-        let id: RegExpMatchArray  | null = url.match(regex);
-       // console.log("url is: " + url);
+        //find right regex
+        let rg: string = "\\d{4}$";
+        //@ts-ignore
+        let id: string | null = url.match(rg);
 
-        //read url:
+        let nextModel: IGraph | undefined = this.findIGraph(id + "");
 
-        let g: IGraph = new Graph();
-        g.setName("Untitled Forex Dan");
-        g.addNode("AUD");
-        g.addNode("JPY");
-        g.addNode("USD");
-        g.addNode("GBP");
+        if (nextModel === undefined) {
 
-        this.props.setGraph(g);
-    }
+            console.log("next model is " + this.props.builtGraph.ID);
+            this.props.setGraph(this.props.builtGraph);
 
-    componentWillUnmount() {
-        
+        } else {
+            //update recently viewed data with built graph data,
+            //move this entry to top of list of recently viewed
+        }
+
         //tests if name is in recently viewed
-        let recentlyViewed: string[] = this.props.recentlyViewed.map(e => e.name);
+        // let recentlyViewed: string[] = this.props.recentlyViewed.map(e => e.name);
 
-        this.props.addRecentlyViewed(this.props.builtGraph);
+        // this.props.addRecentlyViewed(this.props.builtGraph);
     }
 
     render() {
@@ -146,10 +193,10 @@ const mapStateToProps = (state: RootState) => ({
 })
 
 const mapDispatchToProps = {
-    addRecentlyViewed: (data: IGraph) => ({type: ADD_RECENTLY_VIEWED, data: data}),
-    setViewName: (data: string) => ({type: SET_VIEW_NAME, data: data}),
-    setGraph: (data: IGraph) => ({type: SET_GRAPH, data: data}),
-    setCurView: (data: IGraph) => ({type: SET_CURR_VIEW, data: data})
+    addRecentlyViewed: (data: IGraph) => ({ type: ADD_RECENTLY_VIEWED, data: data }),
+    setViewName: (data: string) => ({ type: SET_VIEW_NAME, data: data }),
+    setGraph: (data: IGraph) => ({ type: SET_GRAPH, data: data }),
+    setCurView: (data: IGraph) => ({ type: SET_CURR_VIEW, data: data })
 }
 
 const connector = connect(
