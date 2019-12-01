@@ -1,6 +1,3 @@
-import {UniversalModel} from '../../universalModel';
-import { interpolateRound } from 'd3';
-
 //20 currency tickers
 export type NodeName =
     "USD" //US Dolar
@@ -37,6 +34,7 @@ export interface IGraph {
     nodeList: INode [],
     //Graph manipulations (construction and deconstruction)
     setName(name: string): IGraph,
+    setID(n: number): IGraph,
     addNode(node: NodeName): IGraph,
     removeNode(node: NodeName): IGraph,
     addEdge(from: NodeName, to: NodeName): IGraph,
@@ -79,6 +77,11 @@ export class Graph implements IGraph {
 
     setName(name: string): IGraph {
         this.name = name;
+        return this;
+    }
+
+    setID(n: number) {
+        this.ID = n;
         return this;
     }
 

@@ -9,7 +9,7 @@ import {
     REMOVE_EDGE, CLEAR_NODES, CLEAR_EDGES, ADD_ALL_NODES,
     ADD_ALL_EDGES, SET_VIEW_NAME, SET_GRAPH
 } from './forexGraphStructureAndLogic/ForexReducer';
-import { SET_CURR_VIEW, ADD_RECENTLY_VIEWED } from '../../../../LoggedInReducer';
+import { SET_CURR_VIEW, ADD_RECENTLY_VIEWED, INCREMENT_ID } from '../../../../LoggedInReducer';
 import './ForexBuilder.css';
 import { UniversalModel } from '../universalModel';
 
@@ -132,12 +132,10 @@ class ForexBuilder extends React.Component<propsFromRedux> {
             g.addNode("JPY");
             g.addNode("USD");
             g.addNode("GBP");
-
+            g.setID(this.props.IDcount);
             this.props.setGraph(g);
+            this.props.incrementIDCount();
         }
-        // console.log("url is: " + url);
-
-        //read url:
 
     }
 
@@ -157,7 +155,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         if (nextModel === undefined) {
 
             console.log("next model is " + this.props.builtGraph.ID);
-            this.props.setGraph(this.props.builtGraph);
+            this.props.addRecentlyViewed(this.props.builtGraph);
 
         } else {
             //update recently viewed data with built graph data,
@@ -189,14 +187,16 @@ class ForexBuilder extends React.Component<propsFromRedux> {
 
 const mapStateToProps = (state: RootState) => ({
     builtGraph: state.forexBuilderState.BuiltGraph,
-    recentlyViewed: state.loggedInState.recentlyViewed
+    recentlyViewed: state.loggedInState.recentlyViewed,
+    IDcount: state.loggedInState.IDcount
 })
 
 const mapDispatchToProps = {
     addRecentlyViewed: (data: IGraph) => ({ type: ADD_RECENTLY_VIEWED, data: data }),
     setViewName: (data: string) => ({ type: SET_VIEW_NAME, data: data }),
     setGraph: (data: IGraph) => ({ type: SET_GRAPH, data: data }),
-    setCurView: (data: IGraph) => ({ type: SET_CURR_VIEW, data: data })
+    setCurView: (data: IGraph) => ({ type: SET_CURR_VIEW, data: data }),
+    incrementIDCount: () => ({type: INCREMENT_ID})
 }
 
 const connector = connect(

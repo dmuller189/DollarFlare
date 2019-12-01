@@ -12,6 +12,7 @@ import { createLogger } from 'redux-logger';
 import loggedInReducer from './LoggedInPage/LoggedInReducer';
 import forexBuilderReducer from './LoggedInPage/LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/ForexReducer';
 
+
 let rootReducer = combineReducers({
   forexBuilderState: forexBuilderReducer,
   loggedInState: loggedInReducer

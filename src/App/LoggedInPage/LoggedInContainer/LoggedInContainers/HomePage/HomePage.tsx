@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import FXTemplate from '../../../../utilityComponents/TemplateViews/FXTemplate/FXTemplate';
 import './HomePage.css';
 
-
 interface IViewTemplate {
     title: string,
     description: string[],
@@ -14,20 +13,32 @@ interface IViewTemplate {
     ViewComponent: any,
 }
 
-let viewTemplates: IViewTemplate[] = [
-    {
-        title: "Forex Networks",
-        description: [
-            "Query Real-time and Historical Currency-pair Values",
-            "Build custom networks from any major currency",
-            "Uncover arbirage with advanced graph algorithms"
-        ],
-        link: "/loggedIn/createForex/?ID=",
-        ViewComponent: <FXTemplate gid="templateView" />,
-    },
-]
+//NEED: access redux props to render link and rest...
+class HomePage extends React.Component<HpropsFromRedux> {
 
-class HomePage extends React.Component {
+    constructor(props: HpropsFromRedux) {
+        super(props);
+
+    }
+
+    viewTemplates: IViewTemplate[] = [
+        {
+            title: "Forex Networks",
+            description: [
+                "Query Real-time and Historical Currency-pair Values",
+                "Build custom networks from any major currency",
+                "Uncover arbirage with advanced graph algorithms"
+            ],
+            link: "/loggedIn/createForex/?ID="+this.props.IDcount, 
+            ViewComponent: <FXTemplate gid="templateView" />,
+        },
+    ]
+
+    componentDidMount() {
+       // this.props.incrementID();
+        //alert(this.props.IDcount);
+        console.log("mounting home page: ");
+    }
 
     render() {
         return (
@@ -39,7 +50,8 @@ class HomePage extends React.Component {
                     Choose a template to begin your creation!
                     </h5>
                 <br></br>
-                {viewTemplates.map(e => {
+
+                {this.viewTemplates.map(e => {
                         return (
                             <div id={e.title}>
                                 <div className = "view-holder">
@@ -77,19 +89,25 @@ class HomePage extends React.Component {
         )
     }
 }
+const mapStateToProps = (state: RootState) => ({
+    builtGraph: state.forexBuilderState.BuiltGraph,
+    recentlyViewed: state.loggedInState.recentlyViewed,
+    IDcount: state.loggedInState.IDcount
+})
 
 
+// const mapStateToProps = (state: RootState) => ({
+//     IDcount: state.loggedInState.IDcount
+// })
 
+// const mapDispatchToProps = {
+//     incrementID: () => ({type: INCREMENT_ID}) 
+// }
 
-const mapDispatchToProps = {
-    incrementID: () => ({type: INCREMENT_ID}) 
-}
-
-const connector = connect(
-    null,
-    mapDispatchToProps
+const hConnector = connect(
+    mapStateToProps
 )
 
-type propsFromRedux = ConnectedProps<typeof connector>;
+type HpropsFromRedux = ConnectedProps<typeof hConnector>;
 
 export default connect()(HomePage);
