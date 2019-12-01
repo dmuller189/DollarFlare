@@ -35,9 +35,9 @@ class HomePage extends React.Component<HpropsFromRedux> {
     ]
 
     componentDidMount() {
-       // this.props.incrementID();
+        // this.props.incrementID();
         //alert(this.props.IDcount);
-        console.log("mounting home page: ");
+        console.log("In home page, IDcount is: " + this.props.IDcount);
     }
 
     render() {
@@ -89,20 +89,12 @@ class HomePage extends React.Component<HpropsFromRedux> {
         )
     }
 }
+
+
 const mapStateToProps = (state: RootState) => ({
-    builtGraph: state.forexBuilderState.BuiltGraph,
-    recentlyViewed: state.loggedInState.recentlyViewed,
     IDcount: state.loggedInState.IDcount
 })
 
-
-// const mapStateToProps = (state: RootState) => ({
-//     IDcount: state.loggedInState.IDcount
-// })
-
-// const mapDispatchToProps = {
-//     incrementID: () => ({type: INCREMENT_ID}) 
-// }
 
 const hConnector = connect(
     mapStateToProps
@@ -110,4 +102,4 @@ const hConnector = connect(
 
 type HpropsFromRedux = ConnectedProps<typeof hConnector>;
 
-export default connect()(HomePage);
+export default hConnector(HomePage);

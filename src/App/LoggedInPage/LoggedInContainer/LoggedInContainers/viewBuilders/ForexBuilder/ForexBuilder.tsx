@@ -80,7 +80,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         //@ts-ignore
         let id: string | null = url.match(rg);
 
-        console.log("ID is " + id);
+        //console.log("ID is " + id);
 
         // //see if model exists:
         // let nextModel: UniversalModel | undefined;
@@ -101,7 +101,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         if (nextModel === undefined) {
             return;
         } else {
-            console.log("next model is " + nextModel.ID);
+            //console.log("next model is " + nextModel.ID);
             this.props.setGraph(nextModel);
         }
 
@@ -116,6 +116,8 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     //same process as above.  check url, if new, create new set up, if exists, render that view
     componentDidMount() {
 
+        console.log("in FXBuilder, IDcount is " + this.props.IDcount);
+
         let url: string = window.location.href;
 
         //find right regex
@@ -123,7 +125,9 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         //@ts-ignore
         let id: string | null = url.match(rg);
 
+       // console.log("in mounting, ");
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
+       // console.log(nextModel);
 
         if (nextModel === undefined) {
             let g: IGraph = new Graph();
@@ -135,6 +139,9 @@ class ForexBuilder extends React.Component<propsFromRedux> {
             g.setID(this.props.IDcount);
             this.props.setGraph(g);
             this.props.incrementIDCount();
+        } else {
+            //convert recently viewed data to curmodel
+            this.props.setGraph(nextModel);
         }
 
     }
@@ -142,21 +149,16 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     componentWillUnmount() {
 
         let url: string = window.location.href;
-
-
-        //find right regex
-        //find right regex
         let rg: string = "\\d{4}$";
         //@ts-ignore
         let id: string | null = url.match(rg);
 
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
+        //console.log("---NM---- " + nextModel);
 
         if (nextModel === undefined) {
-
-            console.log("next model is " + this.props.builtGraph.ID);
+           // console.log("next model is " + this.props.builtGraph.ID);
             this.props.addRecentlyViewed(this.props.builtGraph);
-
         } else {
             //update recently viewed data with built graph data,
             //move this entry to top of list of recently viewed
