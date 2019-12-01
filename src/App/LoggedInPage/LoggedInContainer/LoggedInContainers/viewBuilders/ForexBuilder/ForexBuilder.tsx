@@ -14,10 +14,6 @@ import './ForexBuilder.css';
 import { UniversalModel } from '../universalModel';
 
 
-//TODO: 
-
-
-
 //componenet did mount:
 // -  read ID from url
 // - if model ID exists in recently viewed:
@@ -97,21 +93,13 @@ class ForexBuilder extends React.Component<propsFromRedux> {
 
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
 
-
         if (nextModel === undefined) {
             return;
         } else {
             //console.log("next model is " + nextModel.ID);
             this.props.setGraph(nextModel);
         }
-
-
-        //if match model, update ForexeBuilderState cur model
-        //from the recently viewed data
-
-        //if new model, do nothing
     }
-
 
     //same process as above.  check url, if new, create new set up, if exists, render that view
     componentDidMount() {
@@ -163,10 +151,6 @@ class ForexBuilder extends React.Component<propsFromRedux> {
             //move this entry to top of list of recently viewed
         }
 
-        //tests if name is in recently viewed
-        // let recentlyViewed: string[] = this.props.recentlyViewed.map(e => e.name);
-
-        // this.props.addRecentlyViewed(this.props.builtGraph);
     }
 
     render() {

@@ -6,10 +6,6 @@ import SideBar from '../utilityComponents/sideBar/SideBar';
 import LoggedInContainer from './LoggedInContainer/LoggedInContainer';
 import './LoggedIn.css';
 
-
-//TODO:
-// Add a ID=___ to url when a model is selected
-//
 class LoggenIn extends React.Component {
 
   render() {
