@@ -57,9 +57,6 @@ export class LoginForm extends React.Component<IProps> {
     }
 
     handleSubmit(event: MouseEvent<HTMLButtonElement>): void {
-        //handling the login process
-        console.log(this.state);
-        //handle server transmissions
         event.preventDefault();
     }
 

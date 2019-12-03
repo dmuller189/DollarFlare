@@ -16,22 +16,13 @@ Add an 'onCLick()' function for each sidebar link
 //       - moves that project to top of  recently viewed list
 class SideBar extends React.Component<propsFromRedux> {
 
-
     constructor(props: propsFromRedux) {
         super(props);
-
-        this.updateCurModel =  this.updateCurModel.bind(this);
     }
 
-    /*
-    -Checks the url to determine view model
-    -get model ID
-    -traverses rough redus store's recently viewed models and pick the matching model by id
 
-    */
-   //maybe optional
-    updateCurModel() {
-        
+    componentDidUpdate(nextProps: propsFromRedux) {
+        this.props.recentlyViewed.forEach(e => console.log("DID UPDATE:" + e.name));
     }
 
     render() {
@@ -72,18 +63,19 @@ class SideBar extends React.Component<propsFromRedux> {
                             <span>Recently Viewed</span>
                         </h5>
                         <ul className="nav flex-column mb-2">
-                            {                             
-                                
-                                
+                            {   
                                 this.props.recentlyViewed.reverse().map(e => {
+                                    console.log("Side bar name: " + e.name);
                                     return (
                                       //eventuall biuld in better linking to actual view in data base / redux store
                                       <li className="nav-item" key={e.ID}>
                                           {/* <a className="nav-link" href="/"> */}
 
-                                          <Link to={'/loggedIn/createForex/?ID=' + e.ID} onClick={this.updateCurModel}>
+                                          <Link to={'/loggedIn/createForex/?ID=' + e.ID}>
                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                               {
+
+                                                  // on view render, read url to check and dynamicly update side bar as user enters editable name
                                                 e.name.length < 18 ? e.name+e.ID : e.name.substring(0,18)+"..."+e.ID}
                                          </Link>
                                           {/* </a> */}

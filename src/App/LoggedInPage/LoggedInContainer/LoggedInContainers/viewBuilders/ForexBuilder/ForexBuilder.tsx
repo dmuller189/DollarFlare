@@ -34,6 +34,12 @@ export function containsVal(array: UniversalModel[], val: string): boolean {
 }
 
 
+
+//TODO:
+//
+//The functionality of component didnmount had to be put in componentDidUpdate / willRP 
+// in order to be able to traver forex to forex, not having to leave the builder page
+// all together, and some logic may be removed from component did mount
 class ForexBuilder extends React.Component<propsFromRedux> {
 
     constructor(props: propsFromRedux) {
@@ -46,7 +52,7 @@ class ForexBuilder extends React.Component<propsFromRedux> {
     uniqueName = (): boolean => {
 
         const ans = containsVal(this.props.recentlyViewed, this.props.builtGraph.name);
-        console.log(ans);
+        //console.log(ans);
         return ans;
     }
 
@@ -65,7 +71,13 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         return nextModel;
     }
 
-    componentWillReceiveProps(nextProps: propsFromRedux) {
+    updateViewRender() {
+        let id = this.props.builtGraph.ID;
+        let nextModel: IGraph | undefined = this.findIGraph(id + "");
+        nextModel === undefined ? 
+        this.props.addRecentlyViewed(this.props.builtGraph) : this.props.setRecentlyViewed(this.props.builtGraph);
+    }
+    componentDidUpdate(nextProps: propsFromRedux) {
         //alert("WillRecieveProps function alert url: " + window.location.href);
         //update curodel by going through id and recently viewed
         //to extract model and have values stored  
@@ -99,28 +111,20 @@ class ForexBuilder extends React.Component<propsFromRedux> {
             //console.log("next model is " + nextModel.ID);
             this.props.setGraph(nextModel);
         }
+        this.updateViewRender();
     }
-
     //same process as above.  check url, if new, create new set up, if exists, render that view
     componentDidMount() {
-
-        console.log("in FXBuilder, IDcount is " + this.props.IDcount);
-
         let url: string = window.location.href;
-
-        //find right regex
         let rg: string = "\\d{4}$";
         //@ts-ignore
         let id: string | null = url.match(rg);
-        console.log("mounting id is " + id);
-
-       // console.log("in mounting, ");
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
        // console.log(nextModel);
 
         if (nextModel === undefined) {
             let g: IGraph = new Graph();
-            g.setName("Untitled Forex Dan");
+            g.setName("Untitled Forex");
             g.addNode("AUD");
             g.addNode("JPY");
             g.addNode("USD");
@@ -134,26 +138,14 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         }
 
     }
-
     componentWillUnmount() {
 
-        let id = this.props.builtGraph.ID;
-        console.log("unmounting ID: " + id);
-
-        let nextModel: IGraph | undefined = this.findIGraph(id + "");
-        //console.log("---NM---- " + nextModel);
-
-        if (nextModel === undefined) {
-           console.log("next model is " + this.props.builtGraph.ID);
-            this.props.addRecentlyViewed(this.props.builtGraph);
-        } else {
-            //update recently viewed data with built graph data,
-            //move this entry to top of list of recently viewed
-            //let index = this.props.recentlyViewed.findIndex(e => e.ID === id);
-            //call action in forex reducer
-            this.props.settedRecentlyViewed(this.props.builtGraph);
-        }
-
+        this.updateViewRender();
+        // if (nextModel === undefined) {
+        //     this.props.addRecentlyViewed(this.props.builtGraph);
+        // } else {
+        //     this.props.setRecentlyViewed(this.props.builtGraph);
+        // }
     }
 
     render() {
@@ -164,7 +156,9 @@ class ForexBuilder extends React.Component<propsFromRedux> {
                     <div className="form-groun" >
                         <svg id="Nsvg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                         <input id="GName" className="form-control form-control-lg" type="text" name="name" onChange={this.onChange}
-                            placeholder={this.props.builtGraph === undefined ? "Untitled Graph" : this.props.builtGraph.name} />
+                            //change placeholder to draw from url, get id, find model in recently viewed, render that model's name ?
+                            //or add to the 'component did update bin'
+                            placeholder={this.props.builtGraph.name /*=== "Untitled" ? "Untitled" : this.props.builtGraph.name*/ } />
                     </div>
                 </form>
                 <BaseNetworkViewLevel />
@@ -185,7 +179,7 @@ const mapDispatchToProps = {
     setGraph: (data: IGraph) => ({ type: SET_GRAPH, data: data }),
     setCurView: (data: IGraph) => ({ type: SET_CURR_VIEW, data: data }),
     incrementIDCount: () => ({type: INCREMENT_ID}),
-    settedRecentlyViewed: (data: IGraph) => ({type: SET_RECENT_VIEWED, data: data})
+    setRecentlyViewed: (data: IGraph) => ({type: SET_RECENT_VIEWED, data: data})
 }
 
 const connector = connect(
