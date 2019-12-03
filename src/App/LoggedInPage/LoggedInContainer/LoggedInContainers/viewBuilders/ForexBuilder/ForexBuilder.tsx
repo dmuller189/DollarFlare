@@ -9,7 +9,7 @@ import {
     REMOVE_EDGE, CLEAR_NODES, CLEAR_EDGES, ADD_ALL_NODES,
     ADD_ALL_EDGES, SET_VIEW_NAME, SET_GRAPH
 } from './forexGraphStructureAndLogic/ForexReducer';
-import { SET_CURR_VIEW, ADD_RECENTLY_VIEWED, INCREMENT_ID } from '../../../../LoggedInReducer';
+import { SET_CURR_VIEW, ADD_RECENTLY_VIEWED, INCREMENT_ID, SET_RECENT_VIEWED } from '../../../../LoggedInReducer';
 import './ForexBuilder.css';
 import { UniversalModel } from '../universalModel';
 
@@ -149,6 +149,9 @@ class ForexBuilder extends React.Component<propsFromRedux> {
         } else {
             //update recently viewed data with built graph data,
             //move this entry to top of list of recently viewed
+            //let index = this.props.recentlyViewed.findIndex(e => e.ID === id);
+            //call action in forex reducer
+            this.props.settedRecentlyViewed(this.props.builtGraph);
         }
 
     }
@@ -181,7 +184,8 @@ const mapDispatchToProps = {
     setViewName: (data: string) => ({ type: SET_VIEW_NAME, data: data }),
     setGraph: (data: IGraph) => ({ type: SET_GRAPH, data: data }),
     setCurView: (data: IGraph) => ({ type: SET_CURR_VIEW, data: data }),
-    incrementIDCount: () => ({type: INCREMENT_ID})
+    incrementIDCount: () => ({type: INCREMENT_ID}),
+    settedRecentlyViewed: (data: IGraph) => ({type: SET_RECENT_VIEWED, data: data})
 }
 
 const connector = connect(

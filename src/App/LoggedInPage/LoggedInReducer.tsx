@@ -1,5 +1,5 @@
 import {UniversalModel} from './LoggedInContainer/LoggedInContainers/viewBuilders/universalModel';
-import { Graph } from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
+import { Graph, IGraph } from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 interface IHomeState {
     curModel: UniversalModel,
@@ -10,6 +10,7 @@ interface IHomeState {
 export const ADD_RECENTLY_VIEWED =  "ADD_RECENTLY_VIEWED";
 export const SET_CURR_VIEW = "SET_CURR_VIEW";
 export const INCREMENT_ID = "INCREMENT_ID";
+export const SET_RECENT_VIEWED = "SET_RECENT_VIEWED";
 
 interface AddRecentlyViewedAction {
     type: typeof ADD_RECENTLY_VIEWED,
@@ -26,7 +27,11 @@ interface IncrementIDCount {
 
 }
 
-type loggedInActionTypes = AddRecentlyViewedAction | SetCurViewAction | IncrementIDCount;
+interface SetRecentViewed {
+    type: typeof SET_RECENT_VIEWED,
+    data: UniversalModel
+}
+type loggedInActionTypes = AddRecentlyViewedAction | SetCurViewAction | IncrementIDCount | SetRecentViewed;
 
 export function addRecentlyViewed(m: UniversalModel): loggedInActionTypes {
     return {
@@ -46,7 +51,7 @@ export function setCurView(m: UniversalModel): loggedInActionTypes {
 const initialState: IHomeState = {
     curModel: new Graph(),
     recentlyViewed: [],
-    IDcount: 1000
+    IDcount: 1000 //consider making this into an iterator<number> instead
 }
 
 
@@ -60,10 +65,19 @@ export default function loggedInReducer(state = initialState, action: loggedInAc
             return Object.assign({}, state, {recentlyViewed: state.recentlyViewed.concat([action.data])})
 
         case INCREMENT_ID:
-            return Object.assign({}, state, {IDcount:  state.IDcount+1 })
-            
+            return Object.assign({}, state, {IDcount: state.IDcount+1 })
+
+        case SET_RECENT_VIEWED:
+            //let index: number = state.recentlyViewed.findIndex(e => e.ID === action.data.ID);
+            return Object.assign({}, state, {recentlyViewed : setRecentlyViewed(state.recentlyViewed, action.data)   } );
         default:
             return state;
     }
+}
+
+function setRecentlyViewed(arr: UniversalModel[], m: UniversalModel): UniversalModel[] {
+    let index: number = arr.findIndex(e => e.ID === m.ID);
+    arr[index] = m;
+    return arr;
 }
 

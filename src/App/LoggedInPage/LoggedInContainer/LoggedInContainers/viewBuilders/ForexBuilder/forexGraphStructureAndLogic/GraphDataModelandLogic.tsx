@@ -40,6 +40,7 @@ export interface IGraph {
     addEdge(from: NodeName, to: NodeName): IGraph,
     removeEdge(from: NodeName, to: NodeName): IGraph,
     updateEdgeWeights(): IGraph,
+    setModel(g: IGraph): IGraph,
 
     //Graph Algorithms
     findArbitrage(): IGraphArbitragePath,
@@ -71,8 +72,17 @@ export class Graph implements IGraph {
         this.nodeList = [];
         this.name = "New Graph";
         this.date = new Date();
-        //eventually look at database for ID
-        this.ID = Math.round(10000*Math.random());
+        this.ID = 0;
+    }
+
+    setModel(g: IGraph): IGraph {
+
+        this.nodeList = g.nodeList;
+        this.name = g.name;
+        this.date = g.date;
+        //Invariant:
+        // ID is never changed
+        return this;
     }
 
     setName(name: string): IGraph {
