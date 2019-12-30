@@ -116,9 +116,13 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     }
 
     // To Cover / DO:
-    // - loading a different 'createForex' with different ID
+    // - loading a different 'createForex' with different ID (switching between 2 forex views)
     //    - extract state in prev build and save to redux
     //    - load extracted data from next build and set state
+    // - CONSIDER:
+    //   - switching a newly created view(local id will equal redux id counter-1) (i.e will not exist is recently viewed)
+    // vs
+    //   - switching from a previously created view into another existing view
     componentDidUpdate(prevProps: propsFromRedux, prevState: localState) {
 
 
