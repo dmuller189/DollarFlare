@@ -100,13 +100,18 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     // - loading a different 'createForex' with different ID
     //    - extract state in prev build and save to redux
     //    - load extracted data from next build and set state
-    componentDidUpdate(nextProps: propsFromRedux) {
+    componentDidUpdate(prevProps: propsFromRedux, prevState: localState) {
 
+        
         //extract ID from url:
         let url: string = window.location.href;
         let rg: string = "\\d{4}$";
         //@ts-ignore
         let id: string | null = url.match(rg);
+
+        if (prevState.stateModel.ID+"" == id) {
+            return;
+        }
 
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
         console.log("Found " + id);
@@ -120,19 +125,14 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         }
 
         //load extracted data from redux into local state
-        if(nextModel !== undefined) {
+        if(nextModel != undefined) {
+            console.log("Component did update LOOP???")
+
             this.setState({
                 stateModel: nextModel
             })
-        }
 
-        // if (nextModel === undefined) {
-        //     return;
-        // } else {
-        //     //console.log("next model is " + nextModel.ID);
-        //     this.props.setGraph(nextModel);
-        // }
-        // this.updateViewRender();
+        }
     }
     //same process as above.  check url, if new, create new set up, if exists, render that view
     componentDidMount() {
@@ -155,13 +155,9 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             this.setState({
                 stateModel: g
             })
-
-            //Dont think i need this???
-            //this.props.setGraph(g);
             this.props.incrementIDCount();
         } else {
             //convert recently viewed data to curmodel
-           // this.props.setGraph(nextModel);
             this.setState({
                 stateModel: nextModel
             })

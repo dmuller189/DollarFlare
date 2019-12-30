@@ -65,7 +65,6 @@ class SideBar extends React.Component<propsFromRedux> {
                         <ul className="nav flex-column mb-2">
                             {   
                                 this.props.recentlyViewed.reverse().map(e => {
-                                    console.log("Side bar name: " + e.name);
                                     return (
                                       //eventuall biuld in better linking to actual view in data base / redux store
                                       <li className="nav-item" key={e.ID}>
