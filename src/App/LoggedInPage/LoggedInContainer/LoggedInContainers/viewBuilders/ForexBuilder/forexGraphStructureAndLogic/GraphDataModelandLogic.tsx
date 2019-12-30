@@ -154,9 +154,7 @@ export class Graph implements IGraph {
     }
 
     printGraph(): void {
-        console.log(" ------------- ");
-        console.log(this.nodeList);
-        console.log(" -------------- ");
+        
         this.nodeList.map(
             e => console.log(e.name + ", with edges directed to: " + e.neighbors.map(j => j.toNode.name))
         )

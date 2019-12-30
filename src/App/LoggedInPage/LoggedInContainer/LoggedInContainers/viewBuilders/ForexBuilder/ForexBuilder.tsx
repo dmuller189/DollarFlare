@@ -40,22 +40,42 @@ export function containsVal(array: UniversalModel[], val: string): boolean {
 // all together, and some logic may be removed from component did mount
 
 interface localState {
-    stateModel: IGraph
+    stateModel: IGraph,
+    namePlaceholder: string
 }
 
 class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
-    constructor(props: propsFromRedux ) {
+    constructor(props: propsFromRedux) {
         super(props);
 
         this.state = {
-            stateModel: new Graph()
+            stateModel: new Graph(),
+            namePlaceholder: "name placeholder"
         }
 
         this.onChange = this.onChange.bind(this);
         this.findIGraph = this.findIGraph.bind(this);
         this.updateViewRender = this.updateViewRender.bind(this);
         this.uniqueName = this.uniqueName.bind(this);
+        this.onBlur = this.onBlur.bind(this);
+        this.onFocus = this.onFocus.bind(this);
+        //eventually add handlers for add edge, node,.. and the rest
+        //and pass these handlers as props to BaseNetworkViewLevel
+    }
+
+    onBlur() {
+        console.log("on blud");
+        this.setState({
+            namePlaceholder: this.state.namePlaceholder === "" ? "click to edit" : ""
+        })
+    }
+
+    onFocus() {
+        console.log("on focus");
+        this.setState({
+            namePlaceholder: this.state.namePlaceholder === "" ? "click to edit" : this.state.stateModel.name
+        })
     }
 
     /**
@@ -77,7 +97,6 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.setState({
             stateModel: this.state.stateModel.setName(event.currentTarget.value)
         });
-       // this.props.setRecentlyViewed(this.props.builtGraph);
     }
 
     findIGraph(id: string): IGraph | undefined {
@@ -92,8 +111,8 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     updateViewRender() {
         let id = this.state.stateModel.ID;
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
-        nextModel === undefined ? 
-        this.props.addRecentlyViewed(this.state.stateModel) : this.props.setRecentlyViewed(this.state.stateModel);
+        nextModel === undefined ?
+            this.props.addRecentlyViewed(this.state.stateModel) : this.props.setRecentlyViewed(this.state.stateModel);
     }
 
     // To Cover / DO:
@@ -102,14 +121,15 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     //    - load extracted data from next build and set state
     componentDidUpdate(prevProps: propsFromRedux, prevState: localState) {
 
-        
+
         //extract ID from url:
         let url: string = window.location.href;
         let rg: string = "\\d{4}$";
         //@ts-ignore
         let id: string | null = url.match(rg);
 
-        if (prevState.stateModel.ID+"" == id) {
+        //prevents infinite looping, don't delete
+        if (prevState.stateModel.ID + "" == id) {
             return;
         }
 
@@ -117,15 +137,14 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         console.log("Found " + id);
 
         //extract state and save to redux:
-        //  
-        //this.props.setGraph(this.state.stateModel);
-        
+
+
         if (nextModel === undefined) {
             return;
         }
 
         //load extracted data from redux into local state
-        if(nextModel != undefined) {
+        if (nextModel != undefined) {
             console.log("Component did update LOOP???")
 
             this.setState({
@@ -150,8 +169,11 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             g.addNode("JPY");
             g.addNode("USD");
             g.addNode("GBP");
+            g.addEdge("AUD", "JPY");
+            g.printGraph();
+            //consider having ID set in the graph constructor, then making
+            //it read only
             g.setID(this.props.IDcount);
-           
             this.setState({
                 stateModel: g
             })
@@ -178,17 +200,21 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         return (
             <div className="form-group mx-sm-3 mb-2">
                 <br></br>
-        <h1>{this.state.stateModel.name}</h1>
-                <form className="form-inline">
+                <h1>{this.state.stateModel.name}</h1>
+                <form className="form-inline"
+                    onSubmit={e => e.preventDefault()}>
                     <div className="form-groun" >
                         <svg id="Nsvg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        {/* 
+                        //@ts-ignore */}
                         <input id="GName" className="form-control form-control-lg" type="text" name="name" onChange={this.onChange}
-                            //change placeholder to draw from url, get id, find model in recently viewed, render that model's name ?
-                            //or add to the 'component did update bin'
-                            placeholder={ this.state.stateModel.name === "" ? "untitled" : "click to edit name" /*=== "Untitled" ? "Untitled" : this.props.builtGraph.name*/ } />
+                            placeholder={this.state.namePlaceholder}
+                            onfocus={this.onFocus}
+                            onblur={this.onBlur}
+                        />
                     </div>
                 </form>
-                <BaseNetworkViewLevel />
+                <BaseNetworkViewLevel model={this.state.stateModel} />
             </div>
         )
     }
@@ -205,8 +231,8 @@ const mapDispatchToProps = {
     //setViewName: (data: string) => ({ type: SET_VIEW_NAME, data: data }),
     //setGraph: (data: IGraph) => ({ type: SET_GRAPH, data: data }),
     //setCurView: (data: IGraph) => ({ type: SET_CURR_VIEW, data: data }),
-    incrementIDCount: () => ({type: INCREMENT_ID}),
-    setRecentlyViewed: (data: IGraph) => ({type: SET_RECENT_VIEWED, data: data})
+    incrementIDCount: () => ({ type: INCREMENT_ID }),
+    setRecentlyViewed: (data: IGraph) => ({ type: SET_RECENT_VIEWED, data: data })
 }
 
 const connector = connect(
