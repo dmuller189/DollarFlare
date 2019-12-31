@@ -43,7 +43,7 @@ class SideBar extends React.Component<propsFromRedux> {
                             </Link>
                             <Link to='/loggedIn/community'>
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">
+                                    <a className="nav-link" href="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-layers"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
                                         Community
                                 </a>
@@ -55,7 +55,7 @@ class SideBar extends React.Component<propsFromRedux> {
                         </h5>
                         <ul className="nav flex-column mb-2">
                             {   
-                                this.props.recentlyViewed.reverse().map(e => {
+                                this.props.recentlyViewed.map(e => {
                                     return (
                                       //eventuall biuld in better linking to actual view in data base / redux store
                                       <li className="nav-item" key={e.ID}>

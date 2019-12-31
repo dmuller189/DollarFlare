@@ -75,7 +75,6 @@ export default function loggedInReducer(state = initialState, action: loggedInAc
 
 function setRecentlyViewed(arr: UniversalModel[], m: UniversalModel): UniversalModel[] {
     let ans = [...arr];
-
     let index2: number = ans.findIndex(e => e.ID === m.ID);
    //let index: number = arr.findIndex(e => e.ID === m.ID);
     ans[index2] = m;

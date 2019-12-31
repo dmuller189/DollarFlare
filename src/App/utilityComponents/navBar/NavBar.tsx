@@ -9,18 +9,18 @@ export default class NavBar extends React.Component<IProps> {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-primary" id="main-nav">
-                <a className="navbar-brand" href="#">Logo</a>
+                <a className="navbar-brand" href="">Logo</a>
                 <div className="collapse navbar-collapse" id="basicExampleNav">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item active">
-                            <a className="nav-link" href="#">Home
+                            <a className="nav-link" href="">Home
                             </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">About</a>
+                            <a className="nav-link" href="">About</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Gallery</a>
+                            <a className="nav-link" href="">Gallery</a>
                         </li>
                     </ul>
                     <ul className="navbar-nav">

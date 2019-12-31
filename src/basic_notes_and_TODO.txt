@@ -1,0 +1,27 @@
+some TODOs:
+1) workable interacte forexViewer
+    - view and interact with graph
+    - control graph (edges and nodes) editing
+    - query edge weights
+    - implement Bellman-Ford arbitrage algorithm
+    - Pretty! 
+2) second preliminary view with refactor
+    - instead of ./createForex and ./createView2 ...
+        have a /create/ director, so it would look like
+        /create/forex/ and /create/View2 so it could re-use the naming component.
+            - migh include hving to refactor redux store, so seems like 
+            a fair bit of work with perhaps little benefit
+3) nicer file configuration and cut down
+4) Refactoring to reduce waste and re-use 
+    - url encoding (see detail from point 2)
+
+
+miscelanious small things and aesthetics
+    - error handing for messing with the url
+        - entering a new createForex ID in url bar causes infinite loop  
+          Or than a obscure urls break it
+    - css padding and hardcodedness (input forms)
+    - and better styling and more attractive colors/features
+    - hook up to heroku and deploy with dollarflare.com
+    - order of sidebar view listings
+    - placeholder of naming text when switching between views/projects

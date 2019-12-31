@@ -8,35 +8,35 @@ interface IFootList {
   let footList: IFootList[] = [
     {
       title: "About",
-      url: "#",
+      url: "",
     },
     {
       title: "Help",
-      url: "#",
+      url: "",
     },
     {
       title: "Blog",
-      url: "#",
+      url: "",
     },
     {
       title: "Privacy",
-      url: "#",
+      url: "",
     },
     {
       title: "Apps",
-      url: "#",
+      url: "",
     },
     {
       title: "Advertise",
-      url: "#",
+      url: "",
     },
     {
       title: "Developers",
-      url: "#",
+      url: "",
     },
     {
       title: "@ DollarFare",
-      url: "#",
+      url: "",
     },
   ];
 
