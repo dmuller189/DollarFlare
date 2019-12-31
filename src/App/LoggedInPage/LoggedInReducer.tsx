@@ -58,9 +58,6 @@ const initialState: IHomeState = {
 export default function loggedInReducer(state = initialState, action: loggedInActionTypes): IHomeState {
     switch(action.type) {
 
-        // case SET_CURR_VIEW:
-        //     return Object.assign({}, state, {curModel: action.data})
-
         case ADD_RECENTLY_VIEWED:
             return Object.assign({}, state, {recentlyViewed: state.recentlyViewed.concat([action.data])})
 
@@ -77,8 +74,11 @@ export default function loggedInReducer(state = initialState, action: loggedInAc
 }
 
 function setRecentlyViewed(arr: UniversalModel[], m: UniversalModel): UniversalModel[] {
-    let index: number = arr.findIndex(e => e.ID === m.ID);
-    arr[index] = m;
-    return arr;
+    let ans = [...arr];
+
+    let index2: number = ans.findIndex(e => e.ID === m.ID);
+   //let index: number = arr.findIndex(e => e.ID === m.ID);
+    ans[index2] = m;
+    return ans;
 }
 

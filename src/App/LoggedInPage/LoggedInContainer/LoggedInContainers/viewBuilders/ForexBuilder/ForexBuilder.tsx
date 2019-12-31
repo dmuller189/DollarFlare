@@ -91,6 +91,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.setState({
             stateModel: this.state.stateModel.setName(event.currentTarget.value)
         });
+        this.updateViewRender();
     }
 
     findIGraph(id: string): IGraph | undefined {
@@ -137,6 +138,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
 
         if (nextModel === undefined) {
+            this.updateViewRender();
             return;
         }
 
@@ -149,6 +151,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             this.setState({
                 stateModel: nextModel
             })
+            this.updateViewRender();
 
             //arange side bars:
             // selected project moved to top of list

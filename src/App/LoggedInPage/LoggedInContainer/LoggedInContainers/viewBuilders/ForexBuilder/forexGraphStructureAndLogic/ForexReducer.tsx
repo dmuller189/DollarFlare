@@ -4,7 +4,7 @@
 // // - if the IGraph lives in local state alone,
 // //   and since it is only needed in its component
 
-import { IGraph, Graph, NodeName } from './GraphDataModelandLogic';
+import { IGraph } from './GraphDataModelandLogic';
 
 
 // interface IForexBuilderState {
