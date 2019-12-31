@@ -6,6 +6,19 @@ interface IProps {
 }
 
 //class representing the drawing library to render the forex model
+//will be able to:
+//  - select view mode (force vs rigid vs various shapes)
+//  - select and deselect edges and nodes to editing:
+//    - (e.g. remove edge/node, add edge from, add edge to)
+//  - global option of adding an edge
+//  - global option of adding a node
+//  - build edge weights with third party api
+//  - clear all nodes
+//  - clear all edges
+//  - clear selected edges
+//  - clear selected nodes (and thier respective out-edges)
+//  - add all nodes
+//  - add all edges 
 export default class BaseNetworkViewLevel extends React.Component <IProps> {
 
     constructor(props: IProps) {
