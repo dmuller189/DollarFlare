@@ -125,7 +125,6 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     //   - switching from a previously created view into another existing view
     componentDidUpdate(prevProps: propsFromRedux, prevState: localState) {
 
-
         //extract ID from url:
         let url: string = window.location.href;
         let rg: string = "\\d{4}$";
@@ -149,11 +148,16 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
         //load extracted data from redux into local state
         if (nextModel != undefined) {
-            console.log("Component did update LOOP???")
+
+            console.log("in did update to new build: ");
+            console.log(this.props.recentlyViewed.map(e => e.name));
 
             this.setState({
                 stateModel: nextModel
             })
+
+            //arange side bars:
+            // selected project moved to top of list
 
         }
     }

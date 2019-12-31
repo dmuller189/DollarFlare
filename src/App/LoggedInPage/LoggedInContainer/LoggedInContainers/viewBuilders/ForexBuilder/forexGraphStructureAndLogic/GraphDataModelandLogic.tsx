@@ -72,7 +72,7 @@ export class Graph implements IGraph {
         this.nodeList = [];
         this.name = "New Graph";
         this.date = new Date();
-        this.ID = 0;
+        this.ID = 0; //in future access redux store to get newxt id, then dispatch to increment ID count
     }
 
     setModel(g: IGraph): IGraph {
@@ -97,7 +97,7 @@ export class Graph implements IGraph {
 
     addNode(node: NodeName): IGraph {
         if (this.nodeList.map(e => e.name).includes(node)) {
-            throw new Error('Node alread in graph');
+            throw new Error('Node already in graph');
         }
         this.nodeList.push(new Node(node));
         return this;

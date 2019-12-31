@@ -4,16 +4,7 @@ import { Link } from "react-router-dom";
 import {RootState} from '../../App';
 import './SideBar.css';
 
-//TODO
-/*
-Add an 'onCLick()' function for each sidebar link
-*/
 
-
-//in future, add functionality to support clicking to open recently viewed 
-//  -- clicking on  recntly viewed project:
-//       - opens that project
-//       - moves that project to top of  recently viewed list
 class SideBar extends React.Component<propsFromRedux> {
 
     constructor(props: propsFromRedux) {
@@ -73,7 +64,6 @@ class SideBar extends React.Component<propsFromRedux> {
                                           <Link to={'/loggedIn/createForex/?ID=' + e.ID}>
                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                               {
-
                                                   // on view render, read url to check and dynamicly update side bar as user enters editable name
                                                 e.name.length < 18 ? e.name+e.ID : e.name.substring(0,18)+"..."+e.ID}
                                          </Link>
@@ -91,7 +81,7 @@ class SideBar extends React.Component<propsFromRedux> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    builtGraph: state.forexBuilderState.BuiltGraph,
+    //builtGraph: state.forexBuilderState.BuiltGraph,
     recentlyViewed: state.loggedInState.recentlyViewed
 })
 
