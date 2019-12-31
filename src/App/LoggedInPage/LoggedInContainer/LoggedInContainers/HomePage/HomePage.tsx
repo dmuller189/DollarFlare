@@ -1,6 +1,5 @@
 import React from 'react';
 import { RootState } from '../.././../../App';
-import INCREMENT_ID from '../viewBuilders/ForexBuilder/forexGraphStructureAndLogic/ForexReducer';
 import { connect, ConnectedProps } from 'react-redux';
 import { Link } from "react-router-dom";
 import FXTemplate from '../../../../utilityComponents/TemplateViews/FXTemplate/FXTemplate';

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { IGraph } from '../forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 interface IProps {
@@ -40,12 +39,3 @@ export default class BaseNetworkViewLevel extends React.Component <IProps> {
     }
 }
 
-
-// function mapStateToProps(state: any) {
-//     return {
-//         model: state.forexBuilderState.BuiltGraph
-//     }
-// }
-
-
-// export default connect(mapStateToProps)(BaseNetworkViewLevel);

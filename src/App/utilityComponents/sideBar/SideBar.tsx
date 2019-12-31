@@ -81,7 +81,6 @@ class SideBar extends React.Component<propsFromRedux> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-    //builtGraph: state.forexBuilderState.BuiltGraph,
     recentlyViewed: state.loggedInState.recentlyViewed
 })
 

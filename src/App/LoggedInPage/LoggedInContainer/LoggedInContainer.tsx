@@ -4,11 +4,10 @@ import { connect, ConnectedProps } from 'react-redux';
 import Profile from './LoggedInContainers/profilePage/Profile';
 import HomePage from './LoggedInContainers/HomePage/HomePage';
 import CommunityPage from './LoggedInContainers/CommunityPage/CommunityPage';
-import {RootState} from '../../App';
 import ForexBuilder from './LoggedInContainers/viewBuilders/ForexBuilder/ForexBuilder';
 import './LoggedInContainer.css';
 
-class LoggedInContainer extends React.Component<propsFromRedux> {
+class LoggedInContainer extends React.Component {
 
     render() {
         return (
@@ -23,16 +22,5 @@ class LoggedInContainer extends React.Component<propsFromRedux> {
     }
 }
 
-const mapStateToProps = (state: RootState) => ({
-    builtGraph: state.forexBuilderState.BuiltGraph,
-    recentlyViewed: state.loggedInState.recentlyViewed
-})
-
-
-const connector = connect(
-    mapStateToProps
-)
-
-type propsFromRedux = ConnectedProps<typeof connector>;
 
 export default connect()(LoggedInContainer);

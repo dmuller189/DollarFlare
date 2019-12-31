@@ -75,6 +75,7 @@ export class Graph implements IGraph {
         this.ID = 0; //in future access redux store to get newxt id, then dispatch to increment ID count
     }
 
+    //perhaps add option to also change this graph's ID as well
     setModel(g: IGraph): IGraph {
 
         this.nodeList = g.nodeList;

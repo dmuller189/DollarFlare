@@ -1,15 +1,9 @@
 import React from 'react';
-import ReactTooltip from 'react-tooltip';
 import { connect, ConnectedProps } from 'react-redux';
 import { RootState } from '../../../../../App';
 import { Graph, IGraph } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 import BaseNetworkViewLevel from './NetworkViewComponent/BaseNetworkViewLevel';
-import {
-    ADD_NODE, REMOVE_NODE, ADD_EDGE,
-    REMOVE_EDGE, CLEAR_NODES, CLEAR_EDGES, ADD_ALL_NODES,
-    ADD_ALL_EDGES, SET_VIEW_NAME, SET_GRAPH
-} from './forexGraphStructureAndLogic/ForexReducer';
-import { SET_CURR_VIEW, ADD_RECENTLY_VIEWED, INCREMENT_ID, SET_RECENT_VIEWED } from '../../../../LoggedInReducer';
+import { ADD_RECENTLY_VIEWED, INCREMENT_ID, SET_RECENT_VIEWED } from '../../../../LoggedInReducer';
 import './ForexBuilder.css';
 import { UniversalModel } from '../universalModel';
 

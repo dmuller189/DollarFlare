@@ -2,7 +2,7 @@ import {UniversalModel} from './LoggedInContainer/LoggedInContainers/viewBuilder
 import { Graph, IGraph } from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 interface IHomeState {
-    curModel: UniversalModel,
+   // curModel: UniversalModel,
     recentlyViewed: UniversalModel  [],
     IDcount: number
 }
@@ -49,7 +49,7 @@ export function setCurView(m: UniversalModel): loggedInActionTypes {
 
 
 const initialState: IHomeState = {
-    curModel: new Graph(),
+//curModel: new Graph(),
     recentlyViewed: [],
     IDcount: 1000 //consider making this into an iterator<number> instead
 }
@@ -58,8 +58,8 @@ const initialState: IHomeState = {
 export default function loggedInReducer(state = initialState, action: loggedInActionTypes): IHomeState {
     switch(action.type) {
 
-        case SET_CURR_VIEW:
-            return Object.assign({}, state, {curModel: action.data})
+        // case SET_CURR_VIEW:
+        //     return Object.assign({}, state, {curModel: action.data})
 
         case ADD_RECENTLY_VIEWED:
             return Object.assign({}, state, {recentlyViewed: state.recentlyViewed.concat([action.data])})
@@ -70,7 +70,8 @@ export default function loggedInReducer(state = initialState, action: loggedInAc
         case SET_RECENT_VIEWED:
             //let index: number = state.recentlyViewed.findIndex(e => e.ID === action.data.ID);
             return Object.assign({}, state, {recentlyViewed : setRecentlyViewed(state.recentlyViewed, action.data)   } );
-        default:
+        
+            default:
             return state;
     }
 }
