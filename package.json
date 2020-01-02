@@ -11,6 +11,7 @@
     "cytoscape": "^3.11.0",
     "d3": "^5.11.0",
     "react": "^16.9.0",
+    "react-d3-graph": "^2.3.0",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
@@ -18,7 +19,10 @@
     "react-tooltip": "^3.11.1",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.2",
+    "vis-data": "^6.3.1",
+    "vis-network": "^6.5.0",
+    "vis-react": "^0.4.7"
   },
   "scripts": {
     "start": "react-scripts start",
