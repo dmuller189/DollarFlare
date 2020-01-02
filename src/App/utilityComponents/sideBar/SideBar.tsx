@@ -11,6 +11,14 @@ class SideBar extends React.Component<propsFromRedux> {
         super(props);
     }
 
+    //ensures all names are 19 characters long
+    nameSpacePadding(name: string): string {
+        let ans = "";
+        // for(let i = name.length; i <=19; ) {
+        //     ans = ans + " ";
+        // }
+        return ans;
+    }
 
     componentDidUpdate(nextProps: propsFromRedux) {
         this.props.recentlyViewed.forEach(e => console.log("DID UPDATE:" + e.name));
@@ -65,7 +73,7 @@ class SideBar extends React.Component<propsFromRedux> {
                                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                               {
                                                   // on view render, read url to check and dynamicly update side bar as user enters editable name
-                                                e.name.length < 18 ? e.name+e.ID : e.name.substring(0,18)+"..."+e.ID}
+                                                e.name.length < 12 ? e.name+e.ID+this.nameSpacePadding(e.name) : e.name.substring(0,12)+"..."+e.ID}
                                          </Link>
                                           {/* </a> */}
                                       </li>

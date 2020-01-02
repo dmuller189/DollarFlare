@@ -2,19 +2,32 @@ import React from 'react';
 import { IGraph } from '../forexGraphStructureAndLogic/GraphDataModelandLogic';
 //@ts-ignore
 import { Graph } from 'react-d3-graph';
+import './BaseNetworkViewLevel.css';
 
 
 const data = {
-    nodes: [{ id: "Harry",
-            color: "red" }, 
 
-            { id: "Sally",
-            color: "blue" }, 
+    nodes: [{
+        id: "Harry",
+        color: "red"
+    },
 
-            { id: "Alice" }],
+    {
+        id: "Sally",
+        color: "blue"
+    },
+
+    { id: "Alice" }],
+
     links: [{ source: "Harry", target: "Sally" }, { source: "Harry", target: "Alice" }],
 };
+
+
 const myConfig = {
+    minZoom: 1,
+    maxZoom: 1.5,
+    height: window.innerHeight * .8,
+    eidth: 500,
     nodeHighlightBehavior: true,
     node: {
         color: "lightgreen",
@@ -27,57 +40,57 @@ const myConfig = {
 };
 
 const onClickGraph = function () {
-  //  window.alert(`Clicked the graph background`);
+    //  window.alert(`Clicked the graph background`);
 };
 
 //@ts-ignore
 const onClickNode = function (nodeId) {
-   // window.alert(`Clicked node ${nodeId}`);
+    // window.alert(`Clicked node ${nodeId}`);
 };
 //@ts-ignore
 
 const onDoubleClickNode = function (nodeId) {
-   // window.alert(`Double clicked node ${nodeId}`);
+    // window.alert(`Double clicked node ${nodeId}`);
 };
 //@ts-ignore
 
 const onRightClickNode = function (event, nodeId) {
-   // window.alert(`Right clicked node ${nodeId}`);
+    // window.alert(`Right clicked node ${nodeId}`);
 };
 //@ts-ignore
 
 const onMouseOverNode = function (nodeId) {
- //   window.alert(`Mouse over node ${nodeId}`);
+    //   window.alert(`Mouse over node ${nodeId}`);
 };
 //@ts-ignore
 
 const onMouseOutNode = function (nodeId) {
- //   window.alert(`Mouse out node ${nodeId}`);
+    //   window.alert(`Mouse out node ${nodeId}`);
 };
 //@ts-ignore
 
 const onClickLink = function (source, target) {
-  //  window.alert(`Clicked link between ${source} and ${target}`);
+    //  window.alert(`Clicked link between ${source} and ${target}`);
 };
 //@ts-ignore
 
 const onRightClickLink = function (event, source, target) {
-  //  window.alert(`Right clicked link between ${source} and ${target}`);
+    //  window.alert(`Right clicked link between ${source} and ${target}`);
 };
 //@ts-ignore
 
 const onMouseOverLink = function (source, target) {
-  //  window.alert(`Mouse over in link between ${source} and ${target}`);
+    //  window.alert(`Mouse over in link between ${source} and ${target}`);
 };
 //@ts-ignore
 
 const onMouseOutLink = function (source, target) {
-   // window.alert(`Mouse out link between ${source} and ${target}`);
+    // window.alert(`Mouse out link between ${source} and ${target}`);
 };
 //@ts-ignore
 
 const onNodePositionChange = function (nodeId, x, y) {
-  //  window.alert(`Node ${nodeId} is moved to new position. New position is x= ${x} y= ${y}`);
+    //  window.alert(`Node ${nodeId} is moved to new position. New position is x= ${x} y= ${y}`);
 };
 
 
@@ -86,11 +99,6 @@ interface IProps {
 }
 
 interface IState {
-    graph: { id: number, label: string }[],
-    options: any,
-    events: any,
-    style: any,
-
 
 }
 
@@ -123,28 +131,8 @@ export default class BaseNetworkViewLevel extends React.Component<IProps> {
     render() {
         return (
 
-            <div className="d-flex justify-content-center">
-                {/* <h1>
-                    Drawing layer
-              </h1> */}
-{/* 
-                <ul>
-                    {this.props.model.nodeList.map(
-                        e => {
-                            return (
-                                <li>
-
-                                    {e.name + " -> " + e.neighbors.map(
-                                        j => j.toNode.name + ", "
-                                    )}
-                                </li>
-                            )
-                        }
-                    )}
-                </ul> */}
-                <div id="mynetwork"></div>
-
-                <Graph
+            <div className="d-flex justify-content-center" id="mynetwork">
+            <Graph
                     id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
                     data={data}
                     config={myConfig}
@@ -159,7 +147,7 @@ export default class BaseNetworkViewLevel extends React.Component<IProps> {
                     onMouseOutLink={onMouseOutLink}
                     onNodePositionChange={onNodePositionChange}
                 />
-            </div>
+            </div >
         )
     }
 }
