@@ -19,14 +19,15 @@ const data = {
 
     { id: "Alice" }],
 
-    links: [{ source: "Harry", target: "Sally" }, { source: "Harry", target: "Alice" }],
+    links: [{ source: "Harry", target: "Sally", strokeWidth: 10, type: "CURVE_SMOOTH" }, { source: "Harry", target: "Alice" }],
 };
 
 
 const myConfig = {
     minZoom: 1,
     maxZoom: 1.5,
-    height: window.innerHeight * .8,
+    height: window.innerHeight * .85,
+    width: window.innerWidth * .5,
     eidth: 500,
     nodeHighlightBehavior: true,
     node: {
@@ -39,9 +40,14 @@ const myConfig = {
     },
 };
 
-const onClickGraph = function () {
-    //  window.alert(`Clicked the graph background`);
-};
+// const onClickGraph = function () {
+//     //  window.alert(`Clicked the graph background`);
+//     data.nodes.push({
+//         id: "NEW",
+//         color: "blue"
+//     });
+//     alert("clicked graph" + data.nodes.map(e => e.id))
+// };
 
 //@ts-ignore
 const onClickNode = function (nodeId) {
@@ -71,6 +77,7 @@ const onMouseOutNode = function (nodeId) {
 
 const onClickLink = function (source, target) {
     //  window.alert(`Clicked link between ${source} and ${target}`);
+
 };
 //@ts-ignore
 
@@ -99,7 +106,8 @@ interface IProps {
 }
 
 interface IState {
-
+    cons: typeof myConfig,
+    dd: typeof data
 }
 
 //class representing the drawing library to render the forex model
@@ -116,29 +124,90 @@ interface IState {
 //  - clear selected nodes (and thier respective out-edges)
 //  - add all nodes
 //  - add all edges 
-export default class BaseNetworkViewLevel extends React.Component<IProps> {
+export default class BaseNetworkViewLevel extends React.Component<IProps, IState> {
 
     constructor(props: IProps) {
         super(props);
+
+         this.state = {
+             cons: myConfig,
+             dd: {
+
+                nodes: [{
+                    id: "Harry",
+                    color: "red"
+                },
+            
+                {
+                    id: "Sally",
+                    color: "blue"
+                },
+            
+                { id: "Alice" }],
+            
+                links: [{ source: "Harry", target: "Sally", strokeWidth: 10, type: "CURVE_SMOOTH" }, { source: "Harry", target: "Alice" }],
+            }
+         }
+
+         this.onClickGraph = this.onClickGraph.bind(this);
+    }
+
+    /**
+     * converts this components state data to an
+     * array or nodes that the graph library is able to use
+     * TODO
+     */
+    mapStateToLibNodes() {
+        let ans = [];
+
+        return;
+    }
+
+    /**
+     * converts this compnent's state date to 
+     * an array of links that the graph library can 
+     * use to render edges
+     * TODO
+     */
+    mapStateToLibLinks() {
+        let ans = [];
+
+        return;
     }
 
     componentDidMount() {
     }
 
-    drawForex(): void {
+    onClickGraph() {
+
+
+        //new list of nodes
+        let copy = this.state.dd.nodes.concat({
+            id: "NEw",
+            color: "blue"
+        });
+
+        let newData = this.state.dd;
+        newData.nodes = copy;
+
+        this.setState({
+            dd: newData
+        })
+
+        alert("clicked graph" + this.state.dd.nodes.map(e => e.id))
     }
 
     render() {
         return (
 
             <div className="d-flex justify-content-center" id="mynetwork">
-            <Graph
+                <Graph
                     id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
-                    data={data}
+                    data={this.state.dd}
                     config={myConfig}
                     onClickNode={onClickNode}
                     onRightClickNode={onRightClickNode}
-                    onClickGraph={onClickGraph}
+                    onClickGraph={this.onClickGraph}
                     onClickLink={onClickLink}
                     onRightClickLink={onRightClickLink}
                     onMouseOverNode={onMouseOverNode}

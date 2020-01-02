@@ -222,6 +222,15 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
                             />
                         </div>
                     </form>
+                    <br/>
+                    <h3>
+                        Visual Settings
+                    </h3>
+                    {/* visual settings to include:
+                    - edge type (straing vs rounded)
+                    - force vs static vs plain
+                    represented as drop down boxes in state
+                    */}
                 </div>
                 <div className="d-flex p-2 bd-highlight">
                 <BaseNetworkViewLevel model={this.state.stateModel} />
