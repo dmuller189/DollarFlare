@@ -4,25 +4,6 @@ import { IGraph } from '../forexGraphStructureAndLogic/GraphDataModelandLogic';
 import { Graph } from 'react-d3-graph';
 import './BaseNetworkViewLevel.css';
 
-
-const data = {
-
-    nodes: [{
-        id: "Harry",
-        color: "red"
-    },
-
-    {
-        id: "Sally",
-        color: "blue"
-    },
-
-    { id: "Alice" }],
-
-    links: [{ source: "Harry", target: "Sally", strokeWidth: 10, type: "CURVE_SMOOTH" }, { source: "Harry", target: "Alice" }],
-};
-
-
 const myConfig = {
     minZoom: 1,
     maxZoom: 1.5,
@@ -40,74 +21,13 @@ const myConfig = {
     },
 };
 
-// const onClickGraph = function () {
-//     //  window.alert(`Clicked the graph background`);
-//     data.nodes.push({
-//         id: "NEW",
-//         color: "blue"
-//     });
-//     alert("clicked graph" + data.nodes.map(e => e.id))
-// };
-
-//@ts-ignore
-const onClickNode = function (nodeId) {
-    // window.alert(`Clicked node ${nodeId}`);
-};
-//@ts-ignore
-
-const onDoubleClickNode = function (nodeId) {
-    // window.alert(`Double clicked node ${nodeId}`);
-};
-//@ts-ignore
-
-const onRightClickNode = function (event, nodeId) {
-    // window.alert(`Right clicked node ${nodeId}`);
-};
-//@ts-ignore
-
-const onMouseOverNode = function (nodeId) {
-    //   window.alert(`Mouse over node ${nodeId}`);
-};
-//@ts-ignore
-
-const onMouseOutNode = function (nodeId) {
-    //   window.alert(`Mouse out node ${nodeId}`);
-};
-//@ts-ignore
-
-const onClickLink = function (source, target) {
-    //  window.alert(`Clicked link between ${source} and ${target}`);
-
-};
-//@ts-ignore
-
-const onRightClickLink = function (event, source, target) {
-    //  window.alert(`Right clicked link between ${source} and ${target}`);
-};
-//@ts-ignore
-
-const onMouseOverLink = function (source, target) {
-    //  window.alert(`Mouse over in link between ${source} and ${target}`);
-};
-//@ts-ignore
-
-const onMouseOutLink = function (source, target) {
-    // window.alert(`Mouse out link between ${source} and ${target}`);
-};
-//@ts-ignore
-
-const onNodePositionChange = function (nodeId, x, y) {
-    //  window.alert(`Node ${nodeId} is moved to new position. New position is x= ${x} y= ${y}`);
-};
-
-
 interface IProps {
     model: IGraph
 }
 
 interface IState {
     cons: typeof myConfig,
-    dd: typeof data
+    dd:  {nodes: {} [], links: {} []}
 }
 
 //class representing the drawing library to render the forex model
@@ -176,25 +96,34 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
     }
 
     componentDidMount() {
+        this.onClickGraph();
     }
 
     onClickGraph() {
 
 
+        let name: string = Math.round(Math.random()* 1000) + "";
         //new list of nodes
         let copy = this.state.dd.nodes.concat({
-            id: "NEw",
+            id: name,
             color: "blue"
         });
 
+        //new edges
+        let eCopy = this.state.dd.links.concat(
+            { source: name, target: "Alice" }
+        );
+
         let newData = this.state.dd;
         newData.nodes = copy;
+        newData.links = eCopy;
 
         this.setState({
             dd: newData
         })
 
-        alert("clicked graph" + this.state.dd.nodes.map(e => e.id))
+        //@ts-ignore
+       // alert("clicked graph" + this.state.dd.nodes.map(e => e.id))
     }
 
     render() {
@@ -205,16 +134,16 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
                     id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
                     data={this.state.dd}
                     config={myConfig}
-                    onClickNode={onClickNode}
-                    onRightClickNode={onRightClickNode}
+                    // onClickNode={onClickNode}
+                    // onRightClickNode={onRightClickNode}
                     onClickGraph={this.onClickGraph}
-                    onClickLink={onClickLink}
-                    onRightClickLink={onRightClickLink}
-                    onMouseOverNode={onMouseOverNode}
-                    onMouseOutNode={onMouseOutNode}
-                    onMouseOverLink={onMouseOverLink}
-                    onMouseOutLink={onMouseOutLink}
-                    onNodePositionChange={onNodePositionChange}
+                    // onClickLink={onClickLink}
+                    // onRightClickLink={onRightClickLink}
+                    // onMouseOverNode={onMouseOverNode}
+                    // onMouseOutNode={onMouseOutNode}
+                    // onMouseOverLink={onMouseOverLink}
+                    // onMouseOutLink={onMouseOutLink}
+                    // onNodePositionChange={onNodePositionChange}
                 />
             </div >
         )
