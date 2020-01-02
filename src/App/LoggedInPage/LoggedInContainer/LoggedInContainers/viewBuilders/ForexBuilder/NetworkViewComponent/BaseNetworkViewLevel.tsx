@@ -5,16 +5,18 @@ import { Graph } from 'react-d3-graph';
 import './BaseNetworkViewLevel.css';
 
 const myConfig = {
+    //: 200,
+    automaticRearrangeAfterDropNode: true,
     minZoom: 1,
     maxZoom: 1.5,
-    height: window.innerHeight * .85,
+    height: window.innerHeight * .75,
     width: window.innerWidth * .5,
-    eidth: 500,
     nodeHighlightBehavior: true,
     node: {
         color: "lightgreen",
         size: 1000,
         highlightStrokeColor: "blue",
+        
     },
     link: {
         highlightColor: "lightblue",
@@ -55,12 +57,16 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
 
                 nodes: [{
                     id: "Harry",
-                    color: "red"
+                    color: "red",
+                    x: 500,
+                    y: 500
                 },
             
                 {
                     id: "Sally",
-                    color: "blue"
+                    color: "blue",
+                    x: 250,
+                    y: 250
                 },
             
                 { id: "Alice" }],
