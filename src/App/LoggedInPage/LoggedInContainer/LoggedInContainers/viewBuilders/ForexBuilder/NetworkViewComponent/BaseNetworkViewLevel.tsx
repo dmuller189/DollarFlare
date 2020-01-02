@@ -69,7 +69,9 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
                     y: 250
                 },
             
-                { id: "Alice" }],
+                { id: "Alice",
+                x: 500,
+                y: 500 }],
             
                 links: [{ source: "Harry", target: "Sally", strokeWidth: 10, type: "CURVE_SMOOTH" }, { source: "Harry", target: "Alice" }],
             }
@@ -112,7 +114,9 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
         //new list of nodes
         let copy = this.state.dd.nodes.concat({
             id: name,
-            color: "blue"
+            color: "blue",
+            x: 150,
+            y: 150
         });
 
         //new edges
