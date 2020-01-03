@@ -5,7 +5,6 @@ import { Graph } from 'react-d3-graph';
 import './BaseNetworkViewLevel.css';
 
 const myConfig = {
-    //: 200,
     automaticRearrangeAfterDropNode: true,
     minZoom: .75,
     maxZoom: 2,
@@ -16,12 +15,19 @@ const myConfig = {
         color: "lightgreen",
         size: 1000,
         highlightStrokeColor: "blue",
-        
+
     },
     link: {
         highlightColor: "lightblue",
     },
 };
+
+interface libNode {
+    id: string,
+    color: string,
+    x: number,
+    y: number
+}
 
 interface IProps {
     model: IGraph
@@ -29,7 +35,8 @@ interface IProps {
 
 interface IState {
     cons: typeof myConfig,
-    dd:  {nodes: {} [], links: {} []}
+    nodes: libNode[],
+    links: {}[]
 }
 
 //class representing the drawing library to render the forex model
@@ -51,44 +58,49 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
     constructor(props: IProps) {
         super(props);
 
-         this.state = {
-             cons: myConfig,
-             dd: {
+        this.state = {
 
-                nodes: [{
-                    id: "Harry",
-                    color: "red",
-                    x: 500,
-                    y: 500
-                },
-            
-                {
-                    id: "Sally",
-                    color: "blue",
-                    x: 250,
-                    y: 250
-                },
-            
-                { id: "Alice",
+            cons: myConfig,
+
+            nodes: [{
+                id: "Harry",
+                color: "red",
                 x: 500,
-                y: 500 }],
-            
-                links: [{ source: "Harry", target: "Sally", strokeWidth: 10, type: "CURVE_SMOOTH" }, { source: "Harry", target: "Alice" }],
-            }
-         }
+                y: 500
+            },
+            {
+                id: "Sally",
+                color: "blue",
+                x: 250,
+                y: 250
+            },
+            {
+                id: "Alice",
+                color: "red",
+                x: 500,
+                y: 500
+            }],
 
-         this.onClickGraph = this.onClickGraph.bind(this);
+            links: [] //[{ source: "Harry", target: "Sally", strokeWidth: 10, type: "CURVE_SMOOTH" }, { source: "Harry", target: "Alice" }],
+        }
+
+        this.onClickGraph = this.onClickGraph.bind(this);
+        this.mapStateToLibNodes = this.mapStateToLibNodes.bind(this);
     }
-
     /**
      * converts this components state data to an
      * array or nodes that the graph library is able to use
      * TODO
      */
     mapStateToLibNodes() {
-        let ans = [];
 
-        return;
+        let stateNodes: libNode[] = this.props.model.nodeList.map(e => {
+            return { id: e.name + "", color: "blue", x: 250, y: 250 }
+        })
+
+        this.setState({
+            nodes: stateNodes,
+        });
     }
 
     /**
@@ -104,15 +116,14 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
     }
 
     componentDidMount() {
-        this.onClickGraph();
+        // this.mapStateToLibNodes();
     }
 
     onClickGraph() {
 
-
-        let name: string = Math.round(Math.random()* 1000) + "";
+        let name: string = Math.round(Math.random() * 1000) + "";
         //new list of nodes
-        let copy = this.state.dd.nodes.concat({
+        let nodesCopy = this.state.nodes.concat({
             id: name,
             color: "blue",
             x: 150,
@@ -120,20 +131,24 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
         });
 
         //new edges
-        let eCopy = this.state.dd.links.concat(
+        let linksCopy = this.state.links.concat(
             { source: name, target: "Alice" }
         );
 
-        let newData = this.state.dd;
-        newData.nodes = copy;
-        newData.links = eCopy;
 
         this.setState({
-            dd: newData
+            nodes: nodesCopy,
+            links: linksCopy
         })
 
-        //@ts-ignore
-       // alert("clicked graph" + this.state.dd.nodes.map(e => e.id))
+    }
+
+    buildData(): { nodes: libNode[], links: {}[] } {
+        const data = {
+            nodes: this.state.nodes,
+            links: this.state.links
+        }
+        return data;
     }
 
     render() {
@@ -142,18 +157,36 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
             <div className="d-flex justify-content-center" id="mynetwork">
                 <Graph
                     id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
-                    data={this.state.dd}
+                    data={
+                            this.buildData()
+                        // {
+                        //     nodes:    [
+                        //         {
+                        //             id: "id",
+                        //             color: "red",         // only this node will be red
+                        //             size: 300,            // only this node will have size 300
+                        //             symbolType: "diamond" // only this node will have "diamond" shape
+                        //         }
+                        //     ],
+                        //     links: []                    
+                        // }
+                    
+                        
+                        
+                        //this.buildData()
+                    
+                    }
                     config={myConfig}
                     // onClickNode={onClickNode}
                     // onRightClickNode={onRightClickNode}
                     onClickGraph={this.onClickGraph}
-                    // onClickLink={onClickLink}
-                    // onRightClickLink={onRightClickLink}
-                    // onMouseOverNode={onMouseOverNode}
-                    // onMouseOutNode={onMouseOutNode}
-                    // onMouseOverLink={onMouseOverLink}
-                    // onMouseOutLink={onMouseOutLink}
-                    // onNodePositionChange={onNodePositionChange}
+                // onClickLink={onClickLink}
+                // onRightClickLink={onRightClickLink}
+                // onMouseOverNode={onMouseOverNode}
+                // onMouseOutNode={onMouseOutNode}
+                // onMouseOverLink={onMouseOverLink}
+                // onMouseOutLink={onMouseOutLink}
+                // onNodePositionChange={onNodePositionChange}
                 />
             </div >
         )

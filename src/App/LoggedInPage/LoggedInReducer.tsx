@@ -1,8 +1,6 @@
 import {UniversalModel} from './LoggedInContainer/LoggedInContainers/viewBuilders/universalModel';
-import { Graph, IGraph } from './LoggedInContainer/LoggedInContainers/viewBuilders/ForexBuilder/forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 interface IHomeState {
-   // curModel: UniversalModel,
     recentlyViewed: UniversalModel  [],
     IDcount: number
 }
@@ -17,11 +15,6 @@ interface AddRecentlyViewedAction {
     data: UniversalModel
 }
 
-interface SetCurViewAction {
-    type: typeof SET_CURR_VIEW,
-    data: UniversalModel
-}
-
 interface IncrementIDCount {
     type: typeof INCREMENT_ID,
 
@@ -31,7 +24,7 @@ interface SetRecentViewed {
     type: typeof SET_RECENT_VIEWED,
     data: UniversalModel
 }
-type loggedInActionTypes = AddRecentlyViewedAction | SetCurViewAction | IncrementIDCount | SetRecentViewed;
+type loggedInActionTypes = AddRecentlyViewedAction | IncrementIDCount | SetRecentViewed;
 
 export function addRecentlyViewed(m: UniversalModel): loggedInActionTypes {
     return {
@@ -40,16 +33,7 @@ export function addRecentlyViewed(m: UniversalModel): loggedInActionTypes {
     }
 }
 
-export function setCurView(m: UniversalModel): loggedInActionTypes {
-    return {
-        type: SET_CURR_VIEW,
-        data: m
-    }
-}
-
-
 const initialState: IHomeState = {
-//curModel: new Graph(),
     recentlyViewed: [],
     IDcount: 1000 //consider making this into an iterator<number> instead
 }
