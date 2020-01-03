@@ -7,8 +7,8 @@ import './BaseNetworkViewLevel.css';
 const myConfig = {
     //: 200,
     automaticRearrangeAfterDropNode: true,
-    minZoom: 1,
-    maxZoom: 1.5,
+    minZoom: .75,
+    maxZoom: 2,
     height: window.innerHeight * .75,
     width: window.innerWidth * .5,
     nodeHighlightBehavior: true,

@@ -41,24 +41,9 @@ export interface IGraph {
     removeEdge(from: NodeName, to: NodeName): IGraph,
     updateEdgeWeights(): IGraph,
     setModel(g: IGraph): IGraph,
-
     //Graph Algorithms
     findArbitrage(): IGraphArbitragePath,
-
     printGraph: Function;
-}
-
-interface INode {
-    readonly name: NodeName,
-    neighbors:  IEdge []
-    //which signature? (INode vs NodeName)
-    addEdge(to: INode): void,
-    removeEdge(to: NodeName): INode;
-}
-
-interface IEdge {
-    toNode: INode,
-    weight: number
 }
 
 export class Graph implements IGraph {
@@ -144,9 +129,9 @@ export class Graph implements IGraph {
         return this;
     }
 
+    //TODO - bellman-ford for negative cycles of weights
     findArbitrage(): IGraphArbitragePath {
         
-        //placeholder code for eventual implementation of bellman ford arbitrage algorithm
         let g: IGraph = new Graph();
 
         let paths: IGraphArbitragePath = {paths: [g]};
@@ -162,6 +147,18 @@ export class Graph implements IGraph {
     }
 }
 
+interface INode {
+    readonly name: NodeName,
+    neighbors:  IEdge []
+    //which signature? (INode vs NodeName)
+    addEdge(to: INode): void,
+    removeEdge(to: NodeName): INode;
+}
+
+interface IEdge {
+    toNode: INode,
+    weight: number
+}
 class Edge implements IEdge {
     toNode: INode;
     weight: number;

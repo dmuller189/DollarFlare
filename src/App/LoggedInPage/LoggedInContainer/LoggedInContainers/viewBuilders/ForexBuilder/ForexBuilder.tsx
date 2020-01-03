@@ -6,6 +6,8 @@ import BaseNetworkViewLevel from './NetworkViewComponent/BaseNetworkViewLevel';
 import { ADD_RECENTLY_VIEWED, INCREMENT_ID, SET_RECENT_VIEWED } from '../../../../LoggedInReducer';
 import './ForexBuilder.css';
 import { UniversalModel } from '../universalModel';
+import ForexRatesTable from './ForexRatesTable/ForexRatesTable';
+import { NodeName } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 
 //componenet did mount:
@@ -57,6 +59,89 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         //eventually add handlers for add edge, node,.. and the rest
         //and pass these handlers as props to BaseNetworkViewLevel
     }
+
+
+    //Consider adding error handling ala try-catch
+    ////////////////////
+
+    /**
+     * Handles the state change from the user adding an edge on the graph
+     * @param from the from node of the edge
+     * @param to the to node of the edge
+     */
+    handleAddEdge(from: NodeName, to: NodeName) {
+        let newGraph = new Graph();
+        newGraph.setModel(this.state.stateModel);
+        newGraph.setID(this.state.stateModel.ID);
+        newGraph.addEdge(from, to);
+
+        this.setState({
+            stateModel: newGraph
+        })
+    }
+
+    /**
+     * Handles the state change from the user removing an edge from this graph
+     * @param from the from node of the edge
+     * @param to the too node of the edge
+     */
+    handleRemoveEdge(from: NodeName, to: NodeName) {
+        let newGraph = new Graph();
+        newGraph.setModel(this.state.stateModel);
+        newGraph.setID(this.state.stateModel.ID);
+        newGraph.removeEdge(from, to);
+
+        this.setState({
+            stateModel: newGraph
+        })
+
+    }
+
+
+    /**
+     * Handles the state change from the user adding a node on this graph
+     * @param node 
+     */
+    handleAddNode (node: NodeName): void {
+        let newGraph = new Graph();
+        newGraph.setModel(this.state.stateModel);
+        newGraph.setID(this.state.stateModel.ID);
+        newGraph.addNode(node);
+
+        this.setState({
+            stateModel: newGraph
+        })
+
+    }
+
+    /**
+     * Handles the state change from the user removing a node on this graph
+     * @param node 
+     */
+    handleRemoveNode (node: NodeName) {
+        let newGraph = new Graph();
+        newGraph.setModel(this.state.stateModel);
+        newGraph.setID(this.state.stateModel.ID);
+        newGraph.removeNode(node);
+
+        this.setState({
+            stateModel: newGraph
+        })
+    }
+
+    handleUpdateEdgeWeight(from: NodeName, to: NodeName, weight: number) {
+
+        let newGraph = new Graph();
+        newGraph.setModel(this.state.stateModel);
+        newGraph.setID(this.state.stateModel.ID);
+
+        this.setState({
+            stateModel: newGraph
+        })
+
+    }
+
+    ////////////////////
 
     onBlur() {
         console.log("on blud");
@@ -119,7 +204,6 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     // vs
     //   - switching from a previously created view into another existing view
     componentDidUpdate(prevProps: propsFromRedux, prevState: localState) {
-
         //extract ID from url:
         let url: string = window.location.href;
         let rg: string = "\\d{4}$";
@@ -132,7 +216,6 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         }
 
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
-        console.log("Found " + id);
 
         //extract state and save to redux:
 
@@ -144,18 +227,10 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
         //load extracted data from redux into local state
         if (nextModel != undefined) {
-
-            console.log("in did update to new build: ");
-            console.log(this.props.recentlyViewed.map(e => e.name));
-
             this.setState({
                 stateModel: nextModel
             })
             this.updateViewRender();
-
-            //arange side bars:
-            // selected project moved to top of list
-
         }
     }
     //same process as above.  check url, if new, create new set up, if exists, render that view
@@ -189,16 +264,9 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
                 stateModel: nextModel
             })
         }
-
     }
     componentWillUnmount() {
-
         this.updateViewRender();
-        // if (nextModel === undefined) {
-        //     this.props.addRecentlyViewed(this.props.builtGraph);
-        // } else {
-        //     this.props.setRecentlyViewed(this.props.builtGraph);
-        // }
     }
 
     render() {
@@ -229,31 +297,28 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
                     {/* visual settings to include:
                     - edge type (straing vs rounded)
                     - force vs static vs plain
+                    - click to center graph
                     represented as drop down boxes in state
                     */}
                 </div>
                 <div className="d-flex p-2 bd-highlight">
-                <BaseNetworkViewLevel model={this.state.stateModel} />
-                
+                <BaseNetworkViewLevel model={this.state.stateModel} /> 
                 </div>
-
-                
+                <div className="d-flex p-2 bd-highlight">
+                    <ForexRatesTable />
+                </div>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state: RootState) => ({
-    //builtGraph: state.forexBuilderState.BuiltGraph,
     recentlyViewed: state.loggedInState.recentlyViewed,
     IDcount: state.loggedInState.IDcount
 })
 
 const mapDispatchToProps = {
     addRecentlyViewed: (data: IGraph) => ({ type: ADD_RECENTLY_VIEWED, data: data }),
-    //setViewName: (data: string) => ({ type: SET_VIEW_NAME, data: data }),
-    //setGraph: (data: IGraph) => ({ type: SET_GRAPH, data: data }),
-    //setCurView: (data: IGraph) => ({ type: SET_CURR_VIEW, data: data }),
     incrementIDCount: () => ({ type: INCREMENT_ID }),
     setRecentlyViewed: (data: IGraph) => ({ type: SET_RECENT_VIEWED, data: data })
 }

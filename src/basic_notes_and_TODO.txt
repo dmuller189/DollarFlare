@@ -14,6 +14,7 @@ some TODOs:
 3) nicer file configuration and cut down
 4) Refactoring to reduce waste and re-use 
     - url encoding (see detail from point 2)
+5) a numerical table of values of exchange rate next to graph (dynamic, of course)
 
 
 miscelanious small things and aesthetics
@@ -25,3 +26,4 @@ miscelanious small things and aesthetics
     - hook up to heroku and deploy with dollarflare.com
     - order of sidebar view listings
     - placeholder of naming text when switching between views/projects
+    - HowToo's and tooltips for first time interacting 
