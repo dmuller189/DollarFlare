@@ -29,6 +29,13 @@ interface libNode {
     y: number
 }
 
+interface libEdge {
+    source: string,
+    target: string,
+    strokeWidth: number,
+    type: string
+}
+
 interface IProps {
     model: IGraph
 }
@@ -36,7 +43,7 @@ interface IProps {
 interface IState {
     cons: typeof myConfig,
     nodes: libNode[],
-    links: {}[]
+    links: libEdge[]
 }
 
 //class representing the drawing library to render the forex model
@@ -59,9 +66,7 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
         super(props);
 
         this.state = {
-
             cons: myConfig,
-
             nodes: [{
                 id: "Harry",
                 color: "red",
@@ -98,9 +103,11 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
             return { id: e.name + "", color: "blue", x: 250, y: 250 }
         })
 
-        this.setState({
-            nodes: stateNodes,
-        });
+        console.log("state nodes from props are: ");
+        console.log(stateNodes);
+        // this.setState({
+        //     nodes: stateNodes,
+        // });
     }
 
     /**
@@ -116,10 +123,12 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
     }
 
     componentDidMount() {
-        // this.mapStateToLibNodes();
+       // this.mapStateToLibNodes();
     }
 
     onClickGraph() {
+
+        this.mapStateToLibNodes();
 
         let name: string = Math.round(Math.random() * 1000) + "";
         //new list of nodes
@@ -131,19 +140,20 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
         });
 
         //new edges
-        let linksCopy = this.state.links.concat(
-            { source: name, target: "Alice" }
+        let linksCopy: libEdge[] = this.state.links.concat({ 
+            source: name, 
+            target: "Alice", 
+            strokeWidth: 10, 
+            type: "CURVE_SMOOTH"}
         );
-
 
         this.setState({
             nodes: nodesCopy,
             links: linksCopy
         })
-
     }
 
-    buildData(): { nodes: libNode[], links: {}[] } {
+    buildData(): { nodes: libNode[], links: libEdge[] } {
         const data = {
             nodes: this.state.nodes,
             links: this.state.links
@@ -157,25 +167,7 @@ export default class BaseNetworkViewLevel extends React.Component<IProps, IState
             <div className="d-flex justify-content-center" id="mynetwork">
                 <Graph
                     id="graph-id" // id is mandatory, if no id is defined rd3g will throw an error
-                    data={
-                            this.buildData()
-                        // {
-                        //     nodes:    [
-                        //         {
-                        //             id: "id",
-                        //             color: "red",         // only this node will be red
-                        //             size: 300,            // only this node will have size 300
-                        //             symbolType: "diamond" // only this node will have "diamond" shape
-                        //         }
-                        //     ],
-                        //     links: []                    
-                        // }
-                    
-                        
-                        
-                        //this.buildData()
-                    
-                    }
+                    data={this.buildData()}
                     config={myConfig}
                     // onClickNode={onClickNode}
                     // onRightClickNode={onRightClickNode}
