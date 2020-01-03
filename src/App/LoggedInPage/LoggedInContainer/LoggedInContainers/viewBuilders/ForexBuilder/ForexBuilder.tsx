@@ -104,9 +104,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
      */
     handleAddNode (node: NodeName): void {
         let newGraph = new Graph();
-        newGraph.setModel(this.state.stateModel);
-        newGraph.setID(this.state.stateModel.ID);
-        newGraph.addNode(node);
+        newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID).addNode(node);
 
         this.setState({
             stateModel: newGraph
@@ -120,9 +118,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
      */
     handleRemoveNode (node: NodeName) {
         let newGraph = new Graph();
-        newGraph.setModel(this.state.stateModel);
-        newGraph.setID(this.state.stateModel.ID);
-        newGraph.removeNode(node);
+        newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID).removeNode(node);
 
         this.setState({
             stateModel: newGraph
@@ -132,13 +128,11 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     handleUpdateEdgeWeight(from: NodeName, to: NodeName, weight: number) {
 
         let newGraph = new Graph();
-        newGraph.setModel(this.state.stateModel);
-        newGraph.setID(this.state.stateModel.ID);
+        newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID);
 
         this.setState({
             stateModel: newGraph
         })
-
     }
 
     ////////////////////

@@ -15,6 +15,8 @@ some TODOs:
 4) Refactoring to reduce waste and re-use 
     - url encoding (see detail from point 2)
 5) a numerical table of values of exchange rate next to graph (dynamic, of course)
+6) Documentation
+7) Testing
 
 
 miscelanious small things and aesthetics

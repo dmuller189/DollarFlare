@@ -41,11 +41,16 @@ export interface IGraph {
     removeEdge(from: NodeName, to: NodeName): IGraph,
     updateEdgeWeights(): IGraph,
     setModel(g: IGraph): IGraph,
-    //Graph Algorithms
-    findArbitrage(): IGraphArbitragePath,
+    setEdgeWeight(from: NodeName, to: NodeName, weight: number): IGraph
+    findArbitrage(): IGraphArbitragePath, //re-consider when known
     printGraph: Function;
 }
 
+
+/**
+ * Represents an implementation of a weighted, directed graph via an
+ * adjacency list
+ */
 export class Graph implements IGraph {
 
     nodeList: INode [];
@@ -76,7 +81,7 @@ export class Graph implements IGraph {
         return this;
     }
 
-    setID(n: number) {
+    setID(n: number): IGraph {
         this.ID = n;
         return this;
     }
@@ -125,7 +130,18 @@ export class Graph implements IGraph {
     }
 
     updateEdgeWeights(): IGraph {
-        //calling server -> API -> updating edge weights
+        //calling API -> get weights -> iterate and update edge weights
+        return this;
+    }
+
+    setEdgeWeight(from: NodeName, to: NodeName, weight: number): IGraph {
+
+        let fromNode: INode | undefined = this.nodeList.find(e => e.name === from);
+
+        if(fromNode !== undefined) {
+            fromNode.updateEdgeWeight(to, weight);
+            return this;
+         }
         return this;
     }
 
@@ -140,25 +156,18 @@ export class Graph implements IGraph {
     }
 
     printGraph(): void {
-        
         this.nodeList.map(
             e => console.log(e.name + ", with edges directed to: " + e.neighbors.map(j => j.toNode.name))
         )
     }
 }
 
-interface INode {
-    readonly name: NodeName,
-    neighbors:  IEdge []
-    //which signature? (INode vs NodeName)
-    addEdge(to: INode): void,
-    removeEdge(to: NodeName): INode;
-}
-
 interface IEdge {
     toNode: INode,
-    weight: number
+    weight: number,
+    setWeight(weight: number): IEdge
 }
+
 class Edge implements IEdge {
     toNode: INode;
     weight: number;
@@ -167,6 +176,19 @@ class Edge implements IEdge {
         this.toNode = node;
         this.weight = w;
     }
+
+    setWeight(weight: number): IEdge {
+        this.weight = weight;
+        return this;
+    }
+}
+
+interface INode {
+    readonly name: NodeName,
+    neighbors:  IEdge []
+    addEdge(to: INode): INode,
+    removeEdge(to: NodeName): INode,
+    updateEdgeWeight(to: NodeName, weight: number): INode
 }
 
 class Node implements INode {
@@ -178,20 +200,41 @@ class Node implements INode {
         this.neighbors = [];
     } 
 
-    addEdge(to: INode) {
+    /**
+     * Adds an edge on this node to the specified 'to' node
+     * @param to the node to add the edge to
+     */
+    addEdge(to: INode): INode {
         //test if edge exists
         if (this.neighbors.filter(e => e.toNode.name === to.name).length===0) {
             console.log("edge from " + this.name + " to " + to.name + " already exists");
         }
-
         this.neighbors.push(new Edge(to, 99));
+        return this;
     }
 
-    removeEdge(to: NodeName) {
+    /**
+     * Removes the specified edge from this node 
+     * @param to the node from which the edge will be removed
+     */
+    removeEdge(to: NodeName): INode {
         //removes edge to another node, returns this node
         this.neighbors = this.neighbors.filter(
             e => e.toNode.name !== to
         )
+        return this;
+    }
+
+    /**
+     * Sets the edge weight of a specified edge
+     * @param to the node that speficies which edge to update
+     * @param weight the value of the new weight to be set
+     */
+    updateEdgeWeight(to: NodeName, weight: number): INode {
+        let foundEdge: IEdge | undefined = this.neighbors.find(e => e.toNode.name === to);
+        if (foundEdge !== undefined) {
+            foundEdge.setWeight(weight);
+        }
         return this;
     }
 }
