@@ -62,7 +62,7 @@ interface localState {
     stateModel: IGraph,
     namePlaceholder: string
 
-    //for 'Visual settings'
+    //for 'Visual settings' (addNode, removeNode)
     selectedNode: NodeName | "Select Node" | string //for now
 }
 
@@ -83,13 +83,18 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.uniqueName = this.uniqueName.bind(this);
         this.onBlur = this.onBlur.bind(this);
         this.onFocus = this.onFocus.bind(this);
+        this.getNodesInState = this.getNodesInState.bind(this);
         //eventually add handlers for add edge, node,.. and the rest
         //and pass these handlers as props to BaseNetworkViewLevel
     }
 
 
-    //Consider adding error handling ala try-catch
-    ////////////////////
+    /**
+     * Returns an array of the names of the nodes in this components state
+     */
+    getNodesInState(): NodeName[] {
+        return this.state.stateModel.nodeList.map(e => e.name);
+    }
 
     /**
      * Handles the state change from the user adding an edge on the graph
@@ -98,9 +103,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
      */
     handleAddEdge(from: NodeName, to: NodeName) {
         let newGraph = new Graph();
-        newGraph.setModel(this.state.stateModel);
-        newGraph.setID(this.state.stateModel.ID);
-        newGraph.addEdge(from, to);
+        newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID).addEdge(from, to);
 
         this.setState({
             stateModel: newGraph
@@ -123,7 +126,6 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         })
 
     }
-
 
     /**
      * Handles the state change from the user adding a node on this graph
@@ -162,8 +164,6 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             stateModel: newGraph
         })
     }
-
-    ////////////////////
 
     onBlur() {
         console.log("on blud");
@@ -209,6 +209,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
         return nextModel;
     }
+
 
     updateViewRender() {
         let id = this.state.stateModel.ID;
@@ -331,7 +332,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
 
                         <div className="dropdown">
-                            Add Node - 
+                            Add Node -
                             <button className="btn btn-secondary-outline dropdown-toggle dropdownMenuButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {this.state.selectedNode}
                             </button>
