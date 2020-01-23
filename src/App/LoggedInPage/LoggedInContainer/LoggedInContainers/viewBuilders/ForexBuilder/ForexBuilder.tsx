@@ -168,8 +168,19 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
      */
     handleAddNode(node: NodeName): void {
         let newGraph = new Graph();
+
+        //adds the node
         newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID).addNode(node);
 
+        //adds edges to and from the new node to all existing nodes
+        let edgesToAdd: NodeName[] = this.getNodesInState();
+        edgesToAdd.forEach(
+            e => {
+                newGraph.addEdge(e, node);
+                newGraph.addEdge(node, e);
+            }
+        )
+        
         this.setState({
             stateModel: newGraph,
             selectedNode: "Select Node"
@@ -250,7 +261,9 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         return nextModel;
     }
 
-
+    /**
+     * handles rendering recently viewed for a new or existing model
+     */
     updateViewRender() {
         let id = this.state.stateModel.ID;
         let nextModel: IGraph | undefined = this.findIGraph(id + "");
@@ -258,14 +271,6 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             this.props.addRecentlyViewed(this.state.stateModel) : this.props.setRecentlyViewed(this.state.stateModel);
     }
 
-    // To Cover / DO:
-    // - loading a different 'createForex' with different ID (switching between 2 forex views)
-    //    - extract state in prev build and save to redux
-    //    - load extracted data from next build and set state
-    // - CONSIDER:
-    //   - switching a newly created view(local id will equal redux id counter-1) (i.e will not exist is recently viewed)
-    // vs
-    //   - switching from a previously created view into another existing view
     componentDidUpdate(prevProps: propsFromRedux, prevState: localState) {
         //extract ID from url:
         let url: string = window.location.href;
@@ -376,7 +381,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
 
 
-
+                        {/* to add nodes */}
                         <div className="dropdown show">
                             Add Node -
                             <button className="btn btn-secondary-outline dropdown-toggle dropdownMenuButton" type="button" id="dropdownMenuButton" data-toggle="dropdown show" aria-haspopup="true" aria-expanded="false">
@@ -393,6 +398,33 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
                                 Go
                             </button>
                         </div>
+
+
+
+                        <br/>
+                        {/* to remove nodes */}
+                        <div className="dropdown show">
+                            Remove Node -
+                            <button className="btn btn-secondary-outline dropdown-toggle dropdownMenuButton" type="button" id="dropdownMenuButton" data-toggle="dropdown show" aria-haspopup="true" aria-expanded="false">
+                                {this.state.selectedNode}
+                            </button>
+
+                            {/* //iterte through available nodes to remove */}
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="">Another action</a>
+                                <a className="dropdown-item" href="">Something else here</a>
+                            </div>
+
+
+                            <button className="btn gobutton" type="button" onClick={this.handleClickAddNode} id="dropdownMenuButton" data-toggle="dropdown show" aria-haspopup="true" aria-expanded="false">
+                                Go
+                            </button>
+                        </div>
+
+                        <br>
+                        </br>
+
+
 
 
 
