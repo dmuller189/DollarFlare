@@ -10,7 +10,7 @@ import ForexRatesTable from './ForexRatesTable/ForexRatesTable';
 import { NodeName } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 
-const nodeNamesList: NodeName[] = [
+const AllNodeNamesList: NodeName[] = [
     "USD", //US Do
     , "EUR" // EU Euro
     , "JPY" //Japanese Yen
@@ -52,18 +52,14 @@ export function containsVal(array: UniversalModel[], val: string): boolean {
     return (array.filter(e => e.name === val).length > 0);
 }
 
-//TODO:
-//
-//The functionality of component didnmount had to be put in componentDidUpdate / willRP 
-// in order to be able to traver forex to forex, not having to leave the builder page
-// all together, and some logic may be removed from component did mount
 
 interface localState {
     stateModel: IGraph,
     namePlaceholder: string
 
     //for 'Visual settings' (addNode, removeNode)
-    selectedNode: NodeName | "Select Node" | string //for now
+    selectedNode: string //(NodeName or placeholder)
+    addNodeListOpen: boolean
 }
 
 class ForexBuilder extends React.Component<propsFromRedux, localState> {
@@ -74,7 +70,8 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.state = {
             stateModel: new Graph(),
             namePlaceholder: "name placeholder",
-            selectedNode: "Select Node"
+            selectedNode: "Select Node",
+            addNodeListOpen: false
         }
 
         this.onChange = this.onChange.bind(this);
@@ -84,16 +81,41 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.onBlur = this.onBlur.bind(this);
         this.onFocus = this.onFocus.bind(this);
         this.getNodesInState = this.getNodesInState.bind(this);
+        this.getNodesNotInState = this.getNodesNotInState.bind(this);
         //eventually add handlers for add edge, node,.. and the rest
         //and pass these handlers as props to BaseNetworkViewLevel
     }
 
+    /**
+     * returns the NodeName corresponding to the input if it exists, or returns undefined 
+     * @param maybeName 
+     */
+    findNodeName(maybeName: string): NodeName | undefined {
+        return AllNodeNamesList.find(e => e === maybeName);
+    }
 
     /**
      * Returns an array of the names of the nodes in this components state
      */
     getNodesInState(): NodeName[] {
         return this.state.stateModel.nodeList.map(e => e.name);
+    }
+
+
+    /**
+     * returns an array of the names of nodes (NodeNames) that are not in the state model
+     * effectively returns AllNodeNames - NodesInState
+     */
+    getNodesNotInState(): NodeName[] {
+
+        let inStateNodes: NodeName[] = this.getNodesInState();
+
+        return AllNodeNamesList.filter(
+            e => {
+                return !inStateNodes.includes(e);
+            }
+        )
+
     }
 
     /**
@@ -125,6 +147,19 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             stateModel: newGraph
         })
 
+    }
+
+
+    /**
+     * wrapper function to handle adding a node
+     */
+    handleClickAddNode(event: React.MouseEvent<HTMLElement>): void {
+        let inString: string = this.state.selectedNode;
+        let node: NodeName | undefined = this.findNodeName(inString);
+
+        if (node !== undefined) {
+            this.handleAddNode(node);
+        }
     }
 
     /**
@@ -201,6 +236,11 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.updateViewRender();
     }
 
+    /**
+     * looks through redux stores recently viewed IGraphs and returns the 
+     * IGraph with the matching input id
+     * @param id 
+     */
     findIGraph(id: string): IGraph | undefined {
 
         let nextModel: IGraph | undefined = this.props.recentlyViewed.find(function (view: any) {
@@ -292,7 +332,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.updateViewRender();
     }
 
-    onSelectNode(event: React.FormEvent<HTMLInputElement>) {
+    onSelectNode(event: React.FormEvent<HTMLInputElement>): void {
         console.log(event.currentTarget);
         this.setState({
             selectedNode: event.currentTarget + ""
@@ -327,34 +367,52 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
                     </h3>
                     <br />
 
+
+                    {/* begin editing features and interactivity
+///////////////////////////////////////////////////////////
+*/}
                     <h4>
 
 
 
-                        <div className="dropdown">
+
+
+                        <div className="dropdown show">
                             Add Node -
-                            <button className="btn btn-secondary-outline dropdown-toggle dropdownMenuButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button className="btn btn-secondary-outline dropdown-toggle dropdownMenuButton" type="button" id="dropdownMenuButton" data-toggle="dropdown show" aria-haspopup="true" aria-expanded="false">
                                 {this.state.selectedNode}
                             </button>
 
-                            <div className="dropdown-menu " aria-labelledby="dropdownMenuButton">
-                                <a className="dropdown-item" href="#">Action</a>
-                                <a className="dropdown-item" href="#">Another action</a>
-                                <a className="dropdown-item" href="#">Something else here</a>
+                            <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="">Another action</a>
+                                <a className="dropdown-item" href="">Something else here</a>
                             </div>
 
 
-                            <button className="btn gobutton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button className="btn gobutton" type="button" onClick={this.handleClickAddNode} id="dropdownMenuButton" data-toggle="dropdown show" aria-haspopup="true" aria-expanded="false">
                                 Go
                             </button>
-
-
-
                         </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
                     </h4>
 
+
+
+                    {/* end editing features and interactivity
+///////////////////////////////////////////////////////////
+*/}
                 </div>
                 <div className="d-flex p-2 bd-highlight">
                     <BaseNetworkViewLevel model={this.state.stateModel} />
