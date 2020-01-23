@@ -15,7 +15,10 @@ To navigate thies webapp's functionality, on the landing page select 'continue a
 
 
 TODO:
-    - server and DB
-    -   most perifery pages such as:
-        - login, forgot password, sign-up, prile
-        - 
+    - server and DB (potential)
+        - Therefore most perifery pages such as:
+            - login, forgot password, sign-up, profile, comunity
+    
+    -css spacing, style, allignment, padding...
+        - things dont all line up on al monitors, and especially with page zoom, the divs go wonky
+        
