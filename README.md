@@ -10,7 +10,7 @@ Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 <h2>
-To navigate webapp functionality, on the landing page select 'continue as guest to enter the site and explore the features'
+To navigate thies webapp's functionality, on the landing page select 'continue as guest' to enter the site and explore the features'
 </h2>
 
 
