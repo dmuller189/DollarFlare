@@ -19,7 +19,6 @@ export type NodeName =
     | "ZAR" //south african rand
     | "TRY" //turkish Lira
     | "BRL" | undefined; //brazzilian real
-
 //represents a set of paths in a graph, then when followed, yeidls a negative cycle of the log product of the weights, 
 //therefore an arbitrage opportunity in the graph 
 interface IGraphArbitragePath {

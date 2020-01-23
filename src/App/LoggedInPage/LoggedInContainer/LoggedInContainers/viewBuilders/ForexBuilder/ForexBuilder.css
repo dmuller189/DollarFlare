@@ -10,3 +10,12 @@
 #GName:hover {
     background-color: white;
 }
+
+.dropdownMenuButton {
+    outline: black !important;
+    background-color: rgba(28, 98, 168, .25);
+}
+
+.gobutton {
+    background-color: rgba(28, 98, 168, .75);
+}

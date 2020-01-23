@@ -10,6 +10,29 @@ import ForexRatesTable from './ForexRatesTable/ForexRatesTable';
 import { NodeName } from './forexGraphStructureAndLogic/GraphDataModelandLogic';
 
 
+const nodeNamesList: NodeName[] = [
+    "USD", //US Do
+    , "EUR" // EU Euro
+    , "JPY" //Japanese Yen
+    , "GBP" //British pound
+    , "CHF" //swiss franc
+    , "AUD" //australian dollar
+    , "CNY" //chinese renminbi
+    , "HKD" //hong kong dollar
+    , "NZD" //new zealand dollar
+    , "SEK" //swedish krona
+    , "KRW" //south korean won
+    , "SGD" //singapore dollar
+    , "NOK" //norwegian kronw
+    , "MXN" //mexican peso
+    , "INR" //Indian rupee
+    , "RUB" //russian ruble
+    , "ZAR" //south african rand
+    , "TRY" //turkish Lira
+    , "BRL"
+]
+
+
 //componenet did mount:
 // -  read ID from url
 // - if model ID exists in recently viewed:
@@ -38,6 +61,9 @@ export function containsVal(array: UniversalModel[], val: string): boolean {
 interface localState {
     stateModel: IGraph,
     namePlaceholder: string
+
+    //for 'Visual settings'
+    selectedNode: NodeName | "Select Node" | string //for now
 }
 
 class ForexBuilder extends React.Component<propsFromRedux, localState> {
@@ -47,7 +73,8 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
         this.state = {
             stateModel: new Graph(),
-            namePlaceholder: "name placeholder"
+            namePlaceholder: "name placeholder",
+            selectedNode: "Select Node"
         }
 
         this.onChange = this.onChange.bind(this);
@@ -100,23 +127,24 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
 
     /**
      * Handles the state change from the user adding a node on this graph
-     * @param node 
+     * @param node //adds this node 
      */
-    handleAddNode (node: NodeName): void {
+    handleAddNode(node: NodeName): void {
         let newGraph = new Graph();
         newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID).addNode(node);
 
         this.setState({
-            stateModel: newGraph
+            stateModel: newGraph,
+            selectedNode: "Select Node"
         })
 
     }
 
     /**
      * Handles the state change from the user removing a node on this graph
-     * @param node 
+     * @param node //removes this node
      */
-    handleRemoveNode (node: NodeName) {
+    handleRemoveNode(node: NodeName) {
         let newGraph = new Graph();
         newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID).removeNode(node);
 
@@ -128,7 +156,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
     handleUpdateEdgeWeight(from: NodeName, to: NodeName, weight: number) {
 
         let newGraph = new Graph();
-        newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID);
+        newGraph.setModel(this.state.stateModel).setID(this.state.stateModel.ID).setEdgeWeight(from, to, weight);
 
         this.setState({
             stateModel: newGraph
@@ -244,7 +272,7 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             g.addNode("USD");
             g.addNode("GBP");
             g.addEdge("AUD", "JPY");
-           // g.printGraph();
+            // g.printGraph();
             //consider having ID set in the graph constructor, then making
             //it read only
             g.setID(this.props.IDcount);
@@ -263,13 +291,21 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
         this.updateViewRender();
     }
 
+    onSelectNode(event: React.FormEvent<HTMLInputElement>) {
+        console.log(event.currentTarget);
+        this.setState({
+            selectedNode: event.currentTarget + ""
+        })
+    }
+
+
     render() {
         return (
             <div className="d-flex">
 
                 <div className="form-group mx-sm-3 mb-2">
                     <br></br>
-                    <h1>{this.state.stateModel.name.trim() === "" ? "Untitled" : this.state.stateModel.name  }</h1>
+                    <h1>{this.state.stateModel.name.trim() === "" ? "Untitled" : this.state.stateModel.name}</h1>
                     <form className="form-inline"
                         onSubmit={e => e.preventDefault()}>
                         <div className="form-groun" >
@@ -278,28 +314,52 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
                         //@ts-ignore */}
                             <input id="GName" className="form-control form-control-lg" type="text" name="name" onChange={this.onChange}
                                 placeholder={this.state.namePlaceholder}
-                                onfocus={this.onFocus}
-                                onblur={this.onBlur}
-                                maxlength="13"
+                            //  onfocus={this.onFocus}
+                            // onblur={this.onBlur}
+                            //   maxlength="13"
                             />
                         </div>
                     </form>
-                    <br/>
+                    <br />
                     <h3>
                         Visual Settings
                     </h3>
-                    {/* visual settings to include:
-                    - edge type (straing vs rounded)
-                    - force vs static vs plain
-                    - click to center graph
-                    represented as drop down boxes in state
-                    */}
+                    <br />
+
+                    <h4>
+
+
+
+                        <div className="dropdown">
+                            Add Node - 
+                            <button className="btn btn-secondary-outline dropdown-toggle dropdownMenuButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {this.state.selectedNode}
+                            </button>
+
+                            <div className="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                                <a className="dropdown-item" href="#">Action</a>
+                                <a className="dropdown-item" href="#">Another action</a>
+                                <a className="dropdown-item" href="#">Something else here</a>
+                            </div>
+
+
+                            <button className="btn gobutton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Go
+                            </button>
+
+
+
+                        </div>
+
+
+                    </h4>
+
                 </div>
                 <div className="d-flex p-2 bd-highlight">
-                <BaseNetworkViewLevel model={this.state.stateModel} /> 
+                    <BaseNetworkViewLevel model={this.state.stateModel} />
                 </div>
                 <div className="d-flex p-2 bd-highlight">
-                    <ForexRatesTable />
+                    <ForexRatesTable data={this.state.stateModel} />
                 </div>
             </div>
         )
