@@ -2,6 +2,9 @@ import React from 'react';
 import { IGraph, NodeName } from '../forexGraphStructureAndLogic/GraphDataModelandLogic';
 import './ForexRatesTable.css';
 
+/**
+ * TODO - GUI for filtering
+ */
 
 
 interface IProps {
@@ -18,20 +21,36 @@ export default class ForexRatesTable extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
-            filteredNodes: [],
+            filteredNodes: ["GBP"],
             sortOrder: "ignore"
         }
 
+        this.genTableData = this.genTableData.bind(this);
     }
 
-    componentDidUpdate() {
 
-    }
+    /**
+     * Builds a renderable list of forex pair-values for each edge existing on the graph
+     *  - filtered by selected nodes and sort order by weight of edge
+     */
+    genTableData() : {namefrom: NodeName, nameto: NodeName, weight: number} [] {
 
-    generateList(): {name: string, weight: number} [] {
-        let ans: {name: string, weight: number} [] = [];
+        let ans:  {namefrom: NodeName, nameto: NodeName, weight: number}[];
+        ans =  this.props.data.nodeList.map(e =>
+            e.neighbors.map(j => {
+                return (
+                    {namefrom: e.name, nameto: j.toNode.name, weight: j.weight}
+                )
+            }))
+            .reduce( (a,b) => [...a,...b],[])   
+            .filter(g => this.state.filteredNodes.includes(g.namefrom) || this.state.filteredNodes.includes(g.nameto));
 
-        
+
+            if(this.state.sortOrder === "ignore") {
+                return ans;
+            }
+
+            this.state.sortOrder === "High" ? ans.sort( (a,b) => a.weight-b.weight) : ans.sort((a,b) => b.weight - a.weight);
 
         return ans;
     }
@@ -52,15 +71,14 @@ export default class ForexRatesTable extends React.Component<IProps, IState> {
 
                         <tbody>
                             {
-                                this.props.data.nodeList.map(e =>
-                                    e.neighbors.map(j => {
-                                        return (
-                                            <tr>
-                                                <td><h5>{e.name + "" + j.toNode.name}</h5></td>
-                                                <td><h5>{j.weight + ""}</h5></td>
-                                            </tr>
-                                        )
-                                    }))
+                            this.genTableData().map(j => {
+                                return (
+                                    <tr>
+                                        <td><h5>{"" + j.namefrom+j.nameto}</h5></td>
+                                        <td><h5>{j.weight}</h5></td>
+                                    </tr>
+                                )
+                            })
                             }
                         </tbody>
                     </table>
