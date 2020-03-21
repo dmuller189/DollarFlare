@@ -13,12 +13,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 To navigate thies webapp's functionality, on the landing page select 'continue as guest' to enter the site and explore the features'
 </h2>
 
+<h2>
+More interesting code and things in src/App/LoggedInPage/LoggedInContainers/viewBuilders/ForexBuilder
 
 TODO:
-    - server and DB (potential)
-        - Therefore most perifery pages such as:
-            - login, forgot password, sign-up, profile, comunity
-    
+
     -css spacing, style, allignment, padding...
         - things dont all line up on al monitors, and especially with page zoom, the divs go wonky
+    - UI for table filtering (sort order and selecting nodes)
+    - UI for interacting with FX model
+        - buttons to add/remove things
         
