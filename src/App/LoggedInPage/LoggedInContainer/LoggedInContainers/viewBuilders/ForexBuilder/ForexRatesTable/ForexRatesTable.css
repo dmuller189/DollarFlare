@@ -1,0 +1,15 @@
+.my-scrollbar {
+    position: relative;
+    height: 750px;
+    overflow: auto;
+}
+
+
+.table-wrapper-scroll {
+    display: block;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color:  rgba(28, 98, 168, .25); 
+ }

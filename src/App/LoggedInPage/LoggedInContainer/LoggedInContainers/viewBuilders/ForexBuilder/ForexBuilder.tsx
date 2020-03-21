@@ -317,8 +317,35 @@ class ForexBuilder extends React.Component<propsFromRedux, localState> {
             g.addNode("JPY");
             g.addNode("USD");
             g.addNode("GBP");
+            g.addNode("CNY");
+            g.addNode("HKD");
+            g.addNode("EUR");
+            g.addNode("ZAR");
+            g.addNode("TRY");
+            g.addNode("NOK");
+            g.addEdge("NOK", "TRY");
+            g.addEdge("NOK", "EUR");
+            g.addEdge("NOK","GBP"); 
+            g.addEdge("ZAR", "AUD");
+            g.addEdge("ZAR","JPY");
+            g.addEdge("ZAR", "USD");
+            g.addEdge("ZAR", "GBP");
+            g.addEdge("ZAR", "CNY");
+            g.addEdge("ZAR", "HKD");
+            g.addEdge("ZAR", "EUR");
+            g.addEdge("ZAR", "TRY");
+            g.addEdge("TRY", "ZAR");
+            g.addEdge("TRY", "EUR");
+            g.addEdge("TRY", "HKD");
+            g.addEdge("TRY", "CNY");
+            g.addEdge("TRY", "USD");
+            g.addEdge("HKD", "GBP");
+            g.addEdge("HKD", "CNY");
             g.addEdge("AUD", "JPY");
             g.addEdge("GBP", "USD");
+            g.addEdge("AUD", "HKD");
+            g.addEdge("JPY", "EUR");
+            g.addEdge("EUR", "AUD");
             // g.printGraph();
             //consider having ID set in the graph constructor, then making
             //it read only
