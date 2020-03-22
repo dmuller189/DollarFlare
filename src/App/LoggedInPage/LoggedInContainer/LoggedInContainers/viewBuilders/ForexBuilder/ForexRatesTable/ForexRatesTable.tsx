@@ -21,7 +21,7 @@ export default class ForexRatesTable extends React.Component<IProps, IState> {
         super(props);
 
         this.state = {
-            filteredNodes: ["GBP"],
+            filteredNodes: ["GBP", "USD", "JPY"],
             sortOrder: "ignore"
         }
 
